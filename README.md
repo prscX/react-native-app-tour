@@ -1,2 +1,1 @@
-# react-native-app-tour
-React Native: Native App Tour Library
+# React Native: Native App Tour Library
