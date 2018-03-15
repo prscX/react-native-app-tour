@@ -10,12 +10,12 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 | **Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)**             |
 | ----------------- |
-| <img src="https://github.com/KeepSafe/TapTargetView/raw/master/.github/video.gif" width="600" height="600" />                  |
+| <img src="https://github.com/KeepSafe/TapTargetView/raw/master/.github/video.gif" width="300" height="600" />                  |
 
 
 | **iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)**             |
 | ----------------- |
-| <img src="https://github.com/aromajoin/material-showcase-ios/raw/master/art/material-showcase.gif" width="600" height="600" />                  |
+| <img src="https://github.com/aromajoin/material-showcase-ios/raw/master/art/material-showcase.gif" width="300" height="600" />                  |
 
 
 ## Installation
