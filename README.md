@@ -56,7 +56,7 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 `ios/Pods/Pods.xcodeproj`
 
-[](./Example/assets/linking.png)
+<img src="./Example/assets/linking.png" />
 
 ## API's
 
