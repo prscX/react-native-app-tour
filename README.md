@@ -63,15 +63,14 @@ This library is a React Native bridge around native app tour libraries. It allow
 * AppTourView.for: AppTourTarget
 
 ```
-let appTourTarget = AppTourView.for(Button, {
-    primary: 'This is a target button 1',
-    description: 'We have the best targets, believe me'
-})
+let appTourTarget = AppTourView.for(Button, {...native-library-props})
 
 AppTour.ShowFor(appTourTarget)
 ```
 
-> **Note:** App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)
+> **Note:**
+> - App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
+> - Please use the same props in order to make it work
 
 * AppTourSequence
   * add(AppTourTarget)
