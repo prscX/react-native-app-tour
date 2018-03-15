@@ -50,9 +50,8 @@ This library is a React Native bridge around native app tour libraries. It allow
               end
           end
       end
-      
     ```
-  - Run Command to install native library: `cd ios/ && pod install`
+  - Run Command to install native library: `cd ios/ && pod install`: If it has error => try `pod repo update` then `pod install`
   - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in Embedded Binaries & Linked Frameworks and Libraries. You can find this library from below path:
 
 `ios/Pods/Pods.xcodeproj`
