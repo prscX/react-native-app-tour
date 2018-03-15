@@ -20,13 +20,43 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 ## Installation
 
-* `$ npm install react-native-app-tour --save`
+`$ npm install react-native-app-tour --save`
 
-* `$ react-native link react-native-app-tour`
+`$ react-native link react-native-app-tour`
+
+- **Android**
 
 > **Note**
 >
 > * Android SDK 25 > is supported
+
+
+- **iOS**
+  - Run Command if Pods is not installed in your app: `cd ios/ && pod init`
+  - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app `Podfile`
+    ```
+      #pod 'MaterialShowcase'
+      pod 'MaterialShowcase', '~> 0.5.1'
+      
+      post_install do |installer|
+          installer.pods_project.targets.each do |target|
+              if target.name.include?('MaterialShowcase')
+                  target.build_configurations.each do |config|
+                      # swift version 4.0 for xcode 9
+                      config.build_settings['SWIFT_VERSION'] = '4.0'
+                      # swift version 3.2 for xcode 8
+                      #config.build_settings['SWIFT_VERSION'] = '3.2'
+                  end
+              end
+          end
+      end
+      
+    ```
+  - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in Embedded Binaries & Linked Frameworks and Libraries. You can find this library from below path:
+
+`ios/Pods/Pods.xcodeproj`
+
+[](./Example/assets/linking.png)
 
 ## API's
 
