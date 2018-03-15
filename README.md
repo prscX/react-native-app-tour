@@ -70,7 +70,7 @@ AppTour.ShowFor(appTourTarget)
 
 > **Note:**
 > - App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
-> - Please use the same props in order to make it work
+> - Please use the same props for the same.
 
 * AppTourSequence
   * add(AppTourTarget)
