@@ -40,6 +40,7 @@
 		CEE48093205A4F5F006FCE83 /* libRNAppTour.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE48092205A4D99006FCE83 /* libRNAppTour.a */; };
 		CEE4809E205A4F94006FCE83 /* MaterialShowcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4809A205A4F73006FCE83 /* MaterialShowcase.framework */; };
 		CEE4809F205A4F94006FCE83 /* MaterialShowcase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4809A205A4F73006FCE83 /* MaterialShowcase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F639D6C776EA3CA9250844D1 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635545768D92319DA2C2980A /* Pods_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -423,6 +424,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				F639D6C776EA3CA9250844D1 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
