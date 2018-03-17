@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.util.Log;
+import android.support.annotation.Nullable;
 
 import com.facebook.common.internal.Objects;
 import com.facebook.react.bridge.Promise;
@@ -13,10 +14,14 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.ReactContext;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
+
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.getkeepsafe.taptargetview.TapTargetView;
@@ -40,6 +45,14 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
     return "RNAppTour";
   }
 
+  private void sendEvent(ReactContext reactContext,
+                         String eventName,
+                         @Nullable WritableMap params) {
+      reactContext
+      .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+      .emit(eventName, params);
+  }
+
   @ReactMethod
   public void ShowSequence(final ReadableArray views, final ReadableMap props, final Promise promise) {
       final Activity activity = this.getCurrentActivity();
@@ -54,7 +67,29 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
           @Override
           public void run() {
               TapTargetSequence tapTargetSequence = new TapTargetSequence(activity).targets(targetViews);
-              tapTargetSequence.continueOnCancel(true);
+              tapTargetSequence.listener(new TapTargetSequence.Listener() {
+                  @Override
+                  public void onSequenceFinish() {
+                      WritableMap params = Arguments.createMap();
+                      params.putBoolean("finish", true);
+                      sendEvent(reactContext, "onFinishSequenceEvent", params);
+                  }
+
+                  @Override
+                  public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                      WritableMap params = Arguments.createMap();
+                      params.putBoolean("next_step", true);
+                      sendEvent(reactContext, "onShowSequenceStepEvent", params);
+                  }
+
+                  @Override
+                  public void onSequenceCanceled(TapTarget lastTarget) {
+                      WritableMap params = Arguments.createMap();
+                      params.putBoolean("cancel_step", true);
+                      sendEvent(reactContext, "onCancelStepEvent", params);
+                  }
+              })
+              .continueOnCancel(true);
               tapTargetSequence.start();
           }
       });
