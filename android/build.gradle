@@ -33,6 +33,5 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.getkeepsafe.taptargetview:taptargetview:1.10.0'
+    compile 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
 }
-  
