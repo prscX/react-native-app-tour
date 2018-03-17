@@ -74,6 +74,67 @@ NSString *const onFinishShowStepEvent = @"onFinishSequenceEvent";
 }
 
 
+- (NSTextAlignment*) getTextAlignmentByString: (NSString*) strAlignment {
+    if (strAlignment == nil) {
+        return NSTextAlignmentLeft; // default is left
+    }
+    
+    NSString *lowCaseString = [strAlignment lowercaseString];
+    if ([lowCaseString isEqualToString:@"left"]) {
+        return NSTextAlignmentLeft;
+    } if ([lowCaseString isEqualToString:@"right"]) {
+        return NSTextAlignmentRight;
+    } if ([lowCaseString isEqualToString:@"center"]) {
+        return NSTextAlignmentCenter;
+    } if ([lowCaseString isEqualToString:@"justify"]) {
+        return NSTextAlignmentJustified;
+    }
+    
+    return NSTextAlignmentLeft;
+}
+
+- (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length {
+    NSString *substring = [string substringWithRange: NSMakeRange(start, length)];
+    NSString *fullHex = length == 2 ? substring : [NSString stringWithFormat: @"%@%@", substring, substring];
+    unsigned hexComponent;
+    [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
+    return hexComponent / 255.0;
+}
+
+- (UIColor *) colorWithHexString: (NSString *) hexString {
+    NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
+    CGFloat alpha, red, blue, green;
+    switch ([colorString length]) {
+            case 3: // #RGB
+            alpha = 1.0f;
+            red   = [self colorComponentFrom: colorString start: 0 length: 1];
+            green = [self colorComponentFrom: colorString start: 1 length: 1];
+            blue  = [self colorComponentFrom: colorString start: 2 length: 1];
+            break;
+            case 4: // #ARGB
+            alpha = [self colorComponentFrom: colorString start: 0 length: 1];
+            red   = [self colorComponentFrom: colorString start: 1 length: 1];
+            green = [self colorComponentFrom: colorString start: 2 length: 1];
+            blue  = [self colorComponentFrom: colorString start: 3 length: 1];
+            break;
+            case 6: // #RRGGBB
+            alpha = 1.0f;
+            red   = [self colorComponentFrom: colorString start: 0 length: 2];
+            green = [self colorComponentFrom: colorString start: 2 length: 2];
+            blue  = [self colorComponentFrom: colorString start: 4 length: 2];
+            break;
+            case 8: // #AARRGGBB
+            alpha = [self colorComponentFrom: colorString start: 0 length: 2];
+            red   = [self colorComponentFrom: colorString start: 2 length: 2];
+            green = [self colorComponentFrom: colorString start: 4 length: 2];
+            blue  = [self colorComponentFrom: colorString start: 6 length: 2];
+            break;
+        default:
+            return nil;
+    }
+    return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
+}
+
 RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
@@ -142,7 +203,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     UIColor *backgroundPromptColor;
     NSString *backgroundPromptColorValue = [props objectForKey:@"backgroundPromptColor"];
     if (backgroundPromptColorValue != nil) {
-        backgroundPromptColor = [UIColor fromHexWithHexString: backgroundPromptColorValue];
+        backgroundPromptColor = [self colorWithHexString: backgroundPromptColorValue];
     }
     if (backgroundPromptColor != nil) {
         [materialShowcase setBackgroundColor: backgroundPromptColor];
@@ -160,11 +221,11 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     UIColor *targetHolderColor;
     NSString *targetTintColorValue = [props objectForKey:@"targetTintColor"];
     if (targetTintColorValue != nil) {
-        targetTintColor = [UIColor fromHexWithHexString: targetTintColorValue];
+        targetTintColor = [self colorWithHexString: targetTintColorValue];
     }
     NSString *targetHolderColorValue = [props objectForKey:@"targetHolderColor"];
     if (targetHolderColorValue != nil) {
-        targetHolderColor = [UIColor fromHexWithHexString: targetHolderColorValue];
+        targetHolderColor = [self colorWithHexString: targetHolderColorValue];
     }
     
     
@@ -195,12 +256,12 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     
     NSString *primaryTextColorValue = [props objectForKey:@"primaryTextColor"];
     if (primaryTextColorValue != nil) {
-        primaryTextColor = [UIColor fromHexWithHexString: primaryTextColorValue];
+        primaryTextColor = [self colorWithHexString:primaryTextColorValue];
     }
     
     NSString *secondaryTextColorValue = [props objectForKey:@"secondaryTextColor"];
     if (secondaryTextColorValue != nil) {
-        secondaryTextColor = [UIColor fromHexWithHexString: secondaryTextColorValue];
+        secondaryTextColor = [self colorWithHexString:secondaryTextColorValue];
     }
     
     [materialShowcase setPrimaryText: primaryText];
@@ -242,7 +303,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     UIColor *aniRippleColor;
     NSString *aniRippleColorValue = [props objectForKey:@"aniRippleColor"];
     if (aniRippleColorValue != nil) {
-        aniRippleColor = [UIColor fromHexWithHexString: aniRippleColorValue];
+        aniRippleColor = [self colorWithHexString: aniRippleColorValue];
     } if (aniRippleColor != nil) {
         [materialShowcase setAniRippleColor: aniRippleColor];
     }
@@ -266,23 +327,4 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     return materialShowcase;
 }
 
-- (NSTextAlignment*) getTextAlignmentByString: (NSString*) strAlignment {
-    if (strAlignment == nil) {
-        return NSTextAlignmentLeft; // default is left
-    }
-    
-    NSString *lowCaseString = [strAlignment lowercaseString];
-    if ([lowCaseString isEqualToString:@"left"]) {
-        return NSTextAlignmentLeft;
-    } if ([lowCaseString isEqualToString:@"right"]) {
-        return NSTextAlignmentRight;
-    } if ([lowCaseString isEqualToString:@"center"]) {
-        return NSTextAlignmentCenter;
-    } if ([lowCaseString isEqualToString:@"justify"]) {
-        return NSTextAlignmentJustified;
-    }
-    return NSTextAlignmentLeft;
-}
-
 @end
-
