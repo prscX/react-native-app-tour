@@ -26,6 +26,23 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 - **Android**
 
+  - Please add below script in your `build.gradle`
+
+```
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
 > **Note**
 >
 > * Android SDK 25 > is supported
