@@ -113,15 +113,18 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
       final Activity activity = this.getCurrentActivity();
 
       final String title = props.getString("title");
-      final String description = props.getString("description");
-
+      
+      String description = null;
       String outerCircleColor = null;
       String targetCircleColor = null;
       String titleTextColor = null;
       String descriptionTextColor = null;
       String textColor = null;
       String dimColor = null;
-
+      
+      if (props.hasKey("description") && !props.isNull("description")) {
+          description = props.getString("description");
+      }
       if (props.hasKey("outerCircleColor") && !props.isNull("outerCircleColor")) {
           outerCircleColor = props.getString("outerCircleColor");
       }
