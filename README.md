@@ -75,6 +75,11 @@ allprojects {
 
 <img src="./Example/assets/linking.png" />
 
+## Setup Issue References
+If you encounter issues with respect to setup, please refer below issues which might help you in order to resolve the same:
+
+- [ISSUE - 3: File not found in iOS and No resourcefound in android](https://github.com/prscX/react-native-app-tour/issues/3)
+
 
 ## API's
 
