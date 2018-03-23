@@ -75,10 +75,9 @@ allprojects {
 
 <img src="./Example/assets/linking.png" />
 
-## Setup Issue References
-If you encounter issues with respect to setup, please refer below issues which might help you in order to resolve the same:
-
-- [ISSUE - 3: File not found in iOS and No resourcefound in android](https://github.com/prscX/react-native-app-tour/issues/3)
+## ISSUES
+- If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
+- If you have problems with `Android` Trying to resolve view with tag which doesn't exist or can't resolve tag. Please add props `collapasable: false` to your View
 
 
 ## API's
