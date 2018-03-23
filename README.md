@@ -75,7 +75,7 @@ allprojects {
     end
     ```
   - Run Command to install native library: `cd ios/ && pod install`: If it has error => try `pod repo update` then `pod install`
-
+  - Now build your iOS app through Xcode
 
 ## ISSUES
 - If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
