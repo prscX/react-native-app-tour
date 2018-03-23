@@ -1,0 +1,21 @@
+# platform :ios, '9.0'	
+	
+target 'Example' do	
+    use_frameworks!	
+    	
+    pod 'MaterialShowcase', '~> 0.5.1'
+    	
+    post_install do |installer|	
+        installer.pods_project.targets.each do |target|	
+            if target.name.include?('MaterialShowcase')	
+                target.build_configurations.each do |config|	
+                    # swift version 4.0 for xcode 9	
+                    #config.build_settings['SWIFT_VERSION'] = '4.0'	
+                    # swift version 3.2 for xcode 8	
+                    config.build_settings['SWIFT_VERSION'] = '3.2'	
+                end	
+            end	
+        end	
+    end	
+    	
+end
