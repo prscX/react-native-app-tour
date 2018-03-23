@@ -7,6 +7,13 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.util.Log;
 import android.support.annotation.Nullable;
+import android.app.Dialog;
+import android.view.View;
+import android.app.AlertDialog;
+
+import com.facebook.react.uimanager.UIManagerModule;
+import com.facebook.react.uimanager.UIBlock;
+import com.facebook.react.uimanager.NativeViewHierarchyManager;
 
 import com.facebook.common.internal.Objects;
 import com.facebook.react.bridge.Promise;
