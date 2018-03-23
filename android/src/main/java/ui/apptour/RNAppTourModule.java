@@ -1,4 +1,3 @@
-
 package ui.apptour;
 
 import android.app.Activity;
@@ -86,7 +85,6 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                             sendEvent(reactContext, "onFinishSequenceEvent", params);
                             // dismiss dialog on finish
                             if(dialog != null && dialog.isShowing()) {
-                              Log.d("SmartSOS", "Dismiss Dialog 1111111");
                                dialog.dismiss();
                             }
                         }
