@@ -91,9 +91,6 @@ let appTourTarget = AppTourView.for(Button, {...native-library-props})
 AppTour.ShowFor(appTourTarget)
 ```
 
-> **Note:**
-> - App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
-> - Please use the same props for the same.
 
 * AppTourSequence
   * add(AppTourTarget)
@@ -114,6 +111,57 @@ AppTour.ShowSequence(appTourSequence)
 * AppTour
   * ShowFor(AppTourTarget)
   * ShowSequence(AppTourTargets)
+
+
+## Props
+
+- **Android**
+
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `title`       | `string`     |        | Specify the title of tour
+| `description`       | `string`     |        | Specify the description of tour 
+| `outerCircleColor`       | `string: HEX-COLOR`     |        | Specify a color for the outer circle 
+| `outerCircleAlpha`       | `number`     |    0.96f     | Specify the alpha amount for the outer circle
+| `targetCircleColor`       | `string: HEX-COLOR`     |         | Specify a color for the target circle
+| `titleTextSize`       | `number`     |    20     | Specify the size (in sp) of the title text
+| `titleTextColor`       | `string: HEX-COLOR`     |         | Specify the color of the title text
+| `descriptionTextSize`       | `number`     |    10     | Specify the size (in sp) of the description text
+| `descriptionTextColor`       | `string: HEX-COLOR`     |         | Specify the color of the description text
+| `textColor`       | `string: HEX-COLOR`     |         | Specify a color for both the title and description text
+| `dimColor`       | `string: HEX-COLOR`     |         | If set, will dim behind the view with 30% opacity of the given color
+| `drawShadow`       | `bool`     |    true     | Whether to draw a drop shadow or not
+| `cancelable`       | `bool`     |    true     | Whether tapping outside the outer circle dismisses the view
+| `tintTarget`       | `bool`     |     true    | Whether to tint the target view's color
+| `transparentTarget`       | `bool`     |    true     | Specify whether the target is transparent (displays the content underneath)
+| `targetRadius`       | `number`     |    60     | Specify the target radius (in dp)
+
+
+- **iOS**
+
+| Prop              | Type       | Default | Note                                                                                                       |
+| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
+| `primaryText`       | `string`     |        | Specify the primary title of tour
+| `secondaryText`       | `string`     |        | Specify the secondary title of tour 
+| `backgroundPromptColor`       | `string: HEX-COLOR`     |    UIColor.blue    | Specify background prompt color
+| `backgroundPromptColorAlpha`       | `number`     |   0.96     | Specify background prompt color alpha
+| `targetTintColor`       | `string: HEX-COLOR`     |   #0000ff     | Specify target tint color
+| `targetHolderRadius`       | `number`     |    44    | Specify target holder radius
+| `targetHolderColor`       | `string: HEX-COLOR`     |    #FFFFFF   | Specify target holder color
+| `primaryTextColor`       | `string: HEX-COLOR`     |   #FFFFFF     | Specify primary text color
+| `secondaryTextColor`       | `string: HEX-COLOR`     |   #FFFFFF     | Specify secondary text color
+| `primaryTextSize`       | `number`     |   20     | Specify primary text size
+| `secondaryTextSize`       | `number`     |    15    | Specify secondary text size
+| `primaryTextAlignment`       | `string`     |  left      | Specify primary text alignment: Left, Right, Top, Bottom
+| `secondaryTextAlignment`       | `string`     | left       | Specify secondary text alignment: Left, Right, Top, Bottom
+| `aniComeInDuration`       | `number`     |    0.5    | Specify animation come In Duration
+| `aniGoOutDuration`       | `number`     |   1.5     | Specify animation Go Out Duration
+| `aniRippleColor`       | `string: HEX-COLOR`     |   #FFFFFF     | Specify ripple color
+| `aniRippleAlpha`       | `number`     |    0.2    | Specify ripple alpha
+
+> **Note:**
+> - App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
+
 
 ## Credits
 
