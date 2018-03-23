@@ -15,7 +15,9 @@
     ],
     "author": "Pranav Raj Singh Chauhan",
     "license": "MIT",
-    "dependencies": {},
+    "dependencies": {
+        "material-showcase-ios": "git+https://github.com/aromajoin/material-showcase-ios#b0d3d4f"
+    },
     "devDependencies": {
         "prettier-pack": "0.0.2"
     }

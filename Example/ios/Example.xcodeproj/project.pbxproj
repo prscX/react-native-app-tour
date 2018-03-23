@@ -37,10 +37,9 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		CE69ADC82065048B0085D1B9 /* MaterialShowcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE69ADC7206504820085D1B9 /* MaterialShowcase.framework */; };
+		CE69ADC92065048B0085D1B9 /* MaterialShowcase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE69ADC7206504820085D1B9 /* MaterialShowcase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEE48093205A4F5F006FCE83 /* libRNAppTour.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE48092205A4D99006FCE83 /* libRNAppTour.a */; };
-		CEE4809E205A4F94006FCE83 /* MaterialShowcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4809A205A4F73006FCE83 /* MaterialShowcase.framework */; };
-		CEE4809F205A4F94006FCE83 /* MaterialShowcase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4809A205A4F73006FCE83 /* MaterialShowcase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F639D6C776EA3CA9250844D1 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635545768D92319DA2C2980A /* Pods_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,6 +260,20 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		CE69ADC6206504820085D1B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE69ADC2206504820085D1B9 /* MaterialShowcase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CE083A191EBACFEB0077666F;
+			remoteInfo = MaterialShowcase;
+		};
+		CE69ADCA2065048B0085D1B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE69ADC2206504820085D1B9 /* MaterialShowcase.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CE083A181EBACFEB0077666F;
+			remoteInfo = MaterialShowcase;
+		};
 		CEE4807E205A4D98006FCE83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -324,37 +337,16 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNAppTour;
 		};
-		CEE48099205A4F73006FCE83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEE48094205A4F73006FCE83 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15302C451102423E3AEC2ECB1939D917;
-			remoteInfo = MaterialShowcase;
-		};
-		CEE4809B205A4F73006FCE83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEE48094205A4F73006FCE83 /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 184C25561DB40A3D8EB73129E367F998;
-			remoteInfo = "Pods-Example";
-		};
-		CEE480A0205A4F94006FCE83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CEE48094205A4F73006FCE83 /* Pods.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6941543DBE929082579DC616BB1E09B5;
-			remoteInfo = MaterialShowcase;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CEE480A2205A4F94006FCE83 /* Embed Frameworks */ = {
+		CE69ADCC2065048B0085D1B9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CEE4809F205A4F94006FCE83 /* MaterialShowcase.framework in Embed Frameworks */,
+				CE69ADC92065048B0085D1B9 /* MaterialShowcase.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,16 +376,13 @@
 		2D02E47B1E0B4A5D006451C7 /* Example-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Example-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Example-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C7354ACF8B1DB74A3587151 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		635545768D92319DA2C2980A /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		C4459717A653486A9A4006F4 /* libRNAppTour.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAppTour.a; sourceTree = "<group>"; };
-		CEE48094205A4F73006FCE83 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		CE69ADC2206504820085D1B9 /* MaterialShowcase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MaterialShowcase.xcodeproj; path = "../node_modules/material-showcase-ios/MaterialShowcase.xcodeproj"; sourceTree = "<group>"; };
 		D1D971F72DA94490A5EB9FA1 /* RNAppTour.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAppTour.xcodeproj; path = "../node_modules/react-native-app-tour/ios/RNAppTour.xcodeproj"; sourceTree = "<group>"; };
-		EE47018AE3BE88A53583BD90 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,8 +399,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE48093205A4F5F006FCE83 /* libRNAppTour.a in Frameworks */,
-				CEE4809E205A4F94006FCE83 /* MaterialShowcase.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
+				CE69ADC82065048B0085D1B9 /* MaterialShowcase.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -424,7 +413,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				F639D6C776EA3CA9250844D1 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,9 +560,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CEE48094205A4F73006FCE83 /* Pods.xcodeproj */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				635545768D92319DA2C2980A /* Pods_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -629,12 +615,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CE69ADC2206504820085D1B9 /* MaterialShowcase.xcodeproj */,
 				13B07FAE1A68108700A75B9A /* Example */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ExampleTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				DC2E7024D1029F1373DD0A59 /* Pods */,
 				CEE48058205A4D94006FCE83 /* Recovered References */,
 			);
 			indentWidth = 2;
@@ -662,6 +648,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CE69ADC3206504820085D1B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE69ADC7206504820085D1B9 /* MaterialShowcase.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CEE48058205A4D94006FCE83 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -676,24 +670,6 @@
 				CEE48092205A4D99006FCE83 /* libRNAppTour.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CEE48095205A4F73006FCE83 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CEE4809A205A4F73006FCE83 /* MaterialShowcase.framework */,
-				CEE4809C205A4F73006FCE83 /* Pods_Example.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		DC2E7024D1029F1373DD0A59 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EE47018AE3BE88A53583BD90 /* Pods-Example.debug.xcconfig */,
-				3C7354ACF8B1DB74A3587151 /* Pods-Example.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -721,19 +697,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
-				ED1AF957DC521402AB0AE827 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				1D8D4F2F123941BF014DA5AA /* [CP] Embed Pods Frameworks */,
-				822054A1B9BAB88F9B1B3A36 /* [CP] Copy Pods Resources */,
-				CEE480A2205A4F94006FCE83 /* Embed Frameworks */,
+				CE69ADCC2065048B0085D1B9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CEE480A1205A4F94006FCE83 /* PBXTargetDependency */,
+				CE69ADCB2065048B0085D1B9 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = "Hello World";
@@ -813,8 +786,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = CEE48095205A4F73006FCE83 /* Products */;
-					ProjectRef = CEE48094205A4F73006FCE83 /* Pods.xcodeproj */;
+					ProductGroup = CE69ADC3206504820085D1B9 /* Products */;
+					ProjectRef = CE69ADC2206504820085D1B9 /* MaterialShowcase.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -1083,6 +1056,13 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CE69ADC7206504820085D1B9 /* MaterialShowcase.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MaterialShowcase.framework;
+			remoteRef = CE69ADC6206504820085D1B9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CEE4807F205A4D98006FCE83 /* libjsinspector.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1146,20 +1126,6 @@
 			remoteRef = CEE48091205A4D99006FCE83 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CEE4809A205A4F73006FCE83 /* MaterialShowcase.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = MaterialShowcase.framework;
-			remoteRef = CEE48099205A4F73006FCE83 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CEE4809C205A4F73006FCE83 /* Pods_Example.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Pods_Example.framework;
-			remoteRef = CEE4809B205A4F73006FCE83 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1211,24 +1177,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		1D8D4F2F123941BF014DA5AA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MaterialShowcase/MaterialShowcase.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialShowcase.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1242,39 +1190,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		822054A1B9BAB88F9B1B3A36 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ED1AF957DC521402AB0AE827 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1326,10 +1241,10 @@
 			target = 2D02E47A1E0B4A5D006451C7 /* Example-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
-		CEE480A1205A4F94006FCE83 /* PBXTargetDependency */ = {
+		CE69ADCB2065048B0085D1B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MaterialShowcase;
-			targetProxy = CEE480A0205A4F94006FCE83 /* PBXContainerItemProxy */;
+			targetProxy = CE69ADCA2065048B0085D1B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1401,7 +1316,6 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE47018AE3BE88A53583BD90 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1426,7 +1340,6 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C7354ACF8B1DB74A3587151 /* Pods-Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

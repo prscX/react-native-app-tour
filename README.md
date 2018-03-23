@@ -49,31 +49,13 @@ allprojects {
 
 
 - **iOS**
-  - Run Command if Pods is not installed in your app: `cd ios/ && pod init`
-  - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app `Podfile`
-    ```
-      #pod 'MaterialShowcase'
-      pod 'MaterialShowcase', '~> 0.5.1'
-      
-      post_install do |installer|
-          installer.pods_project.targets.each do |target|
-              if target.name.include?('MaterialShowcase')
-                  target.build_configurations.each do |config|
-                      # swift version 4.0 for xcode 9
-                      config.build_settings['SWIFT_VERSION'] = '4.0'
-                      # swift version 3.2 for xcode 8
-                      #config.build_settings['SWIFT_VERSION'] = '3.2'
-                  end
-              end
-          end
-      end
-    ```
-  - Run Command to install native library: `cd ios/ && pod install`: If it has error => try `pod repo update` then `pod install`
-  - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in Embedded Binaries & Linked Frameworks and Libraries. You can find this library from below path:
+  - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
 
-`ios/Pods/Pods.xcodeproj`
+    **Path:** `your-react-native-app/node_modules/material-showcase-ios`
 
-<img src="./Example/assets/linking.png" />
+    <img src="./assets/ios-setup.gif" />
+
+
 
 ## ISSUES
 - If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
