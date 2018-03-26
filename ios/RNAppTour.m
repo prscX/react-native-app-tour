@@ -64,7 +64,7 @@ NSString *const onFinishShowStepEvent = @"onFinishSequenceEvent";
     if (self) {
         targets = [[MutableOrderedDictionary alloc] init];
     }
-    
+
     return self;
 }
 
@@ -78,7 +78,7 @@ NSString *const onFinishShowStepEvent = @"onFinishSequenceEvent";
     if (strAlignment == nil) {
         return NSTextAlignmentLeft; // default is left
     }
-    
+
     NSString *lowCaseString = [strAlignment lowercaseString];
     if ([lowCaseString isEqualToString:@"left"]) {
         return NSTextAlignmentLeft;
@@ -89,7 +89,7 @@ NSString *const onFinishShowStepEvent = @"onFinishSequenceEvent";
     } if ([lowCaseString isEqualToString:@"justify"]) {
         return NSTextAlignmentJustified;
     }
-    
+
     return NSTextAlignmentLeft;
 }
 
@@ -143,7 +143,7 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
     for (NSNumber *view in views) {
         [targets setObject:[props objectForKey: [view stringValue]] forKey: [view stringValue]];
     }
-    
+
     NSString *showTargetKey = [ [targets allKeys] objectAtIndex: 0];
     [self ShowFor:[NSNumber numberWithLongLong:[showTargetKey longLongValue]] props:[targets objectForKey:showTargetKey] ];
 }
@@ -153,30 +153,30 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
 }
 - (void)showCaseDidDismissWithShowcase:(MaterialShowcase *)materialShowcase {
     NSLog(@"");
-    
+
     NSArray *targetKeys = [targets allKeys];
     if (targetKeys.count <= 0) {
         return;
     }
-    
+
     NSString *removeTargetKey = [targetKeys objectAtIndex: 0];
     [targets removeObjectForKey: removeTargetKey];
-    
+
     NSMutableArray *viewIds = [[NSMutableArray alloc] init];
     NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
-    
+
     if (targetKeys.count <= 1) {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onFinishShowStepEvent body:@{@"finish": @YES}];
     }
     else {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onShowSequenceStepEvent body:@{@"next_step": @YES}];
     }
-    
+
     for (NSString *view in [targets allKeys]) {
         [viewIds addObject: [NSNumber numberWithLongLong:[view longLongValue]]];
         [props setObject:(NSDictionary *)[targets objectForKey: view] forKey:view];
     }
-    
+
     if ([viewIds count] > 0) {
         [self ShowSequence:viewIds props:props];
     }
@@ -185,20 +185,20 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
 RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 {
     MaterialShowcase *materialShowcase = [self generateMaterialShowcase:view props:props];
-    
+
     [materialShowcase showWithAnimated:true completion:^() {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onStartShowStepEvent body:@{@"start_step": @YES}];
     }];
 }
 
 - (MaterialShowcase *)generateMaterialShowcase:(NSNumber *)view props:(NSDictionary *)props {
-    
+
     MaterialShowcase *materialShowcase = [[MaterialShowcase alloc] init];
     UIView *target = [self.bridge.uiManager viewForReactTag: view];
-    
-    NSString *primaryText = [props objectForKey: @"primaryText"];
-    NSString *secondaryText = [props objectForKey: @"secondaryText"];
-    
+
+    NSString *title = [props objectForKey: @"title"];
+    NSString *description = [props objectForKey: @"description"];
+
     // Background
     UIColor *backgroundPromptColor;
     NSString *backgroundPromptColorValue = [props objectForKey:@"backgroundPromptColor"];
@@ -208,89 +208,87 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     if (backgroundPromptColor != nil) {
         [materialShowcase setBackgroundColor: backgroundPromptColor];
     }
-    
+
     if ([props objectForKey:@"backgroundPrompAlpha"] != nil) {
         float backgroundPrompAlphaValue = [[props objectForKey:@"backgroundPrompAlpha"] floatValue];
         if (backgroundPrompAlphaValue >= 0.0 && backgroundPrompAlphaValue <= 1.0) {
             [materialShowcase setBackgroundPromptColorAlpha:backgroundPrompAlphaValue];
         }
     }
-    
+
     // Target
-    UIColor *targetTintColor;
-    UIColor *targetHolderColor;
-    NSString *targetTintColorValue = [props objectForKey:@"targetTintColor"];
-    if (targetTintColorValue != nil) {
-        targetTintColor = [self colorWithHexString: targetTintColorValue];
+    UIColor *outerCircleColor;
+    UIColor *targetCircleColor;
+    NSString *outerCircleColorValue = [props objectForKey:@"outerCircleColor"];
+    if (outerCircleColorValue != nil) {
+        outerCircleColor = [self colorWithHexString: outerCircleColorValue];
     }
-    NSString *targetHolderColorValue = [props objectForKey:@"targetHolderColor"];
-    if (targetHolderColorValue != nil) {
-        targetHolderColor = [self colorWithHexString: targetHolderColorValue];
+    NSString *targetCircleColorValue = [props objectForKey:@"targetCircleColor"];
+    if (targetCircleColorValue != nil) {
+        targetCircleColor = [self colorWithHexString: targetCircleColorValue];
     }
-    
-    
-    if (targetTintColor != nil) {
-        target.tintColor = targetTintColor;
-        [materialShowcase setTargetTintColor: targetTintColor];
-    } if (targetHolderColor != nil) {
-        [materialShowcase setTargetHolderColor: targetHolderColor];
+
+
+    if (outerCircleColor != nil) {
+        target.tintColor = outerCircleColor;
+        [materialShowcase setTargetTintColor: outerCircleColor];
+    } if (targetCircleColor != nil) {
+        [materialShowcase setTargetHolderColor: targetCircleColor];
     }
-    
-    if ([props objectForKey:@"targetHolderRadius"] != nil) {
-        float targetHolderRadiusValue = [[props objectForKey:@"targetHolderRadius"] floatValue];
-        if (targetHolderRadiusValue >= 0) {
-            [materialShowcase setTargetHolderRadius: targetHolderRadiusValue];
+
+    if ([props objectForKey:@"targetRadius"] != nil) {
+        float targetRadiusValue = [[props objectForKey:@"targetRadius"] floatValue];
+        if (targetRadiusValue >= 0) {
+            [materialShowcase setTargetHolderRadius: targetRadiusValue];
         }
     }
-    
-    BOOL *isTapRecognizerForTagretViewValue = [[props objectForKey:@"isTapRecognizerForTagretView"] boolValue];
-    if (isTapRecognizerForTagretViewValue == TRUE) {
-        [materialShowcase setIsTapRecognizerForTagretView:TRUE];
-    }
-    
+
+    BOOL *cancelable = [[props objectForKey:@"cancelable"] boolValue];
+    [materialShowcase setIsTapRecognizerForTagretView: !cancelable];
+
     // Text
-    UIColor *primaryTextColor;
-    UIColor *secondaryTextColor;
+    UIColor *titleTextColor;
+    UIColor *descriptionTextColor;
     //    showcase.primaryTextFont = UIFont.boldSystemFont(ofSize: primaryTextSize)
     //    showcase.secondaryTextFont = UIFont.systemFont(ofSize: secondaryTextSize)
-    
-    NSString *primaryTextColorValue = [props objectForKey:@"primaryTextColor"];
-    if (primaryTextColorValue != nil) {
-        primaryTextColor = [self colorWithHexString:primaryTextColorValue];
+
+    NSString *titleTextColorValue = [props objectForKey:@"titleTextColor"];
+    if (titleTextColorValue != nil) {
+        titleTextColor = [self colorWithHexString:titleTextColorValue];
     }
-    
-    NSString *secondaryTextColorValue = [props objectForKey:@"secondaryTextColor"];
-    if (secondaryTextColorValue != nil) {
-        secondaryTextColor = [self colorWithHexString:secondaryTextColorValue];
+
+    NSString *descriptionTextColorValue = [props objectForKey:@"descriptionTextColor"];
+    if (descriptionTextColorValue != nil) {
+        descriptionTextColor = [self colorWithHexString:descriptionTextColorValue];
     }
-    
-    [materialShowcase setPrimaryText: primaryText];
-    [materialShowcase setSecondaryText: secondaryText];
-    
-    if (primaryTextColor != nil) {
-        [materialShowcase setPrimaryTextColor: primaryTextColor];
-    } if (secondaryTextColor != nil) {
-        [materialShowcase setSecondaryTextColor: secondaryTextColor];
+
+    [materialShowcase setPrimaryText: title];
+    [materialShowcase setSecondaryText: description];
+
+    if (titleTextColor != nil) {
+        [materialShowcase setPrimaryTextColor: titleTextColor];
+    } if (descriptionTextColor != nil) {
+        [materialShowcase setSecondaryTextColor: descriptionTextColor];
     }
-    
-    float primaryTextSizeValue = [[props objectForKey:@"primaryTextSize"] floatValue];
-    float secondaryTextSizeValue = [[props objectForKey:@"secondaryTextSize"] floatValue];
-    if (primaryTextSizeValue > 0) {
-        [materialShowcase setPrimaryTextSize: primaryTextSizeValue];
-    } if (secondaryTextSizeValue > 0) {
-        [materialShowcase setSecondaryTextSize: secondaryTextSizeValue];
+
+    float titleTextSizeValue = [[props objectForKey:@"titleTextSize"] floatValue];
+    float descriptionTextSizeValue = [[props objectForKey:@"descriptionTextSize"] floatValue];
+    if (titleTextSizeValue > 0) {
+        [materialShowcase setPrimaryTextSize: titleTextSizeValue];
+    } if (descriptionTextSizeValue > 0) {
+        [materialShowcase setSecondaryTextSize: descriptionTextSizeValue];
     }
-    
-    NSString *primaryTextAlignmentValue = [props objectForKey:@"primaryTextAlignment"];
-    NSString *secondaryTextAlignmentValue = [props objectForKey:@"secondaryTextAlignment"];
-    if (primaryTextAlignmentValue != nil) {
-        NSTextAlignment* primaryTextAlign = [self getTextAlignmentByString:primaryTextAlignmentValue];
-        [materialShowcase setSecondaryTextAlignment: primaryTextAlign];
-    } if (secondaryTextAlignmentValue != nil) {
-        NSTextAlignment* secondaryTextAlign = [self getTextAlignmentByString:secondaryTextAlignmentValue];
-        [materialShowcase setSecondaryTextAlignment: secondaryTextAlign];
+
+    NSString *titleTextAlignmentValue = [props objectForKey:@"titleTextAlignment"];
+    NSString *descriptionTextAlignmentValue = [props objectForKey:@"descriptionTextAlignment"];
+    if (titleTextAlignmentValue != nil) {
+        NSTextAlignment* titleTextAlignment = [self getTextAlignmentByString:titleTextAlignmentValue];
+        [materialShowcase setSecondaryTextAlignment: titleTextAlignment];
+    } if (descriptionTextAlignmentValue != nil) {
+        NSTextAlignment* descriptionTextAlignment = [self getTextAlignmentByString:descriptionTextAlignmentValue];
+        [materialShowcase setSecondaryTextAlignment: descriptionTextAlignment];
     }
-    
+
     // Animation
     float aniComeInDurationValue = [[props objectForKey:@"aniComeInDuration"] floatValue]; // second unit
     float aniGoOutDurationValue = [[props objectForKey:@"aniGoOutDuration"] floatValue]; // second unit
@@ -299,7 +297,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     } if (aniGoOutDurationValue > 0) {
         [materialShowcase setAniGoOutDuration: aniGoOutDurationValue];
     }
-    
+
     UIColor *aniRippleColor;
     NSString *aniRippleColorValue = [props objectForKey:@"aniRippleColor"];
     if (aniRippleColorValue != nil) {
@@ -307,23 +305,23 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     } if (aniRippleColor != nil) {
         [materialShowcase setAniRippleColor: aniRippleColor];
     }
-    
-    
+
+
     if ([props objectForKey:@"aniRippleAlpha"] != nil) {
         float aniRippleAlphaValue = [[props objectForKey:@"aniRippleAlpha"] floatValue];
         if (aniRippleAlphaValue >= 0.0 && aniRippleAlphaValue <= 1.0) {
             [materialShowcase setAniRippleAlpha: aniRippleAlphaValue];
         }
     }
-    
+
     float aniRippleScaleValue = [[props objectForKey:@"aniRippleScale"] floatValue];
     if (aniRippleScaleValue > 0) {
         [materialShowcase setAniRippleScale:aniRippleScaleValue];
     }
-    
+
     [materialShowcase setTargetViewWithView: target];
     [materialShowcase setDelegate: self];
-    
+
     return materialShowcase;
 }
 
