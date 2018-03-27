@@ -243,8 +243,10 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         }
     }
 
-    BOOL *cancelable = [[props objectForKey:@"cancelable"] boolValue];
-    [materialShowcase setIsTapRecognizerForTagretView: !cancelable];
+    if ([props objectForKey:@"cancelable"] != nil) {
+        BOOL *cancelable = [[props objectForKey:@"cancelable"] boolValue];
+        [materialShowcase setIsTapRecognizerForTagretView: !cancelable];
+    }
 
     // Text
     UIColor *titleTextColor;
