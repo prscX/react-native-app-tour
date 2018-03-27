@@ -3,8 +3,8 @@
 target 'Example' do	
     use_frameworks!	
     	
-    pod 'MaterialShowcase', '~> 0.5.1'
-    	
+    pod 'MaterialShowcase',:git => 'https://github.com/aromajoin/material-showcase-ios.git', :commit =>'b8d8c1d'
+    
     post_install do |installer|	
         installer.pods_project.targets.each do |target|	
             if target.name.include?('MaterialShowcase')	
