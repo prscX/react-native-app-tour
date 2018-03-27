@@ -189,35 +189,35 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         int targetRadius = 60;
 
         try {
-            outerCircleAlpha = Float.valueOf(props.getString("outerCircleAlpha"));
+            outerCircleAlpha = (float) props.getDouble("outerCircleAlpha");
         } catch (Exception e) {
         }
         try {
-            titleTextSize = Integer.valueOf(props.getString("titleTextSize"));
+            titleTextSize = props.getInt("titleTextSize");
         } catch (Exception e) {
         }
         try {
-            descriptionTextSize = Integer.valueOf(props.getString("descriptionTextSize"));
+            descriptionTextSize = props.getInt("descriptionTextSize");
         } catch (Exception e) {
         }
         try {
-            drawShadow = Boolean.valueOf(props.getString("drawShadow"));
+            drawShadow = props.getBoolean("drawShadow");
         } catch (Exception e) {
         }
         try {
-            cancelable = Boolean.valueOf(props.getString("cancelable"));
+            cancelable = props.getBoolean("cancelable");
         } catch (Exception e) {
         }
         try {
-            tintTarget = Boolean.valueOf(props.getString("tintTarget"));
+            tintTarget = props.getBoolean("tintTarget");
         } catch (Exception e) {
         }
         try {
-            transparentTarget = Boolean.valueOf(props.getString("transparentTarget"));
+            transparentTarget = props.getBoolean("transparentTarget");
         } catch (Exception e) {
         }
         try {
-            targetRadius = Integer.valueOf(props.getString("targetRadius"));
+            targetRadius = props.getInt("targetRadius");
         } catch (Exception e) {
         }
 

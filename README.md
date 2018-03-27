@@ -8,15 +8,13 @@
 
 This library is a React Native bridge around native app tour libraries. It allows show/guide beautiful tours:
 
-| **Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)**             |
-| ----------------- |
-| <img src="https://github.com/KeepSafe/TapTargetView/raw/master/.github/video.gif" width="300" height="600" />                  |
+| **Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)**                              |
+| ------------------------------------------------------------------------------------------------------------- |
+| <img src="https://github.com/KeepSafe/TapTargetView/raw/master/.github/video.gif" width="300" height="600" /> |
 
-
-| **iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)**             |
-| ----------------- |
-| <img src="https://github.com/aromajoin/material-showcase-ios/raw/master/art/material-showcase.gif" width="300" height="600" />                  |
-
+| **iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)**                                 |
+| ------------------------------------------------------------------------------------------------------------------------------ |
+| <img src="https://github.com/aromajoin/material-showcase-ios/raw/master/art/material-showcase.gif" width="300" height="600" /> |
 
 ## Installation
 
@@ -24,9 +22,9 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 `$ react-native link react-native-app-tour`
 
-- **Android**
+* **Android**
 
-  - Please add below script in your `build.gradle`
+  * Please add below script in your `build.gradle`
 
 ```
 buildscript {
@@ -47,40 +45,42 @@ allprojects {
 >
 > * Android SDK 25 > is supported
 
+* **iOS**
 
-- **iOS**
-  - Run Command if Pods is not installed in your app: `cd ios/ && pod init`
-  - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app `Podfile`
+  * Run Command if Pods is not installed in your app: `cd ios/ && pod init`
+  * Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app `Podfile`
+
     ```
-    # platform :ios, '9.0'	
-      
-    target 'Example' do	
-        use_frameworks!	
-          
+    # platform :ios, '9.0'
+
+    target 'Example' do
+        use_frameworks!
+
         pod 'MaterialShowcase', '~> 0.5.1'
-          
-        post_install do |installer|	
-            installer.pods_project.targets.each do |target|	
-                if target.name.include?('MaterialShowcase')	
-                    target.build_configurations.each do |config|	
-                        # swift version 4.0 for xcode 9	
-                        #config.build_settings['SWIFT_VERSION'] = '4.0'	
-                        # swift version 3.2 for xcode 8	
-                        config.build_settings['SWIFT_VERSION'] = '3.2'	
-                    end	
-                end	
-            end	
-        end	
-          
+
+        post_install do |installer|
+            installer.pods_project.targets.each do |target|
+                if target.name.include?('MaterialShowcase')
+                    target.build_configurations.each do |config|
+                        # swift version 4.0 for xcode 9
+                        #config.build_settings['SWIFT_VERSION'] = '4.0'
+                        # swift version 3.2 for xcode 8
+                        config.build_settings['SWIFT_VERSION'] = '3.2'
+                    end
+                end
+            end
+        end
+
     end
     ```
-  - Run Command to install native library: `cd ios/ && pod install`: If it has error => try `pod repo update` then `pod install`
-  - Now build your iOS app through Xcode
+
+  * Run Command to install native library: `cd ios/ && pod install`: If it has error => try `pod repo update` then `pod install`
+  * Now build your iOS app through Xcode
 
 ## ISSUES
-- If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
-- If you have problems with `Android` Trying to resolve view with tag which doesn't exist or can't resolve tag. Please add props `collapasable: false` to your View
 
+* If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
+* If you have problems with `Android` Trying to resolve view with tag which doesn't exist or can't resolve tag. Please add props `collapasable: false` to your View
 
 ## API's
 
@@ -91,7 +91,6 @@ let appTourTarget = AppTourView.for(Button, {...native-library-props})
 
 AppTour.ShowFor(appTourTarget)
 ```
-
 
 * AppTourSequence
   * add(AppTourTarget)
@@ -113,71 +112,65 @@ AppTour.ShowSequence(appTourSequence)
   * ShowFor(AppTourTarget)
   * ShowSequence(AppTourTargets)
 
-
 ## Props
 
-- **Android**
+* **General(iOS & Android)**
 
-| Prop              | Type       | Default | Note                                                                                                       |
-| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
-| `title`       | `string`     |        | Specify the title of tour
-| `description`       | `string`     |        | Specify the description of tour 
-| `outerCircleColor`       | `string: HEX-COLOR`     |        | Specify a color for the outer circle 
-| `outerCircleAlpha`       | `number`     |    0.96f     | Specify the alpha amount for the outer circle
-| `targetCircleColor`       | `string: HEX-COLOR`     |         | Specify a color for the target circle
-| `titleTextSize`       | `number`     |    20     | Specify the size (in sp) of the title text
-| `titleTextColor`       | `string: HEX-COLOR`     |         | Specify the color of the title text
-| `descriptionTextSize`       | `number`     |    10     | Specify the size (in sp) of the description text
-| `descriptionTextColor`       | `string: HEX-COLOR`     |         | Specify the color of the description text
-| `textColor`       | `string: HEX-COLOR`     |         | Specify a color for both the title and description text
-| `dimColor`       | `string: HEX-COLOR`     |         | If set, will dim behind the view with 30% opacity of the given color
-| `drawShadow`       | `bool`     |    true     | Whether to draw a drop shadow or not
-| `cancelable`       | `bool`     |    true     | Whether tapping outside the outer circle dismisses the view
-| `tintTarget`       | `bool`     |     true    | Whether to tint the target view's color
-| `transparentTarget`       | `bool`     |    true     | Specify whether the target is transparent (displays the content underneath)
-| `targetRadius`       | `number`     |    60     | Specify the target radius (in dp)
+| Prop                   | Type                | Default | Note                                                        |
+| ---------------------- | ------------------- | ------- | ----------------------------------------------------------- |
+| `title`                | `string`            |         | Specify the title of tour                                   |
+| `description`          | `string`            |         | Specify the description of tour                             |
+| `outerCircleColor`     | `string: HEX-COLOR` |         | Specify a color for the outer circle                        |
+| `targetCircleColor`    | `string: HEX-COLOR` |         | Specify a color for the target circle                       |
+| `titleTextSize`        | `number`            | 20      | Specify the size (in sp) of the title text                  |
+| `titleTextColor`       | `string: HEX-COLOR` |         | Specify the color of the title text                         |
+| `descriptionTextSize`  | `number`            | 10      | Specify the size (in sp) of the description text            |
+| `descriptionTextColor` | `string: HEX-COLOR` |         | Specify the color of the description text                   |
+| `targetRadius`         | `number`            | 60      | Specify the target radius (in dp)                           |
+| `cancelable`           | `bool`              | true    | Whether tapping outside the outer circle dismisses the view |
 
+* **Android**
 
-- **iOS**
+| Prop                | Type                | Default | Note                                                                        |
+| ------------------- | ------------------- | ------- | --------------------------------------------------------------------------- |
+| `outerCircleAlpha`  | `number`            | 0.96f   | Specify the alpha amount for the outer circle                               |
+| `textColor`         | `string: HEX-COLOR` |         | Specify a color for both the title and description text                     |
+| `dimColor`          | `string: HEX-COLOR` |         | If set, will dim behind the view with 30% opacity of the given color        |
+| `drawShadow`        | `bool`              | true    | Whether to draw a drop shadow or not                                        |
+| `tintTarget`        | `bool`              | true    | Whether to tint the target view's color                                     |
+| `transparentTarget` | `bool`              | true    | Specify whether the target is transparent (displays the content underneath) |
 
-| Prop              | Type       | Default | Note                                                                                                       |
-| ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
-| `primaryText`       | `string`     |        | Specify the primary title of tour
-| `secondaryText`       | `string`     |        | Specify the secondary title of tour 
-| `backgroundPromptColor`       | `string: HEX-COLOR`     |    UIColor.blue    | Specify background prompt color
-| `backgroundPromptColorAlpha`       | `number`     |   0.96     | Specify background prompt color alpha
-| `targetTintColor`       | `string: HEX-COLOR`     |   #0000ff     | Specify target tint color
-| `targetHolderRadius`       | `number`     |    44    | Specify target holder radius
-| `targetHolderColor`       | `string: HEX-COLOR`     |    #FFFFFF   | Specify target holder color
-| `primaryTextColor`       | `string: HEX-COLOR`     |   #FFFFFF     | Specify primary text color
-| `secondaryTextColor`       | `string: HEX-COLOR`     |   #FFFFFF     | Specify secondary text color
-| `primaryTextSize`       | `number`     |   20     | Specify primary text size
-| `secondaryTextSize`       | `number`     |    15    | Specify secondary text size
-| `primaryTextAlignment`       | `string`     |  left      | Specify primary text alignment: Left, Right, Top, Bottom
-| `secondaryTextAlignment`       | `string`     | left       | Specify secondary text alignment: Left, Right, Top, Bottom
-| `aniComeInDuration`       | `number`     |    0.5    | Specify animation come In Duration
-| `aniGoOutDuration`       | `number`     |   1.5     | Specify animation Go Out Duration
-| `aniRippleColor`       | `string: HEX-COLOR`     |   #FFFFFF     | Specify ripple color
-| `aniRippleAlpha`       | `number`     |    0.2    | Specify ripple alpha
+* **iOS**
+
+| Prop                         | Type                | Default      | Note                                                       |
+| ---------------------------- | ------------------- | ------------ | ---------------------------------------------------------- |
+| `backgroundPromptColor`      | `string: HEX-COLOR` | UIColor.blue | Specify background prompt color                            |
+| `backgroundPromptColorAlpha` | `number`            | 0.96         | Specify background prompt color alpha                      |
+| `titleTextAlignment`         | `string`            | left         | Specify primary text alignment: Left, Right, Top, Bottom   |
+| `descriptionTextAlignment`   | `string`            | left         | Specify secondary text alignment: Left, Right, Top, Bottom |
+| `aniComeInDuration`          | `number`            | 0.5          | Specify animation come In Duration                         |
+| `aniGoOutDuration`           | `number`            | 1.5          | Specify animation Go Out Duration                          |
+| `aniRippleColor`             | `string: HEX-COLOR` | #FFFFFF      | Specify ripple color                                       |
+| `aniRippleAlpha`             | `number`            | 0.2          | Specify ripple alpha                                       |
 
 > **Note:**
-> - App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
-
+>
+> * App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
 
 ## Credits
 
-- Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)
-- iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
-
+* Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)
+* iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
 
 ## Contribution
+
 Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
 
 ## License
+
 This library is provided under the MIT License.
 
 RNAppTour @ Pranav Raj Singh Chauhan
-
 
 ## Other Contributions
 
