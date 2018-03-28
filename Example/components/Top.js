@@ -42,9 +42,10 @@ class Top extends Component {
             this.button2 = ref;
 
             let props = {
-              primaryText: "This is a target button 2",
-              secondaryText: "We have the best targets, believe me",
+              title: "This is a target button 2",
+              description: "We have the best targets, believe me",
               backgroundPromptColor: "#3f52ae",
+              outerCircleColor: "#f24481",
               targetRadius: 100,
             };
 
