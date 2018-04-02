@@ -152,19 +152,26 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
     NSLog(@"");
 }
 - (void)showCaseDidDismissWithShowcase:(MaterialShowcase *)materialShowcase {
-    NSLog(@"");
-
     NSArray *targetKeys = [targets allKeys];
     if (targetKeys.count <= 0) {
         return;
     }
-
+    
     NSString *removeTargetKey = [targetKeys objectAtIndex: 0];
+    
+    // This for revert background color of target
+    if (materialShowcase.targetHolderRadius <= 0.0f && targetOriginalColor != nil) {
+        NSLog(@"targetHolderRadius change");
+        NSNumber *view =  [NSNumber numberWithLongLong:[removeTargetKey longLongValue]];
+        UIView *target = [self.bridge.uiManager viewForReactTag: view];
+        [target setBackgroundColor: targetOriginalColor];
+    }
+    
     [targets removeObjectForKey: removeTargetKey];
 
     NSMutableArray *viewIds = [[NSMutableArray alloc] init];
     NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
-
+    
     if (targetKeys.count <= 1) {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onFinishShowStepEvent body:@{@"finish": @YES}];
     }
@@ -182,10 +189,16 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
     }
 }
 
+- (void) showCaseSkippedWithShowcase: (MaterialShowcase *)materialShowcase {
+    if (targets != nil) {
+        targets = MutableOrderedDictionary.new;
+    }
+    [materialShowcase completeShowcaseWithAnimated: true];
+}
+
 RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 {
     MaterialShowcase *materialShowcase = [self generateMaterialShowcase:view props:props];
-
     [materialShowcase showWithAnimated:true completion:^() {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onStartShowStepEvent body:@{@"start_step": @YES}];
     }];
@@ -195,7 +208,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 
     MaterialShowcase *materialShowcase = [[MaterialShowcase alloc] init];
     UIView *target = [self.bridge.uiManager viewForReactTag: view];
-
+    CGRect viewRect = target.frame;
     NSString *title = [props objectForKey: @"title"];
     NSString *description = [props objectForKey: @"description"];
 
@@ -320,11 +333,53 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     if (aniRippleScaleValue > 0) {
         [materialShowcase setAniRippleScale:aniRippleScaleValue];
     }
-
+    
+    // Skip button
+    if ([props objectForKey:@"isSkipButtonVisible"] != nil && targets != nil && targets.count > 0) {
+        BOOL *isSkipButtonVisible = [[props objectForKey:@"isSkipButtonVisible"] boolValue];
+        [materialShowcase setIsSkipButtonVisible: isSkipButtonVisible];
+        // Set skip text params
+        UIColor *skipTextColor;
+        NSString *skipTextValue = [props objectForKey:@"skipText"];
+        NSString *skipTextColorValue = [props objectForKey:@"skipTextColor"];
+        float skipTextSizeValue = [[props objectForKey:@"skipTextSize"] floatValue];
+        
+        if (skipTextValue != nil) {
+            [materialShowcase  setSkipText: skipTextValue];
+        } if (skipTextColorValue != nil) {
+            skipTextColor = [self colorWithHexString:skipTextColorValue];
+        } if (skipTextColor) {
+            [materialShowcase setSkipTextColor: skipTextColor];
+        } if (skipTextSizeValue > 0) {
+            [materialShowcase setSkipTextSize: skipTextSizeValue];
+        }
+    }
+    if ([[props objectForKey:@"isRect"] boolValue])
+    {
+        NSString *rectHighLightColorValue = [props objectForKey:@"rectHighLightColor"];
+        if (rectHighLightColorValue != nil && targets != nil && targets.count > 0) {
+            // save target original color for reversing
+            targetOriginalColor = target.backgroundColor;
+            
+            // set target background color
+            UIColor *targetHighLightColor = [self colorWithHexString:rectHighLightColorValue];
+            if (targetHighLightColor != nil) {
+                [target setBackgroundColor: targetHighLightColor];
+            }
+        }
+        // we should remove circle
+        [materialShowcase setTargetHolderRadius: 0];
+    }
+    else {
+        targetOriginalColor = nil;
+    }
+    
     [materialShowcase setTargetViewWithView: target];
+    
     [materialShowcase setDelegate: self];
 
     return materialShowcase;
 }
+
 
 @end

@@ -17,6 +17,9 @@ class Top extends Component {
               description: "We have the best targets, believe me",
               outerCircleColor: "#3f52ae",
               cancelable: false,
+              isSkipButtonVisible: true,
+              isRect: true,
+              rectHighLightColor: "#FFFFFF",
             };
 
             this.props.addAppTourTarget &&
@@ -27,6 +30,11 @@ class Top extends Component {
               title: "This is a target button 1",
               description: "We have the best targets, believe me",
               outerCircleColor: "#f24481",
+              isRect: true,
+              // rectHighLightColor, isSkipButtonVisible not support with showFor
+              // Only support ShowSequence
+              // isSkipButtonVisible: true,
+              // rectHighLightColor: "#FF0000",
             };
 
             let targetView = AppTourView.for(this.button1, {
@@ -42,9 +50,9 @@ class Top extends Component {
             this.button2 = ref;
 
             let props = {
-              primaryText: "This is a target button 2",
-              secondaryText: "We have the best targets, believe me",
-              backgroundPromptColor: "#3f52ae",
+              title: "This is a target button 2",
+              description: "We have the best targets, believe me",
+              outerCircleColor: "#3f52ae",
               targetRadius: 100,
             };
 

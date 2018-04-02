@@ -3,7 +3,7 @@
 target 'Example' do	
     use_frameworks!	
     	
-    pod 'MaterialShowcase',:git => 'https://github.com/aromajoin/material-showcase-ios.git', :commit =>'b8d8c1d'
+    pod 'MaterialShowcase',:git => 'https://github.com/congnguyen91/material-showcase-ios.git', :commit =>'1f4d78d'
     
     post_install do |installer|	
         installer.pods_project.targets.each do |target|	
