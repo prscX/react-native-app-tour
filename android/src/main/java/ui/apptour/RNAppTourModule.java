@@ -197,12 +197,13 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         int titleTextSize = 20;
         int descriptionTextSize = 10;
         int skipTextSize = 24;
+        int targetRadius = 60;
+        int rectTargetBorderRadius = 0;
         boolean drawShadow = true;
         boolean cancelable = true;
         boolean tintTarget = true;
         boolean transparentTarget = true;
         boolean skipTextVisible = false;
-        int targetRadius = 60;
         boolean isRect = false;
 
         try {
@@ -219,6 +220,10 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         }
         try {
             skipTextSize = props.getInt("skipTextSize");
+        } catch (Exception e) {
+        }
+        try {
+            rectTargetBorderRadius = props.getInt("rectTargetBorderRadius");
         } catch (Exception e) {
         }
         try {
@@ -259,7 +264,9 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         boolean finalCancelable = cancelable;
         boolean finalTintTarget = tintTarget;
         boolean finalTransparentTarget = transparentTarget;
+        boolean finalIsRect = isRect;
         int finalTargetRadius = targetRadius;
+        int finalRectTargetBorderRadius = rectTargetBorderRadius;
 
         TapTarget targetView = TapTarget.forView(view, title, description, skipText);
 
@@ -278,7 +285,6 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         if (dimColor != null && dimColor.length() > 0)
             targetView.dimColorInt(Color.parseColor(dimColor));
 
-
         targetView.outerCircleAlpha(finalOuterCircleAlpha);
         targetView.titleTextSize(finalTitleTextSize);
         targetView.descriptionTextSize(finalDescriptionTextSize);
@@ -289,7 +295,8 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         targetView.transparentTarget(finalTransparentTarget);
         targetView.targetRadius(finalTargetRadius);
         targetView.skipTextVisible(skipTextVisible);
-        targetView.rectTarget(isRect);
+        targetView.rectTarget(finalIsRect);
+        targetView.rectTargetBorderRadius(finalRectTargetBorderRadius);
         return targetView;
     }
 }
