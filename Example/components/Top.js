@@ -18,6 +18,9 @@ class Top extends Component {
               outerCircleColor: "#3f52ae",
               cancelable: false,
               isSkipButtonVisible: true,
+              skipText: "GOT IT",
+              skipTextSize: 24,
+              skipTextColor: "#FF0000",
               isRect: true,
               rectHighLightColor: "#FFFFFF",
             };
@@ -30,6 +33,8 @@ class Top extends Component {
               title: "This is a target button 1",
               description: "We have the best targets, believe me",
               outerCircleColor: "#f24481",
+              isSkipButtonVisible: true,
+              skipTextSize: 16,
               isRect: true,
               // rectHighLightColor, isSkipButtonVisible not support with showFor
               // Only support ShowSequence

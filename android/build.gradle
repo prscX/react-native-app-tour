@@ -30,8 +30,11 @@ repositories {
     mavenCentral()
 }
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
+    compile 'com.github.congnguyen91:TapTargetView:8fa2f20'
 }

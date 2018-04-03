@@ -55,8 +55,8 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                            String eventName,
                            @Nullable WritableMap params) {
         reactContext
-                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                .emit(eventName, params);
+        .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+        .emit(eventName, params);
     }
 
     @ReactMethod
@@ -107,12 +107,16 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                             @Override
                             public void onSequenceCanceled(TapTarget lastTarget) {
                                 WritableMap params = Arguments.createMap();
+                                Log.d("TEST", "onSequenceCanceled");
                                 params.putBoolean("cancel_step", true);
-
+                                if (dialog != null && dialog.isShowing()) {
+                                    dialog.dismiss();
+                                }
                                 sendEvent(reactContext, "onCancelStepEvent", params);
                             }
+
                         })
-                                .continueOnCancel(true);
+                        .continueOnCancel(true);
                         tapTargetSequence.start();
                     }
                 });
@@ -134,8 +138,9 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                     @Override
                     public void execute(NativeViewHierarchyManager nativeViewHierarchyManager) {
                         View refView = nativeViewHierarchyManager.resolveView(view);
+                        // We don't support skip button
                         TapTarget targetView = generateTapTarget(refView, props);
-
+                        targetView.skipTextVisible(false);
                         TapTargetView.showFor(dialog, targetView);
                     }
                 });
@@ -148,15 +153,21 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
 
         final String title = props.getString("title");
         String description = null;
+        String skipText = "skip";
         String outerCircleColor = null;
         String targetCircleColor = null;
         String titleTextColor = null;
         String descriptionTextColor = null;
+        String skipTextColor = null;
         String textColor = null;
         String dimColor = null;
 
+
         if (props.hasKey("description") && !props.isNull("description")) {
             description = props.getString("description");
+        }
+        if (props.hasKey("skipText") && !props.isNull("skipText")) {
+            skipText = props.getString("skipText");
         }
         if (props.hasKey("outerCircleColor") && !props.isNull("outerCircleColor")) {
             outerCircleColor = props.getString("outerCircleColor");
@@ -170,6 +181,9 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         if (props.hasKey("descriptionTextColor") && !props.isNull("descriptionTextColor")) {
             descriptionTextColor = props.getString("descriptionTextColor");
         }
+        if (props.hasKey("skipTextColor") && !props.isNull("skipTextColor")) {
+            skipTextColor = props.getString("skipTextColor");
+        }
         if (props.hasKey("textColor") && !props.isNull("textColor")) {
             textColor = props.getString("textColor");
         }
@@ -182,10 +196,12 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         float outerCircleAlpha = 0.96f;
         int titleTextSize = 20;
         int descriptionTextSize = 10;
+        int skipTextSize = 24;
         boolean drawShadow = true;
         boolean cancelable = true;
         boolean tintTarget = true;
         boolean transparentTarget = true;
+        boolean skipTextVisible = false;
         int targetRadius = 60;
 
         try {
@@ -198,6 +214,10 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         }
         try {
             descriptionTextSize = props.getInt("descriptionTextSize");
+        } catch (Exception e) {
+        }
+        try {
+            skipTextSize = props.getInt("skipTextSize");
         } catch (Exception e) {
         }
         try {
@@ -220,10 +240,16 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             targetRadius = props.getInt("targetRadius");
         } catch (Exception e) {
         }
+        try {
+            skipTextVisible = props.getBoolean("isSkipButtonVisible");
+        } catch (Exception e) {
+        }
+
 
         float finalOuterCircleAlpha = outerCircleAlpha;
         int finalTitleTextSize = titleTextSize;
         int finalDescriptionTextSize = descriptionTextSize;
+        int finalSkipTextSize = skipTextSize;
         boolean finalDrawShadow = drawShadow;
         boolean finalCancelable = cancelable;
         boolean finalTintTarget = tintTarget;
@@ -232,7 +258,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
 
 
         //Populate Props
-        TapTarget targetView = TapTarget.forView(view, title, description);
+        TapTarget targetView = TapTarget.forView(view, title, description, skipText);
 
         if (outerCircleColor != null && outerCircleColor.length() > 0)
             targetView.outerCircleColorInt(Color.parseColor(outerCircleColor));
@@ -242,6 +268,8 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             targetView.titleTextColorInt(Color.parseColor(titleTextColor));
         if (descriptionTextColor != null && descriptionTextColor.length() > 0)
             targetView.descriptionTextColorInt(Color.parseColor(descriptionTextColor));
+        if (skipTextColor != null && skipTextColor.length() > 0)
+            targetView.skipTextColorInt(Color.parseColor(skipTextColor));
         if (textColor != null && textColor.length() > 0)
             targetView.textColorInt(Color.parseColor(textColor));
         if (dimColor != null && dimColor.length() > 0)
@@ -251,11 +279,13 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         targetView.outerCircleAlpha(finalOuterCircleAlpha);
         targetView.titleTextSize(finalTitleTextSize);
         targetView.descriptionTextSize(finalDescriptionTextSize);
+        targetView.skipTextSize(finalSkipTextSize);
         targetView.drawShadow(finalDrawShadow);
         targetView.cancelable(finalCancelable);
         targetView.tintTarget(finalTintTarget);
         targetView.transparentTarget(finalTransparentTarget);
         targetView.targetRadius(finalTargetRadius);
+        targetView.skipTextVisible(skipTextVisible);
 
         return targetView;
     }
