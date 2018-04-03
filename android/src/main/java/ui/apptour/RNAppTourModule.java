@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.util.Log;
 import android.support.annotation.Nullable;
 import android.app.Dialog;
@@ -162,7 +163,6 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         String textColor = null;
         String dimColor = null;
 
-
         if (props.hasKey("description") && !props.isNull("description")) {
             description = props.getString("description");
         }
@@ -203,6 +203,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         boolean transparentTarget = true;
         boolean skipTextVisible = false;
         int targetRadius = 60;
+        boolean isRect = false;
 
         try {
             outerCircleAlpha = (float) props.getDouble("outerCircleAlpha");
@@ -244,6 +245,10 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             skipTextVisible = props.getBoolean("isSkipButtonVisible");
         } catch (Exception e) {
         }
+        try {
+            isRect = props.getBoolean("isRect");
+        } catch (Exception e) {
+        }
 
 
         float finalOuterCircleAlpha = outerCircleAlpha;
@@ -256,8 +261,6 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         boolean finalTransparentTarget = transparentTarget;
         int finalTargetRadius = targetRadius;
 
-
-        //Populate Props
         TapTarget targetView = TapTarget.forView(view, title, description, skipText);
 
         if (outerCircleColor != null && outerCircleColor.length() > 0)
@@ -286,7 +289,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         targetView.transparentTarget(finalTransparentTarget);
         targetView.targetRadius(finalTargetRadius);
         targetView.skipTextVisible(skipTextVisible);
-
+        targetView.rectTarget(isRect);
         return targetView;
     }
 }
