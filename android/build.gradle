@@ -2,6 +2,7 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 
     dependencies {
@@ -28,6 +29,7 @@ android {
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 configurations.all {
@@ -36,5 +38,5 @@ configurations.all {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.github.congnguyen91:TapTargetView:495b74e'
+    compile 'com.github.congnguyen91:TapTargetView:ebf7d10'
 }
