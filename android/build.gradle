@@ -36,5 +36,5 @@ configurations.all {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.github.congnguyen91:TapTargetView:1e03119'
+    compile 'com.github.congnguyen91:TapTargetView:495b74e'
 }
