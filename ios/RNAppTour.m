@@ -4,6 +4,7 @@
 NSString *const onStartShowStepEvent = @"onStartShowCaseEvent";
 NSString *const onShowSequenceStepEvent = @"onShowSequenceStepEvent";
 NSString *const onFinishShowStepEvent = @"onFinishSequenceEvent";
+NSString *const onCancelSequenceStepEvent = @"onCancelStepEvent";
 
 @implementation MutableOrderedDictionary {
 @protected
@@ -156,9 +157,9 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
     if (targetKeys.count <= 0) {
         return;
     }
-    
+
     NSString *removeTargetKey = [targetKeys objectAtIndex: 0];
-    
+
     // This for revert background color of target
     if (materialShowcase.targetHolderRadius <= 0.0f && targetOriginalColor != nil) {
         NSLog(@"targetHolderRadius change");
@@ -166,12 +167,12 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
         UIView *target = [self.bridge.uiManager viewForReactTag: view];
         [target setBackgroundColor: targetOriginalColor];
     }
-    
+
     [targets removeObjectForKey: removeTargetKey];
 
     NSMutableArray *viewIds = [[NSMutableArray alloc] init];
     NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
-    
+
     if (targetKeys.count <= 1) {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onFinishShowStepEvent body:@{@"finish": @YES}];
     }
@@ -193,6 +194,7 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
     if (targets != nil) {
         targets = MutableOrderedDictionary.new;
     }
+    [self.bridge.eventDispatcher sendDeviceEventWithName:onCancelSequenceStepEvent body:@{@"cancel_step": @YES}];
     [materialShowcase completeShowcaseWithAnimated: true];
 }
 
@@ -333,7 +335,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     if (aniRippleScaleValue > 0) {
         [materialShowcase setAniRippleScale:aniRippleScaleValue];
     }
-    
+
     // Skip button
     if ([props objectForKey:@"isSkipButtonVisible"] != nil && targets != nil && targets.count > 0) {
         BOOL *isSkipButtonVisible = [[props objectForKey:@"isSkipButtonVisible"] boolValue];
@@ -343,7 +345,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         NSString *skipTextValue = [props objectForKey:@"skipText"];
         NSString *skipTextColorValue = [props objectForKey:@"skipTextColor"];
         float skipTextSizeValue = [[props objectForKey:@"skipTextSize"] floatValue];
-        
+
         if (skipTextValue != nil) {
             [materialShowcase  setSkipText: skipTextValue];
         } if (skipTextColorValue != nil) {
@@ -360,7 +362,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         if (rectHighLightColorValue != nil && targets != nil && targets.count > 0) {
             // save target original color for reversing
             targetOriginalColor = target.backgroundColor;
-            
+
             // set target background color
             UIColor *targetHighLightColor = [self colorWithHexString:rectHighLightColorValue];
             if (targetHighLightColor != nil) {
@@ -373,9 +375,9 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     else {
         targetOriginalColor = nil;
     }
-    
+
     [materialShowcase setTargetViewWithView: target];
-    
+
     [materialShowcase setDelegate: self];
 
     return materialShowcase;
