@@ -42,6 +42,9 @@ class Center extends Component {
               title: "This is a target button 5",
               description: "We have the best targets, believe me",
               outerCircleColor: "#3f52ae",
+              isSkipButtonVisible: true,
+              skipText: "SKIP TOUR",
+              skipTextSize: 24,
             };
 
             this.props.addAppTourTarget &&

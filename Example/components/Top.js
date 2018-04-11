@@ -21,6 +21,7 @@ class Top extends Component {
               skipText: "SKIP TOUR",
               skipTextSize: 24,
               skipTextColor: "#FF0000",
+              skipButtonBackgroundColor: '#00FF00',
               isRect: true,
               rectHighLightColor: "#FFFFFF",
               rectTargetBorderRadius: 4,

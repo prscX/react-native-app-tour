@@ -98,41 +98,29 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
 
     private void showSequence(final List<TapTarget> targetViews) {
       final Activity activity = this.getCurrentActivity();
-      final Dialog dialog = new AlertDialog.Builder(activity).create();
       activity.runOnUiThread(new Runnable() {
           @Override
           public void run() {
-              TapTargetSequence tapTargetSequence = new TapTargetSequence(dialog).targets(targetViews);
+              TapTargetSequence tapTargetSequence = new TapTargetSequence(activity).targets(targetViews);
               tapTargetSequence.listener(new TapTargetSequence.Listener() {
                   @Override
                   public void onSequenceFinish() {
                       WritableMap params = Arguments.createMap();
                       params.putBoolean("finish", true);
-
                       sendEvent(reactContext, "onFinishSequenceEvent", params);
-
-                      // dismiss dialog on finish
-                      if (dialog != null && dialog.isShowing()) {
-                          dialog.dismiss();
-                      }
                   }
 
                   @Override
                   public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
                       WritableMap params = Arguments.createMap();
                       params.putBoolean("next_step", true);
-
                       sendEvent(reactContext, "onShowSequenceStepEvent", params);
                   }
 
                   @Override
                   public void onSequenceCanceled(TapTarget lastTarget) {
                       WritableMap params = Arguments.createMap();
-                      Log.d("TEST", "onSequenceCanceled");
                       params.putBoolean("cancel_step", true);
-                      if (dialog != null && dialog.isShowing()) {
-                          dialog.dismiss();
-                      }
                       sendEvent(reactContext, "onCancelStepEvent", params);
                   }
 
@@ -178,6 +166,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         String titleTextColor = null;
         String descriptionTextColor = null;
         String skipTextColor = null;
+        String skipButtonBackgroundColor = null;
         String textColor = null;
         String dimColor = null;
 
@@ -201,6 +190,9 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         }
         if (props.hasKey("skipTextColor") && !props.isNull("skipTextColor")) {
             skipTextColor = props.getString("skipTextColor");
+        }
+        if (props.hasKey("skipButtonBackgroundColor") && !props.isNull("skipButtonBackgroundColor")) {
+            skipButtonBackgroundColor = props.getString("skipButtonBackgroundColor");
         }
         if (props.hasKey("textColor") && !props.isNull("textColor")) {
             textColor = props.getString("textColor");
@@ -298,6 +290,8 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             targetView.descriptionTextColorInt(Color.parseColor(descriptionTextColor));
         if (skipTextColor != null && skipTextColor.length() > 0)
             targetView.skipTextColorInt(Color.parseColor(skipTextColor));
+        if (skipButtonBackgroundColor != null && skipButtonBackgroundColor.length() > 0)
+            targetView.skipButtonBackgroundColorInt(Color.parseColor(skipButtonBackgroundColor));
         if (textColor != null && textColor.length() > 0)
             targetView.textColorInt(Color.parseColor(textColor));
         if (dimColor != null && dimColor.length() > 0)
@@ -315,6 +309,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         targetView.skipTextVisible(skipTextVisible);
         targetView.rectTarget(finalIsRect);
         targetView.rectTargetBorderRadius(finalRectTargetBorderRadius);
+
         return targetView;
     }
 }

@@ -14,6 +14,11 @@ class Bottom extends Component {
               title: "This is a target button 6",
               description: "We have the best targets, believe me",
               outerCircleColor: "#3f52ae",
+              isSkipButtonVisible: true,
+              skipText: "SKIP TOUR",
+              skipTextSize: 24,
+              skipTextColor: "#FF0000",
+              skipButtonBackgroundColor: '#00FF00',
             };
 
             this.props.addAppTourTarget &&
@@ -28,6 +33,11 @@ class Bottom extends Component {
               title: "This is a target button 7",
               description: "We have the best targets, believe me",
               outerCircleColor: "#f24481",
+              isSkipButtonVisible: true,
+              skipText: "SKIP TOUR",
+              skipTextSize: 24,
+              skipTextColor: "#FF0000",
+              skipButtonBackgroundColor: '#00FF00',
             };
 
             this.props.addAppTourTarget &&
