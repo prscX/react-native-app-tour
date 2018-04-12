@@ -17,14 +17,15 @@ class Top extends Component {
               description: "We have the best targets, believe me",
               outerCircleColor: "#3f52ae",
               cancelable: false,
-              isSkipButtonVisible: true,
-              skipText: "SKIP TOUR",
-              skipTextSize: 24,
-              skipTextColor: "#FF0000",
-              skipButtonBackgroundColor: '#00FF00',
               isRect: true,
               rectHighLightColor: "#FFFFFF",
               rectTargetBorderRadius: 4,
+              transparentTarget: true,
+              isSkipButtonVisible: true,
+              skipText: 'SKIP',
+              skipButtonBackgroundColor: '#0000FF',
+              skipTextColor: '#FFFFFF',
+              dimColor: '#000000',
             };
             ref &&
               this.props.addAppTourTarget &&
