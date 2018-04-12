@@ -35,8 +35,8 @@ export default class App extends Component<{}> {
   }
 
   componentWillMount() {
-    this.registerSequenceStepEvent();
-    this.registerFinishSequenceEvent();
+    this.unregisterAppTourEvent();
+    this.registerFinishAppTour();
   }
 
   componentDidMount() {
@@ -49,11 +49,19 @@ export default class App extends Component<{}> {
     }, 1000);
   }
 
-  registerSequenceStepEvent = () => {
-    if (this.sequenceStepListener) {
-      this.sequenceStepListener.remove();
-    }
-    this.sequenceStepListener = DeviceEventEmitter.addListener(
+  componentWillUnmount() {
+    this.unregisterAppTourEvent();
+  }
+
+  registerFinishAppTour = () => {
+    this.unregisterAppTourEvent();
+    this.finishAppTour = DeviceEventEmitter.addListener('onFinishSequenceEvent', (e: Event) => {
+      console.log(e);
+    });
+    this.cancelAppTour = DeviceEventEmitter.addListener('onCancelStepEvent', (e: Event) => {
+      console.log(e);
+    });
+    this.stepAppTour = DeviceEventEmitter.addListener(
       'onShowSequenceStepEvent',
       (e: Event) => {
         console.log(e);
@@ -61,17 +69,18 @@ export default class App extends Component<{}> {
     );
   };
 
-  registerFinishSequenceEvent = () => {
-    if (this.finishSequenceListener) {
-      this.finishSequenceListener.remove();
+  unregisterAppTourEvent = () => {
+    if (this.finishAppTour) {
+      this.finishAppTour.remove();
     }
-    this.finishSequenceListener = DeviceEventEmitter.addListener(
-      'onFinishSequenceEvent',
-      (e: Event) => {
-        console.log(e);
-      }
-    );
-  };
+    if (this.cancelAppTour) {
+      this.cancelAppTour.remove();
+    }
+    if (this.stepAppTour) {
+      this.stepAppTour.remove();
+    }
+};
+
 
   render() {
     return (
