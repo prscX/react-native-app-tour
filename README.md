@@ -6,7 +6,8 @@
 
 # React Native: Native App Tour Library
 
-This library is a React Native bridge around native app tour libraries. It allows show/guide beautiful tours:
+This library is a React Native bridge around native app tour libraries. It
+allows show/guide beautiful tours:
 
 | **Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)**                              |
 | ------------------------------------------------------------------------------------------------------------- |
@@ -48,7 +49,9 @@ allprojects {
 * **iOS**
 
   * Run Command if Pods is not installed in your app: `cd ios/ && pod init`
-  * Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app `Podfile`
+  * Add
+    [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
+    in your app `Podfile`
 
     ```
     # platform :ios, '9.0'
@@ -74,13 +77,18 @@ allprojects {
     end
     ```
 
-  * Run Command to install native library: `cd ios/ && pod install`: If it has error => try `pod repo update` then `pod install`
+  * Run Command to install native library: `cd ios/ && pod install`: If it has
+    error => try `pod repo update` then `pod install`
   * Now build your iOS app through Xcode
 
 ## ISSUES
 
-* If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
-* If you have problems with `Android` Trying to resolve view with tag which doesn't exist or can't resolve tag. Please add props `collapasable: false` to your View
+* If you encounter `File not found in iOS` issue while setup, please refer
+  [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue
+  which might help you in order to resolve.
+* If you have problems with `Android` Trying to resolve view with tag which
+  doesn't exist or can't resolve tag. Please add props `collapasable: false` to
+  your View
 
 ## API's
 
@@ -116,18 +124,31 @@ AppTour.ShowSequence(appTourSequence)
 
 * **General(iOS & Android)**
 
-| Prop                   | Type                | Default | Note                                                        |
-| ---------------------- | ------------------- | ------- | ----------------------------------------------------------- |
-| `title`                | `string`            |         | Specify the title of tour                                   |
-| `description`          | `string`            |         | Specify the description of tour                             |
-| `outerCircleColor`     | `string: HEX-COLOR` |         | Specify a color for the outer circle                        |
-| `targetCircleColor`    | `string: HEX-COLOR` |         | Specify a color for the target circle                       |
-| `titleTextSize`        | `number`            | 20      | Specify the size (in sp) of the title text                  |
-| `titleTextColor`       | `string: HEX-COLOR` |         | Specify the color of the title text                         |
-| `descriptionTextSize`  | `number`            | 10      | Specify the size (in sp) of the description text            |
-| `descriptionTextColor` | `string: HEX-COLOR` |         | Specify the color of the description text                   |
-| `targetRadius`         | `number`            | 60      | Specify the target radius (in dp)                           |
-| `cancelable`           | `bool`              | true    | Whether tapping outside the outer circle dismisses the view |
+| Prop                         | Type                | Default | Note                                                        |
+| ---------------------------- | ------------------- | ------- | ----------------------------------------------------------- |
+| `title`                      | `string`            |         | Specify the title of tour                                   |
+| `description`                | `string`            |         | Specify the description of tour                             |
+| `outerCircleColor`           | `string: HEX-COLOR` |         | Specify a color for the outer circle                        |
+| `targetCircleColor`          | `string: HEX-COLOR` |         | Specify a color for the target circle                       |
+| `titleTextSize`              | `number`            | 20      | Specify the size (in sp) of the title text                  |
+| `titleTextColor`             | `string: HEX-COLOR` |         | Specify the color of the title text                         |
+| `descriptionTextSize`        | `number`            | 10      | Specify the size (in sp) of the description text            |
+| `descriptionTextColor`       | `string: HEX-COLOR` |         | Specify the color of the description text                   |
+| `targetRadius`               | `number`            | 60      | Specify the target radius (in dp)                           |
+| `cancelable`                 | `bool`              | true    | Whether tapping outside the outer circle dismisses the view |
+| `isRect`                     | `bool`              | false   | Specify the target is rectangle                             |
+| `isSkipButtonVisible`        | `bool`              | false   | Show Skip Button ( only support Sequence )                  |
+| `skipText`                   | `string`            | Skip    | Sepecify the skip text                                      |
+| `skipTextColor`              | `string: HEX-COLOR` | #FFFFFF | Sepecify the skip text color                                |
+| `skipTextSize`               | `number`            | 24      | Specify the skip text size                                  |
+| `skipButtonBackgroundColor`  | `string: HEX-COLOR` | #FF0000 | Sepecify the skip button background color                   |
+| `skipButtonMargin`           | `number`            | 20      | Specify skip button margin to the screen bound              |
+| `skipButtonMarginLeft`       | `number`            | 20      | Specify skip button margin left to the screen bound         |
+| `skipButtonMarginTop`        | `number`            | 20      | Specify skip button margin top to the screen bound          |
+| `skipButtonMarginRight`      | `number`            | 20      | Specify skip button margin right to the screen bound        |
+| `skipButtonMarginBottom`     | `number`            | 20      | Specify skip button margin bottom to the screen bound       |
+| `skipButtonMarginHorizontal` | `number`            | 20      | Specify skip button margin left & right to the screen bound |
+| `skipButtonMarginVertical`   | `number`            | 20      | Specify skip button margin left to the screen bound         |
 
 * **Android**
 
@@ -142,36 +163,47 @@ AppTour.ShowSequence(appTourSequence)
 
 * **iOS**
 
-| Prop                         | Type                | Default      | Note                                                       |
-| ---------------------------- | ------------------- | ------------ | ---------------------------------------------------------- |
-| `backgroundPromptColor`      | `string: HEX-COLOR` | UIColor.blue | Specify background prompt color                            |
-| `backgroundPromptColorAlpha` | `number`            | 0.96         | Specify background prompt color alpha                      |
-| `titleTextAlignment`         | `string`            | left         | Specify primary text alignment: Left, Right, Top, Bottom   |
-| `descriptionTextAlignment`   | `string`            | left         | Specify secondary text alignment: Left, Right, Top, Bottom |
-| `aniComeInDuration`          | `number`            | 0.5          | Specify animation come In Duration                         |
-| `aniGoOutDuration`           | `number`            | 1.5          | Specify animation Go Out Duration                          |
-| `aniRippleColor`             | `string: HEX-COLOR` | #FFFFFF      | Specify ripple color                                       |
-| `aniRippleAlpha`             | `number`            | 0.2          | Specify ripple alpha                                       |
+| Prop                         | Type                | Default       | Note                                                       |
+| ---------------------------- | ------------------- | ------------- | ---------------------------------------------------------- |
+| `backgroundPromptColor`      | `string: HEX-COLOR` | UIColor.blue  | Specify background prompt color                            |
+| `backgroundPromptColorAlpha` | `number`            | 0.96          | Specify background prompt color alpha                      |
+| `titleTextAlignment`         | `string`            | left          | Specify primary text alignment: Left, Right, Top, Bottom   |
+| `descriptionTextAlignment`   | `string`            | left          | Specify secondary text alignment: Left, Right, Top, Bottom |
+| `aniComeInDuration`          | `number`            | 0.5           | Specify animation come In Duration                         |
+| `aniGoOutDuration`           | `number`            | 1.5           | Specify animation Go Out Duration                          |
+| `aniRippleColor`             | `string: HEX-COLOR` | #FFFFFF       | Specify ripple color                                       |
+| `aniRippleAlpha`             | `number`            | 0.2           | Specify ripple alpha                                       |
+| `rectHighLightColor`         | `string: HEX-COLOR` | UIColor.white | Specify the background color of rect target                |
 
 > **Note:**
 >
-> * App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
+> * App Tour Target Properties are same as defined by
+>   [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) &
+>   [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
 
+> * Cause of skip button for cancelable app tour sequence
+> * On the pod file of iOS:
+> * pod 'MaterialShowcase',:git =>
+>   'https://github.com/congnguyen91/material-showcase-ios.git', :commit
+>   =>'0668f4c'
+> * For android with skip button: add dimColor #000000
 
 ## Breaking Changes
 
-- [V0.0.4](https://github.com/prscX/react-native-app-tour/releases/tag/v0.0.4)
-    - Generalized props across platforms @congnguyen91
-    - Migrated License to Apache 2.0
+* [V0.0.4](https://github.com/prscX/react-native-app-tour/releases/tag/v0.0.4)
+  * Generalized props across platforms @congnguyen91
+  * Migrated License to Apache 2.0
 
 ## Credits
 
 * Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)
-* iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
+* iOS:
+  [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
 
 ## Contribution
 
-Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
+Contributions are welcome and are greatly appreciated! Every little bit helps,
+and credit will always be given.
 
 ## License
 
