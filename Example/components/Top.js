@@ -58,7 +58,8 @@ class Top extends Component {
             let props = {
               title: "This is a target button 2",
               description: "We have the best targets, believe me",
-              outerCircleColor: "#3f52ae",
+              backgroundPromptColor: "#3f52ae",
+              outerCircleColor: "#f24481",
               targetRadius: 100,
             };
 
