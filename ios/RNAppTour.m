@@ -380,7 +380,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
             [materialShowcase setSkipButtonMarginRight: skipButtonMarginRightValue];
         } if ([props objectForKey:@"skipButtonMarginBottom"] != nil) {
             float skipButtonMarginBottomValue = [[props objectForKey:@"skipButtonMarginBottom"] floatValue];
-            [materialShowcase setSkipButtonMarginLeft: skipButtonMarginBottomValue];
+            [materialShowcase setSkipButtonMarginBottom: skipButtonMarginBottomValue];
         }
         
         if ([props objectForKey:@"skipButtonMarginHorizontal"] != nil) {
