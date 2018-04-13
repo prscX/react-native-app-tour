@@ -65,7 +65,7 @@ NSString *const onCancelSequenceStepEvent = @"onCancelStepEvent";
     if (self) {
         targets = [[MutableOrderedDictionary alloc] init];
     }
-
+    
     return self;
 }
 
@@ -79,7 +79,7 @@ NSString *const onCancelSequenceStepEvent = @"onCancelStepEvent";
     if (strAlignment == nil) {
         return NSTextAlignmentLeft; // default is left
     }
-
+    
     NSString *lowCaseString = [strAlignment lowercaseString];
     if ([lowCaseString isEqualToString:@"left"]) {
         return NSTextAlignmentLeft;
@@ -90,7 +90,7 @@ NSString *const onCancelSequenceStepEvent = @"onCancelStepEvent";
     } if ([lowCaseString isEqualToString:@"justify"]) {
         return NSTextAlignmentJustified;
     }
-
+    
     return NSTextAlignmentLeft;
 }
 
@@ -144,7 +144,7 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
     for (NSNumber *view in views) {
         [targets setObject:[props objectForKey: [view stringValue]] forKey: [view stringValue]];
     }
-
+    
     NSString *showTargetKey = [ [targets allKeys] objectAtIndex: 0];
     [self ShowFor:[NSNumber numberWithLongLong:[showTargetKey longLongValue]] props:[targets objectForKey:showTargetKey] ];
 }
@@ -157,9 +157,9 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
     if (targetKeys.count <= 0) {
         return;
     }
-
+    
     NSString *removeTargetKey = [targetKeys objectAtIndex: 0];
-
+    
     // This for revert background color of target
     if (materialShowcase.targetHolderRadius <= 0.0f && targetOriginalColor != nil) {
         NSLog(@"targetHolderRadius change");
@@ -167,24 +167,24 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
         UIView *target = [self.bridge.uiManager viewForReactTag: view];
         [target setBackgroundColor: targetOriginalColor];
     }
-
+    
     [targets removeObjectForKey: removeTargetKey];
-
+    
     NSMutableArray *viewIds = [[NSMutableArray alloc] init];
     NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
-
+    
     if (targetKeys.count <= 1) {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onFinishShowStepEvent body:@{@"finish": @YES}];
     }
     else {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onShowSequenceStepEvent body:@{@"next_step": @YES}];
     }
-
+    
     for (NSString *view in [targets allKeys]) {
         [viewIds addObject: [NSNumber numberWithLongLong:[view longLongValue]]];
         [props setObject:(NSDictionary *)[targets objectForKey: view] forKey:view];
     }
-
+    
     if ([viewIds count] > 0) {
         [self ShowSequence:viewIds props:props];
     }
@@ -207,13 +207,13 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 }
 
 - (MaterialShowcase *)generateMaterialShowcase:(NSNumber *)view props:(NSDictionary *)props {
-
+    
     MaterialShowcase *materialShowcase = [[MaterialShowcase alloc] init];
     UIView *target = [self.bridge.uiManager viewForReactTag: view];
     CGRect viewRect = target.frame;
     NSString *title = [props objectForKey: @"title"];
     NSString *description = [props objectForKey: @"description"];
-
+    
     // Background
     UIColor *backgroundPromptColor;
     NSString *backgroundPromptColorValue = [props objectForKey:@"backgroundPromptColor"];
@@ -223,14 +223,14 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     if (backgroundPromptColor != nil) {
         [materialShowcase setBackgroundColor: backgroundPromptColor];
     }
-
+    
     if ([props objectForKey:@"backgroundPrompAlpha"] != nil) {
         float backgroundPrompAlphaValue = [[props objectForKey:@"backgroundPrompAlpha"] floatValue];
         if (backgroundPrompAlphaValue >= 0.0 && backgroundPrompAlphaValue <= 1.0) {
             [materialShowcase setBackgroundPromptColorAlpha:backgroundPrompAlphaValue];
         }
     }
-
+    
     // Target
     UIColor *outerCircleColor;
     UIColor *targetCircleColor;
@@ -242,52 +242,50 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     if (targetCircleColorValue != nil) {
         targetCircleColor = [self colorWithHexString: targetCircleColorValue];
     }
-
-
+    
+    
     if (outerCircleColor != nil) {
         target.tintColor = outerCircleColor;
         [materialShowcase setTargetTintColor: outerCircleColor];
     } if (targetCircleColor != nil) {
         [materialShowcase setTargetHolderColor: targetCircleColor];
     }
-
+    
     if ([props objectForKey:@"targetRadius"] != nil) {
         float targetRadiusValue = [[props objectForKey:@"targetRadius"] floatValue];
         if (targetRadiusValue >= 0) {
             [materialShowcase setTargetHolderRadius: targetRadiusValue];
         }
     }
-
+    
     if ([props objectForKey:@"cancelable"] != nil) {
         BOOL *cancelable = [[props objectForKey:@"cancelable"] boolValue];
         [materialShowcase setIsTapRecognizerForTagretView: !cancelable];
     }
-
+    
     // Text
     UIColor *titleTextColor;
     UIColor *descriptionTextColor;
-    //    showcase.primaryTextFont = UIFont.boldSystemFont(ofSize: primaryTextSize)
-    //    showcase.secondaryTextFont = UIFont.systemFont(ofSize: secondaryTextSize)
-
+    
     NSString *titleTextColorValue = [props objectForKey:@"titleTextColor"];
     if (titleTextColorValue != nil) {
         titleTextColor = [self colorWithHexString:titleTextColorValue];
     }
-
+    
     NSString *descriptionTextColorValue = [props objectForKey:@"descriptionTextColor"];
     if (descriptionTextColorValue != nil) {
         descriptionTextColor = [self colorWithHexString:descriptionTextColorValue];
     }
-
+    
     [materialShowcase setPrimaryText: title];
     [materialShowcase setSecondaryText: description];
-
+    
     if (titleTextColor != nil) {
         [materialShowcase setPrimaryTextColor: titleTextColor];
     } if (descriptionTextColor != nil) {
         [materialShowcase setSecondaryTextColor: descriptionTextColor];
     }
-
+    
     float titleTextSizeValue = [[props objectForKey:@"titleTextSize"] floatValue];
     float descriptionTextSizeValue = [[props objectForKey:@"descriptionTextSize"] floatValue];
     if (titleTextSizeValue > 0) {
@@ -295,7 +293,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     } if (descriptionTextSizeValue > 0) {
         [materialShowcase setSecondaryTextSize: descriptionTextSizeValue];
     }
-
+    
     NSString *titleTextAlignmentValue = [props objectForKey:@"titleTextAlignment"];
     NSString *descriptionTextAlignmentValue = [props objectForKey:@"descriptionTextAlignment"];
     if (titleTextAlignmentValue != nil) {
@@ -305,7 +303,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         NSTextAlignment* descriptionTextAlignment = [self getTextAlignmentByString:descriptionTextAlignmentValue];
         [materialShowcase setSecondaryTextAlignment: descriptionTextAlignment];
     }
-
+    
     // Animation
     float aniComeInDurationValue = [[props objectForKey:@"aniComeInDuration"] floatValue]; // second unit
     float aniGoOutDurationValue = [[props objectForKey:@"aniGoOutDuration"] floatValue]; // second unit
@@ -314,7 +312,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     } if (aniGoOutDurationValue > 0) {
         [materialShowcase setAniGoOutDuration: aniGoOutDurationValue];
     }
-
+    
     UIColor *aniRippleColor;
     NSString *aniRippleColorValue = [props objectForKey:@"aniRippleColor"];
     if (aniRippleColorValue != nil) {
@@ -322,30 +320,32 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     } if (aniRippleColor != nil) {
         [materialShowcase setAniRippleColor: aniRippleColor];
     }
-
-
+    
+    
     if ([props objectForKey:@"aniRippleAlpha"] != nil) {
         float aniRippleAlphaValue = [[props objectForKey:@"aniRippleAlpha"] floatValue];
         if (aniRippleAlphaValue >= 0.0 && aniRippleAlphaValue <= 1.0) {
             [materialShowcase setAniRippleAlpha: aniRippleAlphaValue];
         }
     }
-
+    
     float aniRippleScaleValue = [[props objectForKey:@"aniRippleScale"] floatValue];
     if (aniRippleScaleValue > 0) {
         [materialShowcase setAniRippleScale:aniRippleScaleValue];
     }
-
+    
     // Skip button
     if ([props objectForKey:@"isSkipButtonVisible"] != nil && targets != nil && targets.count > 0) {
-        BOOL *isSkipButtonVisible = [[props objectForKey:@"isSkipButtonVisible"] boolValue];
+        bool *isSkipButtonVisible = [[props objectForKey:@"isSkipButtonVisible"] boolValue];
         [materialShowcase setIsSkipButtonVisible: isSkipButtonVisible];
-        // Set skip text params
+        // Set skip button params
         UIColor *skipTextColor;
         NSString *skipTextValue = [props objectForKey:@"skipText"];
         NSString *skipTextColorValue = [props objectForKey:@"skipTextColor"];
         float skipTextSizeValue = [[props objectForKey:@"skipTextSize"] floatValue];
-
+        UIColor *skipButtonBackgroundColor;
+        NSString *skipButtonBackgroundColorValue = [props objectForKey:@"skipButtonBackgroundColor"];
+        
         if (skipTextValue != nil) {
             [materialShowcase  setSkipText: skipTextValue];
         } if (skipTextColorValue != nil) {
@@ -354,6 +354,10 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
             [materialShowcase setSkipTextColor: skipTextColor];
         } if (skipTextSizeValue > 0) {
             [materialShowcase setSkipTextSize: skipTextSizeValue];
+        } if (skipButtonBackgroundColorValue != nil) {
+            skipButtonBackgroundColor = [self colorWithHexString: skipButtonBackgroundColorValue];
+        } if (skipButtonBackgroundColor) {
+            [materialShowcase setSkipButtonBackgroundColor: skipButtonBackgroundColor];
         }
     }
     if ([[props objectForKey:@"isRect"] boolValue])
@@ -362,7 +366,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         if (rectHighLightColorValue != nil && targets != nil && targets.count > 0) {
             // save target original color for reversing
             targetOriginalColor = target.backgroundColor;
-
+            
             // set target background color
             UIColor *targetHighLightColor = [self colorWithHexString:rectHighLightColorValue];
             if (targetHighLightColor != nil) {
@@ -375,13 +379,14 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     else {
         targetOriginalColor = nil;
     }
-
+    
     [materialShowcase setTargetViewWithView: target];
-
+    
     [materialShowcase setDelegate: self];
-
+    
     return materialShowcase;
 }
 
 
 @end
+
