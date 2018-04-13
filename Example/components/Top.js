@@ -26,6 +26,7 @@ class Top extends Component {
               skipButtonBackgroundColor: '#0000FF',
               skipTextColor: '#FFFFFF',
               dimColor: '#000000',
+              skipButtonMarginHorizontal: 40
             };
             ref &&
               this.props.addAppTourTarget &&

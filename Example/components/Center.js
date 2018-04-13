@@ -43,7 +43,7 @@ class Center extends Component {
               description: "We have the best targets, believe me",
               outerCircleColor: "#3f52ae",
               isSkipButtonVisible: true,
-              skipButtonBackgroundColor: '#FF0000',
+              skipButtonBackgroundColor: '#F64C4C',
               skipText: "SKIP TOUR",
               skipTextSize: 24,
             };

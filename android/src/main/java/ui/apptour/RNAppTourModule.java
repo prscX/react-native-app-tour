@@ -218,12 +218,19 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         int skipTextSize = 24;
         int targetRadius = 60;
         int rectTargetBorderRadius = 0;
+        int skipButtonMargin = -1;
+        int skipButtonMarginLeft = -1;
+        int skipButtonMarginRight = -1;
+        int skipButtonMarginTop = -1;
+        int skipButtonMarginBottom = -1;
+        int skipButtonMarginHorizontal = -1;
+        int skipButtonMarginVertical = -1;
         boolean drawShadow = true;
         boolean cancelable = true;
         boolean tintTarget = true;
         boolean transparentTarget = true;
-        boolean skipTextVisible = false;
         boolean isRect = false;
+        boolean skipTextVisible = false;
 
         try {
             outerCircleAlpha = (float) props.getDouble("outerCircleAlpha");
@@ -273,6 +280,34 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             isRect = props.getBoolean("isRect");
         } catch (Exception e) {
         }
+        try {
+            skipButtonMargin = props.getInt("skipButtonMargin");
+        } catch (Exception e) {
+        }
+        try {
+            skipButtonMarginLeft = props.getInt("skipButtonMarginLeft");
+        } catch (Exception e) {
+        }
+        try {
+            skipButtonMarginRight = props.getInt("skipButtonMarginRight");
+        } catch (Exception e) {
+        }
+        try {
+            skipButtonMarginTop = props.getInt("skipButtonMarginTop");
+        } catch (Exception e) {
+        }
+        try {
+            skipButtonMarginBottom = props.getInt("skipButtonMarginBottom");
+        } catch (Exception e) {
+        }
+        try {
+            skipButtonMarginHorizontal = props.getInt("skipButtonMarginHorizontal");
+        } catch (Exception e) {
+        }
+        try {
+            skipButtonMarginVertical = props.getInt("skipButtonMarginVertical");
+        } catch (Exception e) {
+        }
 
 
         float finalOuterCircleAlpha = outerCircleAlpha;
@@ -318,6 +353,29 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         targetView.skipTextVisible(skipTextVisible);
         targetView.rectTarget(finalIsRect);
         targetView.rectTargetBorderRadius(finalRectTargetBorderRadius);
+        
+        // margin skipButton
+        if (skipButtonMargin != -1) {
+            targetView.skipButtonMargin(skipButtonMargin);
+        }
+        if (skipButtonMarginLeft != -1) {
+            targetView.skipButtonMarginLeft(skipButtonMarginLeft);
+        }
+        if (skipButtonMarginRight != -1) {
+            targetView.skipButtonMarginRight(skipButtonMarginRight);
+        }
+        if (skipButtonMarginTop != -1) {
+            targetView.skipButtonMarginTop(skipButtonMarginTop);
+        }
+        if (skipButtonMarginBottom != -1) {
+            targetView.skipButtonMarginBottom(skipButtonMarginBottom);
+        }
+        if (skipButtonMarginHorizontal != -1) {
+            targetView.skipButtonMarginHorizontal(skipButtonMarginHorizontal);
+        }
+        if (skipButtonMarginVertical != -1) {
+            targetView.skipButtonMarginVertical(skipButtonMarginVertical);
+        }
 
         return targetView;
     }
