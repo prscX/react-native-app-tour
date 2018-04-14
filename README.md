@@ -47,7 +47,7 @@ allprojects {
 
 * **iOS**
 
-  * Run Command if Pods is not installed in your app: `cd ../node_modules/react-native-app-tour/ios && pod install`. If it has error => try `pod repo update` then `pod install`
+  * Run Command: `cd ../node_modules/react-native-app-tour/ios && pod install`. If it has error => try `pod repo update` then `pod install`
   * - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
 
   <img src="./assets/ios-setup.gif" />
