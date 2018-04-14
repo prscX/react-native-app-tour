@@ -47,34 +47,12 @@ allprojects {
 
 * **iOS**
 
-  * Run Command if Pods is not installed in your app: `cd ios/ && pod init`
-  * Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app `Podfile`
+  * Run Command if Pods is not installed in your app: `cd ../node_modules/react-native-app-tour/ios && pod install`. If it has error => try `pod repo update` then `pod install`
+  * - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
 
-    ```
-    # platform :ios, '9.0'
+  <img src="./assets/ios-setup.gif" />
 
-    target 'Example' do
-        use_frameworks!
 
-        pod 'MaterialShowcase', '~> 0.5.1'
-
-        post_install do |installer|
-            installer.pods_project.targets.each do |target|
-                if target.name.include?('MaterialShowcase')
-                    target.build_configurations.each do |config|
-                        # swift version 4.0 for xcode 9
-                        #config.build_settings['SWIFT_VERSION'] = '4.0'
-                        # swift version 3.2 for xcode 8
-                        config.build_settings['SWIFT_VERSION'] = '3.2'
-                    end
-                end
-            end
-        end
-
-    end
-    ```
-
-  * Run Command to install native library: `cd ios/ && pod install`: If it has error => try `pod repo update` then `pod install`
   * Now build your iOS app through Xcode
 
 ## ISSUES
