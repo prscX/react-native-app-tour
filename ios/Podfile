@@ -8,5 +8,5 @@ target 'RNAppTour' do
   # Pods for RNAppTour
   use_frameworks!
 
-    pod 'MaterialShowcase', '~> 0.5.2'
+    pod 'MaterialShowcase', '0.5.1'
 end
