@@ -393,8 +393,9 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
             [materialShowcase setSkipButtonMarginBottom: skipButtonMarginVerticalValue];
         }
     }
-    if ([[props objectForKey:@"isRect"] boolValue])
-    {
+    
+    // set rectangle target property
+    if ([[props objectForKey:@"isRect"] boolValue]) {
         NSString *rectHighLightColorValue = [props objectForKey:@"rectHighLightColor"];
         if (rectHighLightColorValue != nil && targets != nil && targets.count > 0) {
             // save target original color for reversing
@@ -411,6 +412,11 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     }
     else {
         targetOriginalColor = nil;
+    }
+    
+    // set target transparent
+    if ([[props objectForKey:@"transparentTarget"] boolValue]) {
+        [materialShowcase setTargetTransparent: true];
     }
     
     [materialShowcase setTargetViewWithView: target];
