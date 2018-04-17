@@ -124,42 +124,42 @@ AppTour.ShowSequence(appTourSequence)
 
 * **General(iOS & Android)**
 
-| Prop                         | Type                | Default | Note                                                        |
-| ---------------------------- | ------------------- | ------- | ----------------------------------------------------------- |
-| `title`                      | `string`            |         | Specify the title of tour                                   |
-| `description`                | `string`            |         | Specify the description of tour                             |
-| `outerCircleColor`           | `string: HEX-COLOR` |         | Specify a color for the outer circle                        |
-| `targetCircleColor`          | `string: HEX-COLOR` |         | Specify a color for the target circle                       |
-| `titleTextSize`              | `number`            | 20      | Specify the size (in sp) of the title text                  |
-| `titleTextColor`             | `string: HEX-COLOR` |         | Specify the color of the title text                         |
-| `descriptionTextSize`        | `number`            | 10      | Specify the size (in sp) of the description text            |
-| `descriptionTextColor`       | `string: HEX-COLOR` |         | Specify the color of the description text                   |
-| `targetRadius`               | `number`            | 60      | Specify the target radius (in dp)                           |
-| `cancelable`                 | `bool`              | true    | Whether tapping outside the outer circle dismisses the view |
-| `isRect`                     | `bool`              | false   | Specify the target is rectangle                             |
-| `isSkipButtonVisible`        | `bool`              | false   | Show Skip Button ( only support Sequence )                  |
-| `skipText`                   | `string`            | Skip    | Sepecify the skip text                                      |
-| `skipTextColor`              | `string: HEX-COLOR` | #FFFFFF | Sepecify the skip text color                                |
-| `skipTextSize`               | `number`            | 24      | Specify the skip text size                                  |
-| `skipButtonBackgroundColor`  | `string: HEX-COLOR` | #FF0000 | Sepecify the skip button background color                   |
-| `skipButtonMargin`           | `number`            | 20      | Specify skip button margin to the screen bound              |
-| `skipButtonMarginLeft`       | `number`            | 20      | Specify skip button margin left to the screen bound         |
-| `skipButtonMarginTop`        | `number`            | 20      | Specify skip button margin top to the screen bound          |
-| `skipButtonMarginRight`      | `number`            | 20      | Specify skip button margin right to the screen bound        |
-| `skipButtonMarginBottom`     | `number`            | 20      | Specify skip button margin bottom to the screen bound       |
-| `skipButtonMarginHorizontal` | `number`            | 20      | Specify skip button margin left & right to the screen bound |
-| `skipButtonMarginVertical`   | `number`            | 20      | Specify skip button margin left to the screen bound         |
+| Prop                         | Type                | Default | Note                                                                        |
+| ---------------------------- | ------------------- | ------- | --------------------------------------------------------------------------- |
+| `title`                      | `string`            |         | Specify the title of tour                                                   |
+| `description`                | `string`            |         | Specify the description of tour                                             |
+| `outerCircleColor`           | `string: HEX-COLOR` |         | Specify a color for the outer circle                                        |
+| `targetCircleColor`          | `string: HEX-COLOR` |         | Specify a color for the target circle                                       |
+| `titleTextSize`              | `number`            | 20      | Specify the size (in sp) of the title text                                  |
+| `titleTextColor`             | `string: HEX-COLOR` |         | Specify the color of the title text                                         |
+| `descriptionTextSize`        | `number`            | 10      | Specify the size (in sp) of the description text                            |
+| `descriptionTextColor`       | `string: HEX-COLOR` |         | Specify the color of the description text                                   |
+| `targetRadius`               | `number`            | 60      | Specify the target radius (in dp)                                           |
+| `cancelable`                 | `bool`              | true    | Whether tapping outside the outer circle dismisses the view                 |
+| `isRect`                     | `bool`              | false   | Specify the target is rectangle                                             |
+| `isSkipButtonVisible`        | `bool`              | false   | Show Skip Button ( only support Sequence )                                  |
+| `skipText`                   | `string`            | Skip    | Sepecify the skip text                                                      |
+| `skipTextColor`              | `string: HEX-COLOR` | #FFFFFF | Sepecify the skip text color                                                |
+| `skipTextSize`               | `number`            | 24      | Specify the skip text size                                                  |
+| `skipButtonBackgroundColor`  | `string: HEX-COLOR` | #FF0000 | Sepecify the skip button background color                                   |
+| `skipButtonMargin`           | `number`            | 20      | Specify skip button margin to the screen bound                              |
+| `skipButtonMarginLeft`       | `number`            | 20      | Specify skip button margin left to the screen bound                         |
+| `skipButtonMarginTop`        | `number`            | 20      | Specify skip button margin top to the screen bound                          |
+| `skipButtonMarginRight`      | `number`            | 20      | Specify skip button margin right to the screen bound                        |
+| `skipButtonMarginBottom`     | `number`            | 20      | Specify skip button margin bottom to the screen bound                       |
+| `skipButtonMarginHorizontal` | `number`            | 20      | Specify skip button margin left & right to the screen bound                 |
+| `skipButtonMarginVertical`   | `number`            | 20      | Specify skip button margin left to the screen bound                         |
+| `transparentTarget`          | `bool`              | true    | Specify whether the target is transparent (displays the content underneath) |
 
 * **Android**
 
-| Prop                | Type                | Default | Note                                                                        |
-| ------------------- | ------------------- | ------- | --------------------------------------------------------------------------- |
-| `outerCircleAlpha`  | `number`            | 0.96f   | Specify the alpha amount for the outer circle                               |
-| `textColor`         | `string: HEX-COLOR` |         | Specify a color for both the title and description text                     |
-| `dimColor`          | `string: HEX-COLOR` |         | If set, will dim behind the view with 30% opacity of the given color        |
-| `drawShadow`        | `bool`              | true    | Whether to draw a drop shadow or not                                        |
-| `tintTarget`        | `bool`              | true    | Whether to tint the target view's color                                     |
-| `transparentTarget` | `bool`              | true    | Specify whether the target is transparent (displays the content underneath) |
+| Prop               | Type                | Default | Note                                                                 |
+| ------------------ | ------------------- | ------- | -------------------------------------------------------------------- |
+| `outerCircleAlpha` | `number`            | 0.96f   | Specify the alpha amount for the outer circle                        |
+| `textColor`        | `string: HEX-COLOR` |         | Specify a color for both the title and description text              |
+| `dimColor`         | `string: HEX-COLOR` |         | If set, will dim behind the view with 30% opacity of the given color |
+| `drawShadow`       | `bool`              | true    | Whether to draw a drop shadow or not                                 |
+| `tintTarget`       | `bool`              | true    | Whether to tint the target view's color                              |
 
 * **iOS**
 
