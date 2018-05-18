@@ -1,6 +1,6 @@
 {
     "name": "react-native-app-tour",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "React Native: Native App Tour Library",
     "repository": {
         "type": "git",
@@ -18,6 +18,6 @@
     "dependencies": {
     },
     "devDependencies": {
-        "prettier-pack": "0.0.2"
+        "prettier-pack": "0.0.6"
     }
 }

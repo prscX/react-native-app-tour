@@ -39,11 +39,8 @@ import java.util.List;
 
 public class RNAppTourModule extends ReactContextBaseJavaModule {
 
-    private final ReactApplicationContext reactContext;
-
     public RNAppTourModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.reactContext = reactContext;
     }
 
     @Override
@@ -69,7 +66,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                UIManagerModule uiManager = reactContext.getNativeModule(UIManagerModule.class);
+                UIManagerModule uiManager = getReactApplicationContext().getNativeModule(UIManagerModule.class);
 
                 uiManager.addUIBlock(new UIBlock() {
                     @Override
@@ -88,7 +85,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                                 WritableMap params = Arguments.createMap();
                                 params.putBoolean("finish", true);
 
-                                sendEvent(reactContext, "onFinishSequenceEvent", params);
+                                sendEvent(getReactApplicationContext(), "onFinishSequenceEvent", params);
 
                                 // dismiss dialog on finish
                                 if (dialog != null && dialog.isShowing()) {
@@ -101,7 +98,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                                 WritableMap params = Arguments.createMap();
                                 params.putBoolean("next_step", true);
 
-                                sendEvent(reactContext, "onShowSequenceStepEvent", params);
+                                sendEvent(getReactApplicationContext(), "onShowSequenceStepEvent", params);
                             }
 
                             @Override
@@ -109,7 +106,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                                 WritableMap params = Arguments.createMap();
                                 params.putBoolean("cancel_step", true);
 
-                                sendEvent(reactContext, "onCancelStepEvent", params);
+                                sendEvent(getReactApplicationContext(), "onCancelStepEvent", params);
                             }
                         })
                                 .continueOnCancel(true);
@@ -128,7 +125,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                UIManagerModule uiManager = reactContext.getNativeModule(UIManagerModule.class);
+                UIManagerModule uiManager = getReactApplicationContext().getNativeModule(UIManagerModule.class);
 
                 uiManager.addUIBlock(new UIBlock() {
                     @Override
