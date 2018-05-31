@@ -119,7 +119,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void ShowFor(final int view, final ReadableMap props, final Promise promise) {
-        final Activity activity = this.getCurrentActivity();
+        final Activity activity = getCurrentActivity();
         final Dialog dialog = new AlertDialog.Builder(activity).create();
 
         activity.runOnUiThread(new Runnable() {
@@ -218,15 +218,6 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         } catch (Exception e) {
         }
 
-        float finalOuterCircleAlpha = outerCircleAlpha;
-        int finalTitleTextSize = titleTextSize;
-        int finalDescriptionTextSize = descriptionTextSize;
-        boolean finalDrawShadow = drawShadow;
-        boolean finalCancelable = cancelable;
-        boolean finalTintTarget = tintTarget;
-        boolean finalTransparentTarget = transparentTarget;
-        int finalTargetRadius = targetRadius;
-
 
         //Populate Props
         TapTarget targetView = TapTarget.forView(view, title, description);
@@ -245,14 +236,14 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             targetView.dimColorInt(Color.parseColor(dimColor));
 
 
-        targetView.outerCircleAlpha(finalOuterCircleAlpha);
-        targetView.titleTextSize(finalTitleTextSize);
-        targetView.descriptionTextSize(finalDescriptionTextSize);
-        targetView.drawShadow(finalDrawShadow);
-        targetView.cancelable(finalCancelable);
-        targetView.tintTarget(finalTintTarget);
-        targetView.transparentTarget(finalTransparentTarget);
-        targetView.targetRadius(finalTargetRadius);
+        targetView.outerCircleAlpha(outerCircleAlpha);
+        targetView.titleTextSize(titleTextSize);
+        targetView.descriptionTextSize(descriptionTextSize);
+        targetView.drawShadow(drawShadow);
+        targetView.cancelable(cancelable);
+        targetView.tintTarget(tintTarget);
+        targetView.transparentTarget(transparentTarget);
+        targetView.targetRadius(targetRadius);
 
         return targetView;
     }

@@ -30,7 +30,7 @@ This library is a React Native bridge around native app tour libraries. It allow
 buildscript {
     repositories {
         jcenter()
-        google()
+        maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
         ...
     }
@@ -40,7 +40,7 @@ allprojects {
     repositories {
         mavenLocal()
         jcenter()
-        google()
+        maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
         ...
     }

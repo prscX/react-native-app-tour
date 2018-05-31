@@ -68,71 +68,8 @@ NSString *const onFinishShowStepEvent = @"onFinishSequenceEvent";
     return self;
 }
 
-
 - (dispatch_queue_t)methodQueue {
     return dispatch_get_main_queue();
-}
-
-
-- (NSTextAlignment*) getTextAlignmentByString: (NSString*) strAlignment {
-    if (strAlignment == nil) {
-        return NSTextAlignmentLeft; // default is left
-    }
-
-    NSString *lowCaseString = [strAlignment lowercaseString];
-    if ([lowCaseString isEqualToString:@"left"]) {
-        return NSTextAlignmentLeft;
-    } if ([lowCaseString isEqualToString:@"right"]) {
-        return NSTextAlignmentRight;
-    } if ([lowCaseString isEqualToString:@"center"]) {
-        return NSTextAlignmentCenter;
-    } if ([lowCaseString isEqualToString:@"justify"]) {
-        return NSTextAlignmentJustified;
-    }
-
-    return NSTextAlignmentLeft;
-}
-
-- (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length {
-    NSString *substring = [string substringWithRange: NSMakeRange(start, length)];
-    NSString *fullHex = length == 2 ? substring : [NSString stringWithFormat: @"%@%@", substring, substring];
-    unsigned hexComponent;
-    [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
-    return hexComponent / 255.0;
-}
-
-- (UIColor *) colorWithHexString: (NSString *) hexString {
-    NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
-    CGFloat alpha, red, blue, green;
-    switch ([colorString length]) {
-            case 3: // #RGB
-            alpha = 1.0f;
-            red   = [self colorComponentFrom: colorString start: 0 length: 1];
-            green = [self colorComponentFrom: colorString start: 1 length: 1];
-            blue  = [self colorComponentFrom: colorString start: 2 length: 1];
-            break;
-            case 4: // #ARGB
-            alpha = [self colorComponentFrom: colorString start: 0 length: 1];
-            red   = [self colorComponentFrom: colorString start: 1 length: 1];
-            green = [self colorComponentFrom: colorString start: 2 length: 1];
-            blue  = [self colorComponentFrom: colorString start: 3 length: 1];
-            break;
-            case 6: // #RRGGBB
-            alpha = 1.0f;
-            red   = [self colorComponentFrom: colorString start: 0 length: 2];
-            green = [self colorComponentFrom: colorString start: 2 length: 2];
-            blue  = [self colorComponentFrom: colorString start: 4 length: 2];
-            break;
-            case 8: // #AARRGGBB
-            alpha = [self colorComponentFrom: colorString start: 0 length: 2];
-            red   = [self colorComponentFrom: colorString start: 2 length: 2];
-            green = [self colorComponentFrom: colorString start: 4 length: 2];
-            blue  = [self colorComponentFrom: colorString start: 6 length: 2];
-            break;
-        default:
-            return nil;
-    }
-    return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
 }
 
 RCT_EXPORT_MODULE()
@@ -146,40 +83,6 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
 
     NSString *showTargetKey = [ [targets allKeys] objectAtIndex: 0];
     [self ShowFor:[NSNumber numberWithLongLong:[showTargetKey longLongValue]] props:[targets objectForKey:showTargetKey] ];
-}
-
-- (void)showCaseWillDismissWithShowcase:(MaterialShowcase *)materialShowcase {
-    NSLog(@"");
-}
-- (void)showCaseDidDismissWithShowcase:(MaterialShowcase *)materialShowcase {
-    NSLog(@"");
-
-    NSArray *targetKeys = [targets allKeys];
-    if (targetKeys.count <= 0) {
-        return;
-    }
-
-    NSString *removeTargetKey = [targetKeys objectAtIndex: 0];
-    [targets removeObjectForKey: removeTargetKey];
-
-    NSMutableArray *viewIds = [[NSMutableArray alloc] init];
-    NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
-
-    if (targetKeys.count <= 1) {
-        [self.bridge.eventDispatcher sendDeviceEventWithName:onFinishShowStepEvent body:@{@"finish": @YES}];
-    }
-    else {
-        [self.bridge.eventDispatcher sendDeviceEventWithName:onShowSequenceStepEvent body:@{@"next_step": @YES}];
-    }
-
-    for (NSString *view in [targets allKeys]) {
-        [viewIds addObject: [NSNumber numberWithLongLong:[view longLongValue]]];
-        [props setObject:(NSDictionary *)[targets objectForKey: view] forKey:view];
-    }
-
-    if ([viewIds count] > 0) {
-        [self ShowSequence:viewIds props:props];
-    }
 }
 
 RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
@@ -326,5 +229,103 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 
     return materialShowcase;
 }
+
+
+- (void)showCaseWillDismissWithShowcase:(MaterialShowcase *)materialShowcase {
+    NSLog(@"");
+}
+- (void)showCaseDidDismissWithShowcase:(MaterialShowcase *)materialShowcase {
+    NSLog(@"");
+    
+    NSArray *targetKeys = [targets allKeys];
+    if (targetKeys.count <= 0) {
+        return;
+    }
+    
+    NSString *removeTargetKey = [targetKeys objectAtIndex: 0];
+    [targets removeObjectForKey: removeTargetKey];
+    
+    NSMutableArray *viewIds = [[NSMutableArray alloc] init];
+    NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
+    
+    if (targetKeys.count <= 1) {
+        [self.bridge.eventDispatcher sendDeviceEventWithName:onFinishShowStepEvent body:@{@"finish": @YES}];
+    }
+    else {
+        [self.bridge.eventDispatcher sendDeviceEventWithName:onShowSequenceStepEvent body:@{@"next_step": @YES}];
+    }
+    
+    for (NSString *view in [targets allKeys]) {
+        [viewIds addObject: [NSNumber numberWithLongLong:[view longLongValue]]];
+        [props setObject:(NSDictionary *)[targets objectForKey: view] forKey:view];
+    }
+    
+    if ([viewIds count] > 0) {
+        [self ShowSequence:viewIds props:props];
+    }
+}
+
+
+- (NSTextAlignment*) getTextAlignmentByString: (NSString*) strAlignment {
+    if (strAlignment == nil) {
+        return NSTextAlignmentLeft; // default is left
+    }
+    
+    NSString *lowCaseString = [strAlignment lowercaseString];
+    if ([lowCaseString isEqualToString:@"left"]) {
+        return NSTextAlignmentLeft;
+    } if ([lowCaseString isEqualToString:@"right"]) {
+        return NSTextAlignmentRight;
+    } if ([lowCaseString isEqualToString:@"center"]) {
+        return NSTextAlignmentCenter;
+    } if ([lowCaseString isEqualToString:@"justify"]) {
+        return NSTextAlignmentJustified;
+    }
+    
+    return NSTextAlignmentLeft;
+}
+
+- (CGFloat) colorComponentFrom: (NSString *) string start: (NSUInteger) start length: (NSUInteger) length {
+    NSString *substring = [string substringWithRange: NSMakeRange(start, length)];
+    NSString *fullHex = length == 2 ? substring : [NSString stringWithFormat: @"%@%@", substring, substring];
+    unsigned hexComponent;
+    [[NSScanner scannerWithString: fullHex] scanHexInt: &hexComponent];
+    return hexComponent / 255.0;
+}
+
+- (UIColor *) colorWithHexString: (NSString *) hexString {
+    NSString *colorString = [[hexString stringByReplacingOccurrencesOfString: @"#" withString: @""] uppercaseString];
+    CGFloat alpha, red, blue, green;
+    switch ([colorString length]) {
+        case 3: // #RGB
+            alpha = 1.0f;
+            red   = [self colorComponentFrom: colorString start: 0 length: 1];
+            green = [self colorComponentFrom: colorString start: 1 length: 1];
+            blue  = [self colorComponentFrom: colorString start: 2 length: 1];
+            break;
+        case 4: // #ARGB
+            alpha = [self colorComponentFrom: colorString start: 0 length: 1];
+            red   = [self colorComponentFrom: colorString start: 1 length: 1];
+            green = [self colorComponentFrom: colorString start: 2 length: 1];
+            blue  = [self colorComponentFrom: colorString start: 3 length: 1];
+            break;
+        case 6: // #RRGGBB
+            alpha = 1.0f;
+            red   = [self colorComponentFrom: colorString start: 0 length: 2];
+            green = [self colorComponentFrom: colorString start: 2 length: 2];
+            blue  = [self colorComponentFrom: colorString start: 4 length: 2];
+            break;
+        case 8: // #AARRGGBB
+            alpha = [self colorComponentFrom: colorString start: 0 length: 2];
+            red   = [self colorComponentFrom: colorString start: 2 length: 2];
+            green = [self colorComponentFrom: colorString start: 4 length: 2];
+            blue  = [self colorComponentFrom: colorString start: 6 length: 2];
+            break;
+        default:
+            return nil;
+    }
+    return [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
+}
+
 
 @end
