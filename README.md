@@ -111,7 +111,7 @@ AppTour.ShowSequence(appTourSequence)
 | `descriptionTextSize`  | `number`            | 10      | Specify the size (in sp) of the description text            |
 | `descriptionTextColor` | `string: HEX-COLOR` |         | Specify the color of the description text                   |
 | `targetRadius`         | `number`            | 60      | Specify the target radius (in dp)                           |
-| `cancelable`           | `bool`              | true    | Whether tapping outside the outer circle dismisses the view |
+| `cancelable`           | `bool`              | true    | Whether tapping anywhere dismisses the view                 |
 
 * **Android**
 
