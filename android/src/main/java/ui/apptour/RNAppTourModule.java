@@ -75,10 +75,14 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                             int view = views.getInt(i);
 
                             View refView = nativeViewHierarchyManager.resolveView(view);
-                            targetViews.add(generateTapTarget(refView, props.getMap(String.valueOf(view))));
+
+                            TapTarget tapTarget = generateTapTarget(refView, props.getMap(String.valueOf(view)));
+                            targetViews.add(tapTarget);
                         }
 
                         TapTargetSequence tapTargetSequence = new TapTargetSequence(dialog).targets(targetViews);
+                        tapTargetSequence.considerOuterCircleCanceled(true);
+ 
                         tapTargetSequence.listener(new TapTargetSequence.Listener() {
                             @Override
                             public void onSequenceFinish() {
@@ -133,12 +137,38 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                         View refView = nativeViewHierarchyManager.resolveView(view);
                         TapTarget targetView = generateTapTarget(refView, props);
 
-                        TapTargetView.showFor(dialog, targetView);
+                        TapTargetView.showFor(dialog, targetView, new TapTargetViewListener(props));
                     }
                 });
             }
         });
     }
+
+
+    public static class TapTargetViewListener extends  TapTargetView.Listener {
+        private ReadableMap props;
+
+        public TapTargetViewListener (ReadableMap props) {
+            this.props = props;
+        }
+
+        /** Signals that the user clicked on the outer circle portion of the tap target **/
+        @Override
+        public void onOuterCircleClick(TapTargetView view) {
+            // no-op as default
+
+            boolean cancelable = true;
+            try {
+                cancelable = props.getBoolean("cancelable");
+            } catch (Exception e) {
+            }
+
+            if (cancelable) {
+                view.dismiss(true);
+            }
+        }
+    }
+
 
     private TapTarget generateTapTarget(final View view, final ReadableMap props) {
         final Activity activity = this.getCurrentActivity();
