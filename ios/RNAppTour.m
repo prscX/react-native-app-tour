@@ -150,7 +150,7 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
 }
 
 - (void)showCaseWillDismissWithShowcase:(MaterialShowcase *)materialShowcase didTapTarget:(BOOL)didTapTarget {
-    NSLog(@"");
+    //NSLog(@"");
 }
 
 - (void)showCaseDidDismissWithShowcase:(MaterialShowcase *)materialShowcase didTapTarget:(BOOL)didTapTarget {
@@ -163,7 +163,6 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
 
     // This for revert background color of target
     if (materialShowcase.targetHolderRadius <= 0.0f && targetOriginalColor != nil) {
-        NSLog(@"targetHolderRadius change");
         NSNumber *view =  [NSNumber numberWithLongLong:[removeTargetKey longLongValue]];
         UIView *target = [self.bridge.uiManager viewForReactTag: view];
         [target setBackgroundColor: targetOriginalColor];
@@ -196,7 +195,7 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
         targets = MutableOrderedDictionary.new;
     }
     [self.bridge.eventDispatcher sendDeviceEventWithName:onCancelSequenceStepEvent body:@{@"cancel_step": @YES}];
-    [materialShowcase completeShowcaseWithAnimated: true didTapTarget: false];
+    [materialShowcase completeShowcaseWithAnimated:true didTapTarget:false];
 }
 
 RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
