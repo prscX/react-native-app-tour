@@ -51,6 +51,8 @@ class AppTourSequence {
 
 class AppTourView {
   static for(view, props) {
+    if (view._reactInternalFiber.key === undefined) throw new Error('Each tour view should have a key prop. Please check the render method')
+    
     return {
       key: view._reactInternalFiber.key,
       view: findNodeHandle(view),
