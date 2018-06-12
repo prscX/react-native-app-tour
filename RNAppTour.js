@@ -12,7 +12,7 @@ class AppTour {
     appTourTargets &&
       appTourTargets.forEach((appTourTarget, key, appTourTargets) => {
         viewIds.push(appTourTarget.view);
-        props[key] = appTourTarget.props;
+        props[appTourTarget.view] = appTourTarget.props;
       });
 
     RNAppTour.ShowSequence(viewIds, props);
@@ -29,11 +29,11 @@ class AppTourSequence {
   }
 
   add(appTourTarget) {
-    this.appTourTargets.set(appTourTarget.view, appTourTarget);
+    this.appTourTargets.set(appTourTarget.key, appTourTarget);
   }
 
   remove(appTourTarget) {
-    this.appTourTargets.delete(appTourTarget.view);
+    this.appTourTargets.delete(appTourTarget.key);
   }
 
   removeAll() {
@@ -52,6 +52,7 @@ class AppTourSequence {
 class AppTourView {
   static for(view, props) {
     return {
+      key: view._reactInternalFiber.key,
       view: findNodeHandle(view),
       props: props
     };
