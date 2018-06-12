@@ -141,6 +141,7 @@ AppTour.ShowSequence(appTourSequence)
 > **Note:**
 >
 > * App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
+> * Each component which is to be rendered in the tour should have a unique "key" prop mandatorily.
 
 
 ## Breaking Changes
