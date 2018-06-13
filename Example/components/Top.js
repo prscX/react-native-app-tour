@@ -17,6 +17,7 @@ class Top extends Component {
               description: "We have the best targets, believe me",
               outerCircleColor: "#3f52ae",
               cancelable: false,
+              order: 2
             };
 
             this.props.addAppTourTarget &&
@@ -26,11 +27,11 @@ class Top extends Component {
             let props = {
               title: "This is a target button 1",
               description: "We have the best targets, believe me",
-              outerCircleColor: "#f24481",
+              outerCircleColor: "#f24481"
             };
 
             let targetView = AppTourView.for(this.button1, {
-              ...props,
+              ...props
             });
 
             AppTour.ShowFor(targetView);
@@ -47,6 +48,7 @@ class Top extends Component {
               backgroundPromptColor: "#3f52ae",
               outerCircleColor: "#f24481",
               targetRadius: 100,
+              order: 2
             };
 
             this.props.addAppTourTarget &&
@@ -62,8 +64,8 @@ class Top extends Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
-  },
+    justifyContent: "space-between"
+  }
 });
 
 export default Top;
