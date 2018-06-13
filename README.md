@@ -54,13 +54,13 @@ allprojects {
 * **iOS**
 
   * Run Command: `cd ../node_modules/react-native-app-tour/ios && pod install`. If it has error => try `pod repo update` then `pod install`
-  * - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
+  * * Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
 
   * Please refer below installation video created by @Noitidart:
-  
+
 [![iOS Installation Guide](https://img.youtube.com/vi/iBjsCrEtYW4/0.jpg)](https://www.youtube.com/watch?v=iBjsCrEtYW4)
 
-  * Now build your iOS app through Xcode
+* Now build your iOS app through Xcode
 
 ## ISSUES
 
@@ -101,18 +101,19 @@ AppTour.ShowSequence(appTourSequence)
 
 * **General(iOS & Android)**
 
-| Prop                   | Type                | Default | Note                                                        |
-| ---------------------- | ------------------- | ------- | ----------------------------------------------------------- |
-| `title`                | `string`            |         | Specify the title of tour                                   |
-| `description`          | `string`            |         | Specify the description of tour                             |
-| `outerCircleColor`     | `string: HEX-COLOR` |         | Specify a color for the outer circle                        |
-| `targetCircleColor`    | `string: HEX-COLOR` |         | Specify a color for the target circle                       |
-| `titleTextSize`        | `number`            | 20      | Specify the size (in sp) of the title text                  |
-| `titleTextColor`       | `string: HEX-COLOR` |         | Specify the color of the title text                         |
-| `descriptionTextSize`  | `number`            | 10      | Specify the size (in sp) of the description text            |
-| `descriptionTextColor` | `string: HEX-COLOR` |         | Specify the color of the description text                   |
-| `targetRadius`         | `number`            | 60      | Specify the target radius (in dp)                           |
-| `cancelable`           | `bool`              | true    | Whether tapping anywhere dismisses the view                 |
+| Prop                   | Type                | Default | Note                                             |
+| ---------------------- | ------------------- | ------- | ------------------------------------------------ |
+| `title`                | `string`            |         | Specify the title of tour                        |
+| `description`          | `string`            |         | Specify the description of tour                  |
+| `outerCircleColor`     | `string: HEX-COLOR` |         | Specify a color for the outer circle             |
+| `targetCircleColor`    | `string: HEX-COLOR` |         | Specify a color for the target circle            |
+| `titleTextSize`        | `number`            | 20      | Specify the size (in sp) of the title text       |
+| `titleTextColor`       | `string: HEX-COLOR` |         | Specify the color of the title text              |
+| `descriptionTextSize`  | `number`            | 10      | Specify the size (in sp) of the description text |
+| `descriptionTextColor` | `string: HEX-COLOR` |         | Specify the color of the description text        |
+| `targetRadius`         | `number`            | 60      | Specify the target radius (in dp)                |
+| `cancelable`           | `bool`              | true    | Whether tapping anywhere dismisses the view      |
+| `order`                | `number`            |         | Specify the order of target                      |
 
 * **Android**
 
@@ -142,12 +143,11 @@ AppTour.ShowSequence(appTourSequence)
 >
 > * App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
 
-
 ## Breaking Changes
 
-- [V0.0.4](https://github.com/prscX/react-native-app-tour/releases/tag/v0.0.4)
-    - Generalized props across platforms @congnguyen91
-    - Migrated License to Apache 2.0
+* [V0.0.4](https://github.com/prscX/react-native-app-tour/releases/tag/v0.0.4)
+  * Generalized props across platforms @congnguyen91
+  * Migrated License to Apache 2.0
 
 ## Credits
 
