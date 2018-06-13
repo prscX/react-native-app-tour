@@ -147,8 +147,13 @@ AppTour.ShowSequence(appTourSequence)
 ## Breaking Changes
 
 - [V0.0.4](https://github.com/prscX/react-native-app-tour/releases/tag/v0.0.4)
+
   - Generalized props across platforms @congnguyen91
   - Migrated License to Apache 2.0
+
+- [V0.0.10](https://github.com/prscX/react-native-app-tour/releases/tag/v0.0.10)
+  - Added `order` as a mandatory property to each target
+  - Each component which is to be rendered in the tour should have a `key` prop. It is mandatory.
 
 ## Credits
 
