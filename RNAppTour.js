@@ -25,7 +25,7 @@ class AppTour {
       })
 
     let viewOrder = Array.from(viewIds.keys())
-    viewOrder = viewOrder.sort()
+    viewOrder = viewOrder.sort((a, b) => a - b)
 
     viewOrder.forEach(vOrder => {
       sortedViewIds.push(viewIds.get(vOrder))
