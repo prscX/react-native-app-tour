@@ -12,7 +12,7 @@ class AppTour {
     appTourTargets &&
       appTourTargets.forEach((appTourTarget, key, appTourTargets) => {
         viewIds.push(appTourTarget.view);
-        props[key] = appTourTarget.props;
+        props[appTourTarget.view] = appTourTarget.props;
       });
 
     RNAppTour.ShowSequence(viewIds, props);
@@ -29,11 +29,11 @@ class AppTourSequence {
   }
 
   add(appTourTarget) {
-    this.appTourTargets.set(appTourTarget.view, appTourTarget);
+    this.appTourTargets.set(appTourTarget.key, appTourTarget);
   }
 
   remove(appTourTarget) {
-    this.appTourTargets.delete(appTourTarget.view);
+    this.appTourTargets.delete(appTourTarget.key);
   }
 
   removeAll() {
@@ -51,7 +51,11 @@ class AppTourSequence {
 
 class AppTourView {
   static for(view, props) {
+    if (view === undefined) throw new Error('Provided tour view reference is undefined, please add a preliminary validation before adding for tour.')
+    if (view._reactInternalFiber.key === undefined) throw new Error('Each tour view should have a key prop. Please check the render method,')
+    
     return {
+      key: view._reactInternalFiber.key,
       view: findNodeHandle(view),
       props: props
     };
