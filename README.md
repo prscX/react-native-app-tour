@@ -22,9 +22,9 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 `$ react-native link react-native-app-tour`
 
-* **Android**
+- **Android**
 
-  * Please add below script in your `build.gradle`
+  - Please add below script in your `build.gradle`
 
 ```
 buildscript {
@@ -49,27 +49,27 @@ allprojects {
 
 > **Note**
 >
-> * Android SDK 27 > is supported
+> - Android SDK 27 > is supported
 
-* **iOS**
+- **iOS**
 
-  * Run Command: `cd ../node_modules/react-native-app-tour/ios && pod install`. If it has error => try `pod repo update` then `pod install`
-  * - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
+  - Run Command: `cd ../node_modules/react-native-app-tour/ios && pod install`. If it has error => try `pod repo update` then `pod install`
+  - - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
 
-  * Please refer below installation video created by @Noitidart:
-  
+  - Please refer below installation video created by @Noitidart:
+
 [![iOS Installation Guide](https://img.youtube.com/vi/iBjsCrEtYW4/0.jpg)](https://www.youtube.com/watch?v=iBjsCrEtYW4)
 
-  * Now build your iOS app through Xcode
+- Now build your iOS app through Xcode
 
 ## ISSUES
 
-* If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
-* If you have problems with `Android` Trying to resolve view with tag which doesn't exist or can't resolve tag. Please add props `collapasable: false` to your View
+- If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
+- If you have problems with `Android` Trying to resolve view with tag which doesn't exist or can't resolve tag. Please add props `collapasable: false` to your View
 
 ## API's
 
-* AppTourView.for: AppTourTarget
+- AppTourView.for: AppTourTarget
 
 ```
 let appTourTarget = AppTourView.for(Button, {...native-library-props})
@@ -77,12 +77,12 @@ let appTourTarget = AppTourView.for(Button, {...native-library-props})
 AppTour.ShowFor(appTourTarget)
 ```
 
-* AppTourSequence
-  * add(AppTourTarget)
-  * remove(AppTourTarget)
-  * removeAll
-  * get(AppTourTarget)
-  * getAll
+- AppTourSequence
+  - add(AppTourTarget)
+  - remove(AppTourTarget)
+  - removeAll
+  - get(AppTourTarget)
+  - getAll
 
 ```
 let appTourSequence = new AppTourSequence()
@@ -93,28 +93,34 @@ appTourSequence.add(appTourTarget)
 AppTour.ShowSequence(appTourSequence)
 ```
 
-* AppTour
-  * ShowFor(AppTourTarget)
-  * ShowSequence(AppTourTargets)
+- AppTour
+  - ShowFor(AppTourTarget)
+  - ShowSequence(AppTourTargets)
 
 ## Props
 
-* **General(iOS & Android)**
+> **Note:**
+>
+> - Each component which is to be rendered in the tour should have a `key` prop. It is mandatory.
+> - App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
 
-| Prop                   | Type                | Default | Note                                                        |
-| ---------------------- | ------------------- | ------- | ----------------------------------------------------------- |
-| `title`                | `string`            |         | Specify the title of tour                                   |
-| `description`          | `string`            |         | Specify the description of tour                             |
-| `outerCircleColor`     | `string: HEX-COLOR` |         | Specify a color for the outer circle                        |
-| `targetCircleColor`    | `string: HEX-COLOR` |         | Specify a color for the target circle                       |
-| `titleTextSize`        | `number`            | 20      | Specify the size (in sp) of the title text                  |
-| `titleTextColor`       | `string: HEX-COLOR` |         | Specify the color of the title text                         |
-| `descriptionTextSize`  | `number`            | 10      | Specify the size (in sp) of the description text            |
-| `descriptionTextColor` | `string: HEX-COLOR` |         | Specify the color of the description text                   |
-| `targetRadius`         | `number`            | 60      | Specify the target radius (in dp)                           |
-| `cancelable`           | `bool`              | true    | Whether tapping anywhere dismisses the view                 |
+- **General(iOS & Android)**
 
-* **Android**
+| Prop                   | Type                | Default | Note                                             |
+| ---------------------- | ------------------- | ------- | ------------------------------------------------ |
+| `order: mandatory`     | `number`            |         | Specify the order of tour target                 |
+| `title`                | `string`            |         | Specify the title of tour                        |
+| `description`          | `string`            |         | Specify the description of tour                  |
+| `outerCircleColor`     | `string: HEX-COLOR` |         | Specify a color for the outer circle             |
+| `targetCircleColor`    | `string: HEX-COLOR` |         | Specify a color for the target circle            |
+| `titleTextSize`        | `number`            | 20      | Specify the size (in sp) of the title text       |
+| `titleTextColor`       | `string: HEX-COLOR` |         | Specify the color of the title text              |
+| `descriptionTextSize`  | `number`            | 10      | Specify the size (in sp) of the description text |
+| `descriptionTextColor` | `string: HEX-COLOR` |         | Specify the color of the description text        |
+| `targetRadius`         | `number`            | 60      | Specify the target radius (in dp)                |
+| `cancelable`           | `bool`              | true    | Whether tapping anywhere dismisses the view      |
+
+- **Android**
 
 | Prop                | Type                | Default | Note                                                                        |
 | ------------------- | ------------------- | ------- | --------------------------------------------------------------------------- |
@@ -125,7 +131,7 @@ AppTour.ShowSequence(appTourSequence)
 | `tintTarget`        | `bool`              | true    | Whether to tint the target view's color                                     |
 | `transparentTarget` | `bool`              | true    | Specify whether the target is transparent (displays the content underneath) |
 
-* **iOS**
+- **iOS**
 
 | Prop                         | Type                | Default      | Note                                                       |
 | ---------------------------- | ------------------- | ------------ | ---------------------------------------------------------- |
@@ -138,23 +144,16 @@ AppTour.ShowSequence(appTourSequence)
 | `aniRippleColor`             | `string: HEX-COLOR` | #FFFFFF      | Specify ripple color                                       |
 | `aniRippleAlpha`             | `number`            | 0.2          | Specify ripple alpha                                       |
 
-> **Note:**
->
-> * Each component which is to be rendered in the tour should have a `key` prop. It is mandatory.
-> * App Tour Target Properties are same as defined by [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView) & [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
-
-
-
 ## Breaking Changes
 
 - [V0.0.4](https://github.com/prscX/react-native-app-tour/releases/tag/v0.0.4)
-    - Generalized props across platforms @congnguyen91
-    - Migrated License to Apache 2.0
+  - Generalized props across platforms @congnguyen91
+  - Migrated License to Apache 2.0
 
 ## Credits
 
-* Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)
-* iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
+- Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)
+- iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
 
 ## Contribution
 
