@@ -4,10 +4,15 @@ const { RNAppTour } = NativeModules;
 
 class AppTour {
   static ShowSequence(sequence) {
-    let appTourTargets = sequence.getAll();
-
     let viewIds = [];
     let props = {};
+
+    const items = sequence.getAll();
+    const appTourTargets = new Map(
+      [...items.entries()].sort((a, b) => {
+        return a[1].props.order - b[1].props.order;
+      })
+    );
 
     appTourTargets &&
       appTourTargets.forEach((appTourTarget, key, appTourTargets) => {
