@@ -58,13 +58,13 @@ allprojects {
 > - Android SDK 27 > is supported
 
 - **iOS**
+```
+  yarn add react-native-app-tour
+  react-native link react-native-app-tour
+```
 
-  - Run Command: `cd ../node_modules/react-native-app-tour/ios && pod install`. If it has error => try `pod repo update` then `pod install`
-  - - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
-
-  - Please refer below installation video created by @Noitidart:
-
-[![iOS Installation Guide](https://img.youtube.com/vi/iBjsCrEtYW4/0.jpg)](https://www.youtube.com/watch?v=iBjsCrEtYW4)
+- If it has error => try `pod repo update` then `cd node_modules/react-native-app-tour/ios && pod install`
+  - - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries.
 
 - Now build your iOS app through Xcode
 
