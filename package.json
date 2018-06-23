@@ -14,7 +14,7 @@
     "react-native"
   ],
   "author": "Pranav Raj Singh Chauhan",
-  "license": "MIT",
+  "license": "Apache License 2.0",
   "dependencies": {},
   "devDependencies": {
     "prettier-pack": "0.0.6"
