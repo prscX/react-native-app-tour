@@ -1,0 +1,6 @@
+framework module MaterialShowcase {
+  umbrella header "MaterialShowcase-umbrella.h"
+
+  export *
+  module * { export * }
+}

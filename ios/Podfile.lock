@@ -1,0 +1,16 @@
+PODS:
+  - MaterialShowcase (0.6.1)
+
+DEPENDENCIES:
+  - MaterialShowcase (= 0.6.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MaterialShowcase
+
+SPEC CHECKSUMS:
+  MaterialShowcase: 20f5de970096550dd18d26ed173cf9f2ab037867
+
+PODFILE CHECKSUM: e7234a23d4d6f976050ddebc0ff0a1a88e4379c0
+
+COCOAPODS: 1.5.3
