@@ -8,7 +8,8 @@
   },
   "main": "RNAppTour.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd ios && pod install"
   },
   "keywords": [
     "react-native"

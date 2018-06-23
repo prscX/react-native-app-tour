@@ -1,0 +1,6 @@
+framework module Pods_RNAppTour {
+  umbrella header "Pods-RNAppTour-umbrella.h"
+
+  export *
+  module * { export * }
+}
