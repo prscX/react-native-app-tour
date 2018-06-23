@@ -1,10 +1,16 @@
-<p align="center">
-  <a href="https://www.npmjs.com/package/react-native-taptargetview"><img src="http://img.shields.io/npm/v/react-native-taptargetview.svg?style=flat" /></a>
-  <a href="https://github.com/prscX/react-native-taptargetview/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
-  <a href="https://github.com/prscX/react-native-taptargetview#License"><img src="https://img.shields.io/npm/l/react-native-taptargetview.svg?style=flat" /></a>
-</p>
+<h1 align="center">
 
-# React Native: Native App Tour Library
+  <p align="center">
+    <a href="https://www.npmjs.com/package/react-native-taptargetview"><img src="http://img.shields.io/npm/v/react-native-taptargetview.svg?style=flat" /></a>
+    <a href="https://github.com/prscX/react-native-taptargetview/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
+    <a href="https://github.com/prscX/react-native-taptargetview#License"><img src="https://img.shields.io/npm/l/react-native-taptargetview.svg?style=flat" /></a>
+  </p>
+
+    ReactNative: Native App Tour Library (Android/iOS)
+
+If this project has helped you out, please support us with a star 🌟
+
+</h1>
 
 This library is a React Native bridge around native app tour libraries. It allows show/guide beautiful tours:
 
@@ -16,7 +22,7 @@ This library is a React Native bridge around native app tour libraries. It allow
 | ------------------------------------------------------------------------------------------------------------------------------ |
 | <img src="https://github.com/aromajoin/material-showcase-ios/raw/master/art/material-showcase.gif" width="300" height="600" /> |
 
-## Installation
+## 📖 Getting started
 
 `$ npm install react-native-app-tour --save`
 
@@ -62,12 +68,12 @@ allprojects {
 
 - Now build your iOS app through Xcode
 
-## ISSUES
+## 💬 ISSUES
 
 - If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
 - If you have problems with `Android` Trying to resolve view with tag which doesn't exist or can't resolve tag. Please add props `collapasable: false` to your View
 
-## API's
+## 🎨 API's
 
 - AppTourView.for: AppTourTarget
 
@@ -97,7 +103,7 @@ AppTour.ShowSequence(appTourSequence)
   - ShowFor(AppTourTarget)
   - ShowSequence(AppTourTargets)
 
-## Props
+## 💡 Props
 
 > **Note:**
 >
@@ -144,7 +150,7 @@ AppTour.ShowSequence(appTourSequence)
 | `aniRippleColor`             | `string: HEX-COLOR` | #FFFFFF      | Specify ripple color                                       |
 | `aniRippleAlpha`             | `number`            | 0.2          | Specify ripple alpha                                       |
 
-## Breaking Changes
+## 🔧 Breaking Changes
 
 - [V0.0.4](https://github.com/prscX/react-native-app-tour/releases/tag/v0.0.4)
 
@@ -155,17 +161,39 @@ AppTour.ShowSequence(appTourSequence)
   - Added `order` as a mandatory property to each target
   - Each component which is to be rendered in the tour should have a `key` prop. It is mandatory.
 
-## Credits
+## ✨ Credits
 
 - Android: [KeepSafe/TapTargetView](https://github.com/KeepSafe/TapTargetView)
 - iOS: [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios)
 
-## Contribution
+## 🤔 How to contribute
 
+Have an idea? Found a bug? Please raise to [ISSUES](https://github.com/prscX/react-native-app-tour/issues).
 Contributions are welcome and are greatly appreciated! Every little bit helps, and credit will always be given.
 
-## License
+## 💫 Where is this library used?
 
-This library is provided under the Apache 2.0 License.
+If you are using this library in one of your projects, add it in this list below. ✨
 
-RNAppTour @ Pranav Raj Singh Chauhan
+## 📜 License
+
+This library is provided under the Apache 2 License.
+
+RNAppTour @ [prscX](https://github.com/prscX)
+
+## 💖 Support my projects
+
+I open-source almost everything I can, and I try to reply everyone needing help using these projects. Obviously, this takes time. You can integrate and use these projects in your applications for free! You can even change the source code and redistribute (even resell it).
+
+However, if you get some profit from this or just want to encourage me to continue creating stuff, there are few ways you can do it:
+
+- Starring and sharing the projects you like 🚀
+- If you're feeling especially charitable, please follow [prscX](https://github.com/prscX) on GitHub.
+
+  <a href="https://www.buymeacoffee.com/prscX" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
+  Thanks! ❤️
+  <br/>
+  [prscX.github.io](https://prscx.github.io)
+  <br/>
+  </ Pranav >
