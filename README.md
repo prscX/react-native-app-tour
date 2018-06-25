@@ -24,6 +24,8 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 ## 📖 Getting started
 
+> **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
+
 `$ npm install react-native-app-tour --save`
 
 `$ react-native link react-native-app-tour`
@@ -59,12 +61,17 @@ allprojects {
 
 - **iOS**
 
-  - After  `react-native link react-native-app-tour` open your project and create a folder 'RNAppTour' under Libraries.
-  - Drag node_modules/react-native-app-tour/ios/pods/Pods.xcodeproject into RNAppTour, as well as the RNAppTour.xcodeproject
-  - Add the MaterialShowcase.framework into your project's Embedded Binaries and make sure the framework is also in linked libraries.
-  - Go to your project's Build Settings -> Framework Search path and set `$(inherited)` to recursive.
+  - After `react-native link react-native-app-tour`, please verify `node_modules/react-native-app-tour/ios/` contains `Pods` folder. If does not exist please execute `pod install` command on `node_modules/react-native-app-tour/ios/`, if any error => try `pod repo update` then `pod install`
+  - After verification, open your project and create a folder 'RNAppTour' under Libraries.
+  - Drag `node_modules/react-native-app-tour/ios/pods/Pods.xcodeproject` into RNAppTour, as well as the RNAppTour.xcodeproject if it does not exist.
+  - Add the `MaterialShowcase.framework` into your project's `Embedded Binaries` and make sure the framework is also in linked libraries.
+  - Go to your project's `Build Settings -> Framework Search Path` and set `$(inherited) to recursive`.
 
-  Now build your iOS app through Xcode
+  - Please refer below installation video created by @Noitidart:
+
+  [![iOS Installation Guide](https://img.youtube.com/vi/iBjsCrEtYW4/0.jpg)](https://www.youtube.com/watch?v=iBjsCrEtYW4)
+
+* Now build your iOS app through Xcode
 
 ## 💬 ISSUES
 
