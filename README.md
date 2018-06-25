@@ -59,14 +59,12 @@ allprojects {
 
 - **iOS**
 
-  - Run Command: `cd ../node_modules/react-native-app-tour/ios && pod install`. If it has error => try `pod repo update` then `pod install`
-  - - Add [aromajoin/material-showcase-ios](https://github.com/aromajoin/material-showcase-ios) in your app Embedded Binaries & Linked Frameworks and Libraries. Please follow below video in order to achieve the same:
+  - After  `react-native link react-native-app-tour` open your project and create a folder 'RNAppTour' under Libraries.
+  - Drag node_modules/react-native-app-tour/ios/pods/Pods.xcodeproject into RNAppTour, as well as the RNAppTour.xcodeproject
+  - Add the MaterialShowcase.framework into your project's Embedded Binaries and make sure the framework is also in linked libraries.
+  - Go to your project's Build Settings -> Framework Search path and set `$(inherited)` to recursive.
 
-  - Please refer below installation video created by @Noitidart:
-
-[![iOS Installation Guide](https://img.youtube.com/vi/iBjsCrEtYW4/0.jpg)](https://www.youtube.com/watch?v=iBjsCrEtYW4)
-
-- Now build your iOS app through Xcode
+  Now build your iOS app through Xcode
 
 ## 💬 ISSUES
 
