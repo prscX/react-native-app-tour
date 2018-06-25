@@ -61,11 +61,8 @@ allprojects {
 
   - After  `react-native link react-native-app-tour` open your project and create a folder 'RNAppTour' under Libraries.
   - Drag node_modules/react-native-app-tour/ios/pods/Pods.xcodeproject into RNAppTour, as well as the RNAppTour.xcodeproject
-  - Create a scheme for RNAppTour, go to build tab, add React before RNAppTour and disable parallelize build. Archive it.
-  - Right click on the generated MaterialShowcase.framework in the Pods project, and show in finder. 
-  - Copy the framework into your ios folder or /Frameworks folder if you have one.
-  - Right click on your frameworks folder in xcode and add files to "yourproject" -> add the MaterialShowcase.framework 
-  - Add the MaterialShowcase.framework into your projects Embedded Binaries FROM THE FRAMEWORKS LIBRARY FOLDER, and make sure the framework is also in linked libraries.
+  - Add the MaterialShowcase.framework into your project's Embedded Binaries and make sure the framework is also in linked libraries.
+  - Go to your project's Build Settings -> Framework Search path and set `$(inherited)` to recursive.
 
   Now build your iOS app through Xcode
 
