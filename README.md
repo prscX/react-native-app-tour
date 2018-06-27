@@ -133,14 +133,15 @@ AppTour.ShowSequence(appTourSequence)
 
 - **Android**
 
-| Prop                | Type                | Default | Note                                                                        |
-| ------------------- | ------------------- | ------- | --------------------------------------------------------------------------- |
-| `outerCircleAlpha`  | `number`            | 0.96f   | Specify the alpha amount for the outer circle                               |
-| `textColor`         | `string: HEX-COLOR` |         | Specify a color for both the title and description text                     |
-| `dimColor`          | `string: HEX-COLOR` |         | If set, will dim behind the view with 30% opacity of the given color        |
-| `drawShadow`        | `bool`              | true    | Whether to draw a drop shadow or not                                        |
-| `tintTarget`        | `bool`              | true    | Whether to tint the target view's color                                     |
-| `transparentTarget` | `bool`              | true    | Specify whether the target is transparent (displays the content underneath) |
+| Prop                     | Type                | Default | Note                                                                                                                                                                           |
+| ------------------------ | ------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `collapsable: mandatory` | `bool`              |         | Specify collapsable `false` if your view just contains children. Please read [view#collapsable](https://facebook.github.io/react-native/docs/view#collapsable) for the details |
+| `outerCircleAlpha`       | `number`            | 0.96f   | Specify the alpha amount for the outer circle                                                                                                                                  |
+| `textColor`              | `string: HEX-COLOR` |         | Specify a color for both the title and description text                                                                                                                        |
+| `dimColor`               | `string: HEX-COLOR` |         | If set, will dim behind the view with 30% opacity of the given color                                                                                                           |
+| `drawShadow`             | `bool`              | true    | Whether to draw a drop shadow or not                                                                                                                                           |
+| `tintTarget`             | `bool`              | true    | Whether to tint the target view's color                                                                                                                                        |
+| `transparentTarget`      | `bool`              | true    | Specify whether the target is transparent (displays the content underneath)                                                                                                    |
 
 - **iOS**
 

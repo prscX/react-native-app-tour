@@ -11,6 +11,8 @@ class Bottom extends Component {
           key={'Bottom Left'}
           title={'Bottom Left'}
           ref={ref => {
+            if (!ref) return
+
             let props = {
               order: 32,
               title: 'This is a target button 6',
@@ -27,6 +29,8 @@ class Bottom extends Component {
           key={'Bottom Right'}
           title={'Bottom Right'}
           ref={ref => {
+            if (!ref) return
+
             let props = {
               order: 31,
               title: 'This is a target button 7',

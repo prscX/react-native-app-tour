@@ -11,6 +11,8 @@ class Center extends Component {
           key={'Center Left'}
           title={'Center Left'}
           ref={ref => {
+            if (!ref) return
+
             let props = {
               order: 23,
               title: 'This is a target button 3',
@@ -27,6 +29,8 @@ class Center extends Component {
           key={'Center Center'}
           title={'Center Center'}
           ref={ref => {
+            if (!ref) return
+
             let props = {
               order: 21,
               title: 'This is a target button 4',
@@ -43,6 +47,8 @@ class Center extends Component {
           key={'Center Right'}
           title={'Center Right'}
           ref={ref => {
+            if (!ref) return
+
             let props = {
               order: 22,
               title: 'This is a target button 5',

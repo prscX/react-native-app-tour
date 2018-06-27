@@ -1,9 +1,11 @@
 package ui.apptour;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.util.Log;
 import android.support.annotation.Nullable;
 import android.app.Dialog;
@@ -75,6 +77,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                             int view = views.getInt(i);
 
                             View refView = nativeViewHierarchyManager.resolveView(view);
+//                            View refView = getCurrentActivity().findViewById(view);
 
                             TapTarget tapTarget = generateTapTarget(refView, props.getMap(String.valueOf(view)));
                             targetViews.add(tapTarget);
@@ -135,6 +138,8 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                     @Override
                     public void execute(NativeViewHierarchyManager nativeViewHierarchyManager) {
                         View refView = nativeViewHierarchyManager.resolveView(view);
+//                        View refView = getCurrentActivity().findViewById(view);
+
                         TapTarget targetView = generateTapTarget(refView, props);
 
                         TapTargetView.showFor(dialog, targetView, new TapTargetViewListener(props));
@@ -170,6 +175,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
     }
 
 
+    @TargetApi(18)
     private TapTarget generateTapTarget(final View view, final ReadableMap props) {
         final Activity activity = this.getCurrentActivity();
 
@@ -250,7 +256,12 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
 
 
         //Populate Props
-        TapTarget targetView = TapTarget.forView(view, title, description);
+//        TapTarget targetView = TapTarget.forView(view, title, description);
+        int[] points = new int[2];
+        view.getLocationOnScreen(points);
+        Rect rectBonds = new Rect(points[0], points[1], points[0] + view.getWidth(), points[1] + view.getHeight());
+
+        TapTarget targetView = TapTarget.forBounds(rectBonds, title, description);
 
         if (outerCircleColor != null && outerCircleColor.length() > 0)
             targetView.outerCircleColorInt(Color.parseColor(outerCircleColor));
