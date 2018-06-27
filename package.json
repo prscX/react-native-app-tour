@@ -1,6 +1,6 @@
 {
   "name": "react-native-app-tour",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "React Native: Native App Tour Library",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "react-native"
   ],
   "author": "Pranav Raj Singh Chauhan",
-  "license": "Apache License 2.0",
+  "license": "Apache License",
   "dependencies": {},
   "devDependencies": {
     "prettier-pack": "0.0.6"
