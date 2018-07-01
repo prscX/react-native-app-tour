@@ -23,6 +23,11 @@ NSString *const onFinishShowStepEvent = @"onFinishSequenceEvent";
     return _keys.count;
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+  return YES;
+}
+
 - (NSEnumerator *)keyEnumerator {
     return _keys.objectEnumerator;
 }
