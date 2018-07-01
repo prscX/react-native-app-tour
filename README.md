@@ -65,16 +65,17 @@ allprojects {
   - After verification, open your project and create a folder 'RNAppTour' under Libraries.
   - Drag `node_modules/react-native-app-tour/ios/pods/Pods.xcodeproject` into RNAppTour, as well as the RNAppTour.xcodeproject if it does not exist.
   - Add the `MaterialShowcase.framework` into your project's `Embedded Binaries` and make sure the framework is also in linked libraries.
-  - Go to your project's `Build Settings -> Framework Search Path` and set `$(inherited) to recursive`.
-
-  - Please refer below installation video created by @Noitidart:
-
-  [![iOS Installation Guide](https://img.youtube.com/vi/iBjsCrEtYW4/0.jpg)](https://www.youtube.com/watch?v=iBjsCrEtYW4)
+  - Go to your project's `Build Settings -> Frameworks Search Path` and add `${BUILT_PRODUCTS_DIR}/MaterialShowcase` non-recursive.
 
 * Now build your iOS app through Xcode
 
 ## 💬 ISSUES
 
+- If you install this package and get an error saying postinstall failed this most likely means
+  - You are trying to run install modules from outside of project root (react-native-git-upgrade) 
+    - FIX: remove react-native-app-tour from package.json and rerun
+  - Pods version is out of date.
+    - `pod repo update`
 - If you encounter `File not found in iOS` issue while setup, please refer [ISSUE - 3](https://github.com/prscX/react-native-app-tour/issues/3) issue which might help you in order to resolve.
 - If you have problems with `Android` Trying to resolve view with tag which doesn't exist or can't resolve tag. Please add props `collapasable: false` to your View
 
