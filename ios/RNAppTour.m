@@ -86,6 +86,8 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
         [targets setObject:[props objectForKey: [view stringValue]] forKey: [view stringValue]];
     }
 
+    if ([[targets allKeys] count] <= 0) return;
+    
     NSString *showTargetKey = [ [targets allKeys] objectAtIndex: 0];
     [self ShowFor:[NSNumber numberWithLongLong:[showTargetKey longLongValue]] props:[targets objectForKey:showTargetKey] ];
 }

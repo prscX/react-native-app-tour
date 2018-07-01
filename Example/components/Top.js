@@ -11,6 +11,8 @@ class Top extends Component {
           key={'Top Left'}
           title={'Top Left'}
           ref={ref => {
+            if (!ref) return
+
             this.button1 = ref
 
             let props = {
@@ -43,6 +45,8 @@ class Top extends Component {
           key={'Top Right'}
           title={'Top Right'}
           ref={ref => {
+            if (!ref) return
+
             this.button2 = ref
 
             let props = {

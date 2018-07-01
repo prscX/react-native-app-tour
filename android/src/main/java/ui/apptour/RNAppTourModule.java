@@ -1,9 +1,11 @@
 package ui.apptour;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.util.Log;
 import android.support.annotation.Nullable;
 import android.app.Dialog;
@@ -36,7 +38,6 @@ import com.getkeepsafe.taptargetview.TapTarget;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class RNAppTourModule extends ReactContextBaseJavaModule {
 
     public RNAppTourModule(ReactApplicationContext reactContext) {
@@ -48,12 +49,8 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         return "RNAppTour";
     }
 
-    private void sendEvent(ReactContext reactContext,
-                           String eventName,
-                           @Nullable WritableMap params) {
-        reactContext
-                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                .emit(eventName, params);
+    private void sendEvent(ReactContext reactContext, String eventName, @Nullable WritableMap params) {
+        reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, params);
     }
 
     @ReactMethod
@@ -75,6 +72,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                             int view = views.getInt(i);
 
                             View refView = nativeViewHierarchyManager.resolveView(view);
+                            // View refView = getCurrentActivity().findViewById(view);
 
                             TapTarget tapTarget = generateTapTarget(refView, props.getMap(String.valueOf(view)));
                             targetViews.add(tapTarget);
@@ -82,7 +80,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
 
                         TapTargetSequence tapTargetSequence = new TapTargetSequence(dialog).targets(targetViews);
                         tapTargetSequence.considerOuterCircleCanceled(true);
- 
+
                         tapTargetSequence.listener(new TapTargetSequence.Listener() {
                             @Override
                             public void onSequenceFinish() {
@@ -112,8 +110,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
 
                                 sendEvent(getReactApplicationContext(), "onCancelStepEvent", params);
                             }
-                        })
-                                .continueOnCancel(true);
+                        }).continueOnCancel(true);
                         tapTargetSequence.start();
                     }
                 });
@@ -135,6 +132,8 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                     @Override
                     public void execute(NativeViewHierarchyManager nativeViewHierarchyManager) {
                         View refView = nativeViewHierarchyManager.resolveView(view);
+                        // View refView = getCurrentActivity().findViewById(view);
+
                         TapTarget targetView = generateTapTarget(refView, props);
 
                         TapTargetView.showFor(dialog, targetView, new TapTargetViewListener(props));
@@ -144,15 +143,16 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         });
     }
 
-
-    public static class TapTargetViewListener extends  TapTargetView.Listener {
+    public static class TapTargetViewListener extends TapTargetView.Listener {
         private ReadableMap props;
 
-        public TapTargetViewListener (ReadableMap props) {
+        public TapTargetViewListener(ReadableMap props) {
             this.props = props;
         }
 
-        /** Signals that the user clicked on the outer circle portion of the tap target **/
+        /**
+         * Signals that the user clicked on the outer circle portion of the tap target
+         **/
         @Override
         public void onOuterCircleClick(TapTargetView view) {
             // no-op as default
@@ -169,7 +169,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         }
     }
 
-
+    @TargetApi(18)
     private TapTarget generateTapTarget(final View view, final ReadableMap props) {
         final Activity activity = this.getCurrentActivity();
 
@@ -204,8 +204,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             dimColor = props.getString("dimColor");
         }
 
-
-        //Other Props
+        // Other Props
         float outerCircleAlpha = 0.96f;
         int titleTextSize = 20;
         int descriptionTextSize = 10;
@@ -213,7 +212,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         boolean cancelable = true;
         boolean tintTarget = true;
         boolean transparentTarget = true;
-        int targetRadius = 60;
+        int targetRadius = 44;
 
         try {
             outerCircleAlpha = (float) props.getDouble("outerCircleAlpha");
@@ -248,9 +247,13 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         } catch (Exception e) {
         }
 
+        // Populate Props
+        // TapTarget targetView = TapTarget.forView(view, title, description);
+        int[] points = new int[2];
+        view.getLocationOnScreen(points);
+        Rect rectBonds = new Rect(points[0], points[1], points[0] + view.getWidth(), points[1] + view.getHeight());
 
-        //Populate Props
-        TapTarget targetView = TapTarget.forView(view, title, description);
+        TapTarget targetView = TapTarget.forBounds(rectBonds, title, description);
 
         if (outerCircleColor != null && outerCircleColor.length() > 0)
             targetView.outerCircleColorInt(Color.parseColor(outerCircleColor));
@@ -264,7 +267,6 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             targetView.textColorInt(Color.parseColor(textColor));
         if (dimColor != null && dimColor.length() > 0)
             targetView.dimColorInt(Color.parseColor(dimColor));
-
 
         targetView.outerCircleAlpha(outerCircleAlpha);
         targetView.titleTextSize(titleTextSize);

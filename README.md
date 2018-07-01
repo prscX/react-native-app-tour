@@ -24,6 +24,8 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 ## 📖 Getting started
 
+> **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
+
 `$ npm install react-native-app-tour --save`
 
 `$ react-native link react-native-app-tour`
@@ -59,12 +61,17 @@ allprojects {
 
 - **iOS**
 
-  - After  `react-native link react-native-app-tour` open your project and create a folder 'RNAppTour' under Libraries.
-  - Drag node_modules/react-native-app-tour/ios/pods/Pods.xcodeproject into RNAppTour, as well as the RNAppTour.xcodeproject
-  - Add the MaterialShowcase.framework into your project's Embedded Binaries and make sure the framework is also in linked libraries.
-  - Go to your project's Build Settings -> Framework Search path and set `$(inherited)` to recursive.
+  - After `react-native link react-native-app-tour`, please verify `node_modules/react-native-app-tour/ios/` contains `Pods` folder. If does not exist please execute `pod install` command on `node_modules/react-native-app-tour/ios/`, if any error => try `pod repo update` then `pod install`
+  - After verification, open your project and create a folder 'RNAppTour' under Libraries.
+  - Drag `node_modules/react-native-app-tour/ios/pods/Pods.xcodeproject` into RNAppTour, as well as the RNAppTour.xcodeproject if it does not exist.
+  - Add the `MaterialShowcase.framework` into your project's `Embedded Binaries` and make sure the framework is also in linked libraries.
+  - Go to your project's `Build Settings -> Framework Search Path` and set `$(inherited) to recursive`.
 
-  Now build your iOS app through Xcode
+  - Please refer below installation video created by @Noitidart:
+
+  [![iOS Installation Guide](https://img.youtube.com/vi/iBjsCrEtYW4/0.jpg)](https://www.youtube.com/watch?v=iBjsCrEtYW4)
+
+* Now build your iOS app through Xcode
 
 ## 💬 ISSUES
 
@@ -126,14 +133,15 @@ AppTour.ShowSequence(appTourSequence)
 
 - **Android**
 
-| Prop                | Type                | Default | Note                                                                        |
-| ------------------- | ------------------- | ------- | --------------------------------------------------------------------------- |
-| `outerCircleAlpha`  | `number`            | 0.96f   | Specify the alpha amount for the outer circle                               |
-| `textColor`         | `string: HEX-COLOR` |         | Specify a color for both the title and description text                     |
-| `dimColor`          | `string: HEX-COLOR` |         | If set, will dim behind the view with 30% opacity of the given color        |
-| `drawShadow`        | `bool`              | true    | Whether to draw a drop shadow or not                                        |
-| `tintTarget`        | `bool`              | true    | Whether to tint the target view's color                                     |
-| `transparentTarget` | `bool`              | true    | Specify whether the target is transparent (displays the content underneath) |
+| Prop                     | Type                | Default | Note                                                                                                                                                                           |
+| ------------------------ | ------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `collapsable: mandatory` | `bool`              |         | Specify collapsable `false` if your view just contains children. Please read [view#collapsable](https://facebook.github.io/react-native/docs/view#collapsable) for the details |
+| `outerCircleAlpha`       | `number`            | 0.96f   | Specify the alpha amount for the outer circle                                                                                                                                  |
+| `textColor`              | `string: HEX-COLOR` |         | Specify a color for both the title and description text                                                                                                                        |
+| `dimColor`               | `string: HEX-COLOR` |         | If set, will dim behind the view with 30% opacity of the given color                                                                                                           |
+| `drawShadow`             | `bool`              | true    | Whether to draw a drop shadow or not                                                                                                                                           |
+| `tintTarget`             | `bool`              | true    | Whether to tint the target view's color                                                                                                                                        |
+| `transparentTarget`      | `bool`              | true    | Specify whether the target is transparent (displays the content underneath)                                                                                                    |
 
 - **iOS**
 
