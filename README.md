@@ -67,7 +67,7 @@ allprojects {
   - Add the `MaterialShowcase.framework` into your project's `Embedded Binaries` and make sure the framework is also in linked libraries.
   - Go to your project's `Build Settings -> Frameworks Search Path` and add `${BUILT_PRODUCTS_DIR}/MaterialShowcase` non-recursive.
 
-* Now build your iOS app through Xcode
+  - Now build your iOS app through Xcode
 
 ## 💬 ISSUES
 
