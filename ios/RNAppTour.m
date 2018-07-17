@@ -81,16 +81,28 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
 {
-    targets = [[MutableOrderedDictionary alloc] init];
+    bool tourStarted = false;
+    if (targets == nil || [[targets allKeys] count] <= 0) {
+        targets = [[MutableOrderedDictionary alloc] init];
+    } else {
+        for (NSNumber *view in views) {
+            if (![targets objectForKey: [view stringValue]]) {
+                tourStarted = true;
+            }
+        }
+    }
+
     for (NSNumber *view in views) {
         [targets setObject:[props objectForKey: [view stringValue]] forKey: [view stringValue]];
     }
 
+    if (tourStarted == true) return;
     if ([[targets allKeys] count] <= 0) return;
     
     NSString *showTargetKey = [ [targets allKeys] objectAtIndex: 0];
     [self ShowFor:[NSNumber numberWithLongLong:[showTargetKey longLongValue]] props:[targets objectForKey:showTargetKey] ];
 }
+
 
 RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 {
