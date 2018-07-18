@@ -103,7 +103,6 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
     [self ShowFor:[NSNumber numberWithLongLong:[showTargetKey longLongValue]] props:[targets objectForKey:showTargetKey] ];
 }
 
-
 RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 {
     MaterialShowcase *materialShowcase = [self generateMaterialShowcase:view props:props];
@@ -244,16 +243,16 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
     }
 
     [materialShowcase setTargetViewWithView: target];
-    [materialShowcase setDelegate: self];
+    [materialShowcase setDelegate: (id)self];
 
     return materialShowcase;
 }
 
 
-- (void)showCaseWillDismissWithShowcase:(MaterialShowcase *)materialShowcase {
+- (void)showCaseWillDismissWithShowcase:(MaterialShowcase *)materialShowcase didTapTarget:(bool)didTapTarget {
     NSLog(@"");
 }
-- (void)showCaseDidDismissWithShowcase:(MaterialShowcase *)materialShowcase {
+- (void)showCaseDidDismissWithShowcase:(MaterialShowcase *)materialShowcase didTapTarget:(bool)didTapTarget {
     NSLog(@"");
     
     NSArray *targetKeys = [targets allKeys];
