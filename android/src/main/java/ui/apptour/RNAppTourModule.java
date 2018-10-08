@@ -71,47 +71,56 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                         for (int i = 0; i < views.size(); i++) {
                             int view = views.getInt(i);
 
-                            View refView = nativeViewHierarchyManager.resolveView(view);
+                            View refView = null;
+                            try {
+                                refView = nativeViewHierarchyManager.resolveView(view);
+                            } catch (Exception e) {
+                                Log.d("VIEW", "NOT FOUND");
+                            }
                             // View refView = getCurrentActivity().findViewById(view);
 
-                            TapTarget tapTarget = generateTapTarget(refView, props.getMap(String.valueOf(view)));
-                            targetViews.add(tapTarget);
+                            if (refView != null) {
+                                TapTarget tapTarget = generateTapTarget(refView, props.getMap(String.valueOf(view)));
+                                targetViews.add(tapTarget);
+                            }
                         }
 
-                        TapTargetSequence tapTargetSequence = new TapTargetSequence(dialog).targets(targetViews);
-                        tapTargetSequence.considerOuterCircleCanceled(true);
+                        if (targetViews.size() > 0) {
+                            TapTargetSequence tapTargetSequence = new TapTargetSequence(dialog).targets(targetViews);
+                            tapTargetSequence.considerOuterCircleCanceled(true);
 
-                        tapTargetSequence.listener(new TapTargetSequence.Listener() {
-                            @Override
-                            public void onSequenceFinish() {
-                                WritableMap params = Arguments.createMap();
-                                params.putBoolean("finish", true);
+                            tapTargetSequence.listener(new TapTargetSequence.Listener() {
+                                @Override
+                                public void onSequenceFinish() {
+                                    WritableMap params = Arguments.createMap();
+                                    params.putBoolean("finish", true);
 
-                                sendEvent(getReactApplicationContext(), "onFinishSequenceEvent", params);
+                                    sendEvent(getReactApplicationContext(), "onFinishSequenceEvent", params);
 
-                                // dismiss dialog on finish
-                                if (dialog != null && dialog.isShowing()) {
-                                    dialog.dismiss();
+                                    // dismiss dialog on finish
+                                    if (dialog != null && dialog.isShowing()) {
+                                        dialog.dismiss();
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
-                                WritableMap params = Arguments.createMap();
-                                params.putBoolean("next_step", true);
+                                @Override
+                                public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                                    WritableMap params = Arguments.createMap();
+                                    params.putBoolean("next_step", true);
 
-                                sendEvent(getReactApplicationContext(), "onShowSequenceStepEvent", params);
-                            }
+                                    sendEvent(getReactApplicationContext(), "onShowSequenceStepEvent", params);
+                                }
 
-                            @Override
-                            public void onSequenceCanceled(TapTarget lastTarget) {
-                                WritableMap params = Arguments.createMap();
-                                params.putBoolean("cancel_step", true);
+                                @Override
+                                public void onSequenceCanceled(TapTarget lastTarget) {
+                                    WritableMap params = Arguments.createMap();
+                                    params.putBoolean("cancel_step", true);
 
-                                sendEvent(getReactApplicationContext(), "onCancelStepEvent", params);
-                            }
-                        }).continueOnCancel(true);
-                        tapTargetSequence.start();
+                                    sendEvent(getReactApplicationContext(), "onCancelStepEvent", params);
+                                }
+                            }).continueOnCancel(true);
+                            tapTargetSequence.start();
+                        }
                     }
                 });
             }
