@@ -253,7 +253,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         view.getLocationOnScreen(points);
         Rect rectBonds = new Rect(points[0], points[1], points[0] + view.getWidth(), points[1] + view.getHeight());
 
-        TapTarget targetView = TapTarget.forBounds(rectBonds, title, description);
+        TapTarget targetView = TapTarget.forView(view, title, description);
 
         if (outerCircleColor != null && outerCircleColor.length() > 0)
             targetView.outerCircleColorInt(Color.parseColor(outerCircleColor));
