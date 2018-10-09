@@ -11,18 +11,18 @@ class AppTour {
       props = {}
 
     appTourTargets &&
-      appTourTargets.forEach((appTourTarget, key, appTourTargets) => {
-        if (
-          appTourTarget.props.order === undefined ||
-          appTourTarget.props.order === null
+    appTourTargets.forEach((appTourTarget, key, appTourTargets) => {
+      if (
+        appTourTarget.props.order === undefined ||
+        appTourTarget.props.order === null
+      )
+        throw new Error(
+          'Each tour target should have a order mandatory props.'
         )
-          throw new Error(
-            'Each tour target should have a order mandatory props.'
-          )
 
-        viewIds.set(appTourTarget.props.order, appTourTarget.view)
-        props[appTourTarget.view] = appTourTarget.props
-      })
+      viewIds.set(appTourTarget.props.order, appTourTarget.view)
+      props[appTourTarget.view] = appTourTarget.props
+    })
 
     let viewOrder = Array.from(viewIds.keys())
     viewOrder = viewOrder.sort((a, b) => a - b)
@@ -73,7 +73,10 @@ class AppTourView {
       )
     if (
       view._reactInternalFiber === undefined ||
-      view._reactInternalFiber === null ||
+      view._reactInternalFiber === null) {
+      return null;
+    }
+    if (
       view._reactInternalFiber.key === undefined ||
       view._reactInternalFiber.key === null
     )
