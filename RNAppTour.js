@@ -72,6 +72,8 @@ class AppTourView {
         'Provided tour view reference is undefined or null, please add a preliminary validation before adding for tour.'
       )
     if (
+      view._reactInternalFiber === undefined ||
+      view._reactInternalFiber === null ||
       view._reactInternalFiber.key === undefined ||
       view._reactInternalFiber.key === null
     )
