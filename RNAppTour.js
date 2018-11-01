@@ -71,6 +71,13 @@ class AppTourView {
       throw new Error(
         'Provided tour view reference is undefined or null, please add a preliminary validation before adding for tour.'
       )
+
+    if (
+      view._reactInternalFiber === undefined ||
+      view._reactInternalFiber === null) {
+      throw new Error("Tour view does not have React Internal Fiber.");
+    }
+
     if (
       view._reactInternalFiber.key === undefined ||
       view._reactInternalFiber.key === null
