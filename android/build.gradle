@@ -1,6 +1,7 @@
 
 buildscript {
     repositories {
+        google()
         maven { url "https://maven.google.com" }
         jcenter()
     }
@@ -35,5 +36,5 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.11.0'
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.12.0'
 }
