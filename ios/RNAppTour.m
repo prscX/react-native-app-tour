@@ -166,7 +166,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 
     if ([props objectForKey:@"cancelable"] != nil) {
         BOOL *cancelable = [[props objectForKey:@"cancelable"] boolValue];
-        [materialShowcase setIsTapRecognizerForTargetView: !cancelable];
+        [materialShowcase setIsTapRecognizerForTagretView: !cancelable];
     }
 
     // Text
