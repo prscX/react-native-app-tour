@@ -42,16 +42,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RNAppTourModule extends ReactContextBaseJavaModule {
+    private Context context;
+    private AssetManager AssetManager;
 
     public RNAppTourModule(ReactApplicationContext reactContext) {
         // ReactApplicationContext inherit from context
         super(reactContext);
+
         this.context = reactContext.getApplicationContext();
         this.AssetManager = this.context.getAssets();
     }
-
-    Context context;
-    AssetManager AssetManager;
 
     @Override
     public String getName() {
