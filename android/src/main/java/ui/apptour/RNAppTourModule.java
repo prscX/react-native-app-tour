@@ -6,11 +6,14 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.support.annotation.Nullable;
 import android.app.Dialog;
 import android.view.View;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.res.AssetManager;
 
 import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.UIBlock;
@@ -41,8 +44,14 @@ import java.util.List;
 public class RNAppTourModule extends ReactContextBaseJavaModule {
 
     public RNAppTourModule(ReactApplicationContext reactContext) {
+        // ReactApplicationContext inherit from context
         super(reactContext);
+        this.context = reactContext.getApplicationContext();
+        this.AssetManager = this.context.getAssets();
     }
+
+    Context context;
+    AssetManager AssetManager;
 
     @Override
     public String getName() {
@@ -181,6 +190,7 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         String descriptionTextColor = null;
         String textColor = null;
         String dimColor = null;
+        String fontFamily = null;
 
         if (props.hasKey("description") && !props.isNull("description")) {
             description = props.getString("description");
@@ -202,6 +212,9 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
         }
         if (props.hasKey("dimColor") && !props.isNull("dimColor")) {
             dimColor = props.getString("dimColor");
+        }
+        if (props.hasKey("fontFamily") && !props.isNull("fontFamily")) {
+            fontFamily = props.getString("fontFamily");
         }
 
         // Other Props
@@ -267,6 +280,10 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
             targetView.textColorInt(Color.parseColor(textColor));
         if (dimColor != null && dimColor.length() > 0)
             targetView.dimColorInt(Color.parseColor(dimColor));
+        if (fontFamily != null && fontFamily.length() > 0) {
+            Typeface font = Typeface.createFromAsset(this.AssetManager, "fonts/" + fontFamily + ".ttf");
+            targetView.textTypeface(font);
+        }
 
         targetView.outerCircleAlpha(outerCircleAlpha);
         targetView.titleTextSize(titleTextSize);
