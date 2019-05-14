@@ -1,9 +1,9 @@
 <h1 align="center">
 
   <p align="center">
-    <a href="https://www.npmjs.com/package/react-native-taptargetview"><img src="http://img.shields.io/npm/v/react-native-taptargetview.svg?style=flat" /></a>
-    <a href="https://github.com/prscX/react-native-taptargetview/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
-    <a href="https://github.com/prscX/react-native-taptargetview#License"><img src="https://img.shields.io/npm/l/react-native-taptargetview.svg?style=flat" /></a>
+    <a href="https://www.npmjs.com/package/react-native-app-tour"><img src="http://img.shields.io/npm/v/react-native-app-tour.svg?style=flat" /></a>
+    <a href="https://github.com/prscX/react-native-app-tour/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
+    <a href="https://github.com/prscX/react-native-app-tour#License"><img src="https://img.shields.io/npm/l/react-native-app-tour.svg?style=flat" /></a>
   </p>
 
     ReactNative: Native App Tour Library (Android/iOS)
