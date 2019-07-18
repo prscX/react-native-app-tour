@@ -79,9 +79,13 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                     public void execute(NativeViewHierarchyManager nativeViewHierarchyManager) {
                         for (int i = 0; i < views.size(); i++) {
                             int view = views.getInt(i);
+                            View refView = null;
 
-                            View refView = nativeViewHierarchyManager.resolveView(view);
-                            // View refView = getCurrentActivity().findViewById(view);
+                            try {
+                                refView = nativeViewHierarchyManager.resolveView(view);
+                            } catch (Exception exception) {
+                                continue;
+                            }
 
                             TapTarget tapTarget = generateTapTarget(refView, props.getMap(String.valueOf(view)));
                             targetViews.add(tapTarget);
@@ -140,8 +144,13 @@ public class RNAppTourModule extends ReactContextBaseJavaModule {
                 uiManager.addUIBlock(new UIBlock() {
                     @Override
                     public void execute(NativeViewHierarchyManager nativeViewHierarchyManager) {
-                        View refView = nativeViewHierarchyManager.resolveView(view);
-                        // View refView = getCurrentActivity().findViewById(view);
+                        View refView = null;
+
+                        try {
+                            refView = nativeViewHierarchyManager.resolveView(view);
+                        } catch (Exception exception) {
+                            return;
+                        }
 
                         TapTarget targetView = generateTapTarget(refView, props);
 
