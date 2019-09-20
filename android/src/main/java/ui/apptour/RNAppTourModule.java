@@ -8,7 +8,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.Log;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.app.Dialog;
 import android.view.View;
 import android.app.AlertDialog;
