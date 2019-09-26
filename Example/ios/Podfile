@@ -33,6 +33,8 @@ target 'Example' do
   end
 
   use_native_modules!
+
+  pod 'RNBottomActionSheet', :path => '../node_modules/react-native-bottom-action-sheet/ios'
 end
 
 target 'Example-tvOS' do
