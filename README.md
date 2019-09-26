@@ -26,6 +26,38 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 > **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
 
+## **RN60 >=**
+
+- **iOS**
+
+	- Add the following to your `Podfile` -> `ios/Podfile` and run pod update:
+
+
+```
+  use_native_modules!
+
+  pod 'RNAppTour', :path => '../node_modules/react-native-app-tour/ios'
+
+  use_frameworks!
+
+  pod 'MaterialShowcase', :git => 'https://github.com/prscX/material-showcase-ios', :branch => 'swift-version-fix'
+```
+
+- **Android**
+
+Please add below snippet into your app `build.gradle`
+
+```
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+## **RN60 <**
+
+
 `$ npm install react-native-app-tour --save`
 
 `$ react-native link react-native-app-tour`
