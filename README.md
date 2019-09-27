@@ -24,13 +24,15 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 ## 📖 Getting started
 
-> **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
+`$ npm install react-native-app-tour --save`
 
-## **RN60 >= RNBAS V1 >**
+## **RN60 >= RNAT V1 >**
 
 > RN60 above please use `react-native-app-tour` V1 and above
 
 - **iOS**
+
+> **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
 
 	- Add the following to your `Podfile` -> `ios/Podfile` and run pod update:
 
@@ -57,12 +59,9 @@ allprojects {
 }
 ```
 
-## **RN60 < RNBAS V1 <**
+## **RN60 < RNAT V1 <**
 
 > RN60 below please use `react-native-app-tour` V.0.*
-
-
-`$ npm install react-native-app-tour --save`
 
 `$ react-native link react-native-app-tour`
 
