@@ -70,6 +70,7 @@ allprojects {
 
   - Please add below script in your `build.gradle`
 
+```
 allprojects {
     repositories {
         maven { url "https://jitpack.io" }
