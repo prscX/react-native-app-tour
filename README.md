@@ -26,7 +26,9 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 > **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
 
-## **RN60 >=**
+## **RN60 >= RNBAS V1 >**
+
+> RN60 above please use `react-native-app-tour` V1 and above
 
 - **iOS**
 
@@ -55,7 +57,9 @@ allprojects {
 }
 ```
 
-## **RN60 <**
+## **RN60 < RNBAS V1 <**
+
+> RN60 below please use `react-native-app-tour` V.0.*
 
 
 `$ npm install react-native-app-tour --save`
@@ -66,21 +70,8 @@ allprojects {
 
   - Please add below script in your `build.gradle`
 
-```
-buildscript {
-    repositories {
-        jcenter()
-        maven { url "https://maven.google.com" }
-        maven { url "https://jitpack.io" }
-        ...
-    }
-}
-
 allprojects {
     repositories {
-        mavenLocal()
-        jcenter()
-        maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
         ...
     }
