@@ -7,8 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0EFF470670DA6DA8867E46 /* Pods_RNAppTour.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEA180732A9A8BF0371676 /* Pods_RNAppTour.framework */; };
 		B3E7B58A1CC2AC0600A0062D /* RNAppTour.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNAppTour.m */; };
+		CE22189C2080D66700481F9A /* MaterialShowcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2218992080D65E00481F9A /* MaterialShowcase.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE2218982080D65E00481F9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE2218932080D65E00481F9A /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 176C50736423D76C69F4D1500316EA89;
+			remoteInfo = MaterialShowcase;
+		};
+		CE22189A2080D65E00481F9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE2218932080D65E00481F9A /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19D9A58BCF454F5039589A46ADD42A58;
+			remoteInfo = "Pods-RNAppTour";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
@@ -24,8 +43,12 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNAppTour.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAppTour.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		13DE74E553ECFF3435B654D7 /* Pods-RNAppTour.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNAppTour.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNAppTour/Pods-RNAppTour.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNAppTour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNAppTour.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNAppTour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNAppTour.m; sourceTree = "<group>"; };
+		CE2218932080D65E00481F9A /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		D1CEA180732A9A8BF0371676 /* Pods_RNAppTour.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RNAppTour.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F19C0DE333317BEE57686D3E /* Pods-RNAppTour.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNAppTour.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNAppTour/Pods-RNAppTour.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE22189C2080D66700481F9A /* MaterialShowcase.framework in Frameworks */,
+				1D0EFF470670DA6DA8867E46 /* Pods_RNAppTour.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,13 +72,42 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		415DFCB0D0E0A4B371341FA3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13DE74E553ECFF3435B654D7 /* Pods-RNAppTour.debug.xcconfig */,
+				F19C0DE333317BEE57686D3E /* Pods-RNAppTour.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
 				B3E7B5881CC2AC0600A0062D /* RNAppTour.h */,
 				B3E7B5891CC2AC0600A0062D /* RNAppTour.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				C6B153389FE5C589B9190528 /* Frameworks */,
+				415DFCB0D0E0A4B371341FA3 /* Pods */,
 			);
+			sourceTree = "<group>";
+		};
+		C6B153389FE5C589B9190528 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE2218932080D65E00481F9A /* Pods.xcodeproj */,
+				D1CEA180732A9A8BF0371676 /* Pods_RNAppTour.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE2218942080D65E00481F9A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE2218992080D65E00481F9A /* MaterialShowcase.framework */,
+				CE22189B2080D65E00481F9A /* Pods_RNAppTour.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -63,6 +117,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNAppTour" */;
 			buildPhases = (
+				59BECF4019998478B6B4E997 /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -100,12 +155,56 @@
 			mainGroup = 58B511D21A9E6C8500147676;
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CE2218942080D65E00481F9A /* Products */;
+					ProjectRef = CE2218932080D65E00481F9A /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RNAppTour */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CE2218992080D65E00481F9A /* MaterialShowcase.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MaterialShowcase.framework;
+			remoteRef = CE2218982080D65E00481F9A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CE22189B2080D65E00481F9A /* Pods_RNAppTour.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_RNAppTour.framework;
+			remoteRef = CE22189A2080D65E00481F9A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		59BECF4019998478B6B4E997 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RNAppTour-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
@@ -202,6 +301,7 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13DE74E553ECFF3435B654D7 /* Pods-RNAppTour.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -212,6 +312,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../../ios/Pods/Headers/Public/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
@@ -222,6 +323,7 @@
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F19C0DE333317BEE57686D3E /* Pods-RNAppTour.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -232,6 +334,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../../ios/Pods/Headers/Public/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";

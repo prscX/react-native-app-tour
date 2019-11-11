@@ -1,23 +1,24 @@
 {
-    "name": "react-native-app-tour",
-    "version": "0.0.4",
-    "description": "React Native: Native App Tour Library",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/prscX/react-native-app-tour.git"
-    },
-    "main": "RNAppTour.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-        "react-native"
-    ],
-    "author": "Pranav Raj Singh Chauhan",
-    "license": "MIT",
-    "dependencies": {
-    },
-    "devDependencies": {
-        "prettier-pack": "0.0.2"
-    }
+  "name": "react-native-app-tour",
+  "version": "1.0.1",
+  "description": "React Native: Native App Tour Library",
+  "homepage": "https://github.com/prscX/react-native-app-tour.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prscX/react-native-app-tour.git"
+  },
+  "main": "RNAppTour.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "Pranav Raj Singh Chauhan",
+  "license": "Apache License",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "prettier-pack": "0.0.8"
+  }
 }
