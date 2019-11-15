@@ -7,6 +7,7 @@
 
 @interface RNAppTour : NSObject<RCTBridgeModule, MaterialShowcaseDelegate> {
     MutableOrderedDictionary *targets;
+    UIColor *targetOriginalColor;
 }
 
 @property (nonatomic, weak) id <MaterialShowcaseDelegate> delegate;

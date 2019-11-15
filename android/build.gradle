@@ -40,5 +40,6 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.12.0'
+    implementation 'com.github.LuisBonsembiante:TapTargetView:6ebfd66'
+    // implementation 'com.getkeepsafe.taptargetview:taptargetview:1.12.0'
 }
