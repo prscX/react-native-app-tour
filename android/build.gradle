@@ -40,5 +40,5 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.12.0'
+    implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0'
 }

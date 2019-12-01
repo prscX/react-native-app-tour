@@ -45,7 +45,7 @@ target 'Example' do
 
   use_frameworks!
 
-  pod 'MaterialShowcase', :git => 'https://github.com/prscX/material-showcase-ios', :branch => 'swift-version-fix'
+  pod 'MaterialShowcase'
 
 end
 

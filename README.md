@@ -44,7 +44,7 @@ This library is a React Native bridge around native app tour libraries. It allow
 
   use_frameworks!
 
-  pod 'MaterialShowcase', :git => 'https://github.com/prscX/material-showcase-ios', :branch => 'swift-version-fix'
+  pod 'MaterialShowcase'
 ```
 
 - **Android**
