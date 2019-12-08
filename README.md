@@ -26,7 +26,7 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 `$ npm install react-native-app-tour --save`
 
-## **RN60 >= RNAT V1 >**
+## **RN61 >= RNAT V1 >**
 
 > RN60 above please use `react-native-app-tour` V1 and above
 
@@ -59,7 +59,7 @@ allprojects {
 }
 ```
 
-## **RN60 < RNAT V1 <**
+## **RN61 < RNAT V1 <**
 
 > RN60 below please use `react-native-app-tour` V.0.*
 
