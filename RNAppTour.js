@@ -7,22 +7,22 @@ class AppTour {
     let appTourTargets = sequence.getAll()
 
     let viewIds = new Map(),
-      sortedViewIds = [],
-      props = {}
+        sortedViewIds = [],
+        props = {}
 
     appTourTargets &&
-      appTourTargets.forEach((appTourTarget, key, appTourTargets) => {
-        if (
+    appTourTargets.forEach((appTourTarget, key, appTourTargets) => {
+      if (
           appTourTarget.props.order === undefined ||
           appTourTarget.props.order === null
-        )
-          throw new Error(
+      )
+        throw new Error(
             'Each tour target should have a order mandatory props.'
-          )
+        )
 
-        viewIds.set(appTourTarget.props.order, appTourTarget.view)
-        props[appTourTarget.view] = appTourTarget.props
-      })
+      viewIds.set(appTourTarget.props.order, appTourTarget.view)
+      props[appTourTarget.view] = appTourTarget.props
+    })
 
     let viewOrder = Array.from(viewIds.keys())
     viewOrder = viewOrder.sort((a, b) => a - b)
@@ -69,25 +69,33 @@ class AppTourView {
   static for(view, props) {
     if (view === undefined || view === null)
       throw new Error(
-        'Provided tour view reference is undefined or null, please add a preliminary validation before adding for tour.'
+          'Provided tour view reference is undefined or null, please add a preliminary validation before adding for tour.'
       )
 
-    if (
-      view._reactInternalFiber === undefined ||
-      view._reactInternalFiber === null) {
-      throw new Error("Tour view does not have React Internal Fiber.");
+    let useNativeTag = false;
+    let keyValue = 0;
+
+    if (view._reactInternalFiber === undefined ||
+        view._reactInternalFiber === null) {
+      useNativeTag = true;
     }
 
-    if (
-      view._reactInternalFiber.key === undefined ||
-      view._reactInternalFiber.key === null
-    )
-      throw new Error(
-        'Each tour view should have a key prop. Please check the tour component props.'
-      )
+    if (!useNativeTag) {
+      if (view._reactInternalFiber.key === undefined ||
+          view._reactInternalFiber.key === null) {
+        throw new Error(
+            'Each tour view should have a key prop. Please check the tour component props.'
+        )
+      }
+    }
 
+    if (useNativeTag) {
+      keyValue = view._nativeTag;
+    } else {
+      keyValue = view._reactInternalFiber.key;
+    }
     return {
-      key: view._reactInternalFiber.key,
+      key: keyValue,
       view: findNodeHandle(view),
       props: props
     }
