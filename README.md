@@ -44,7 +44,7 @@ This library is a React Native bridge around native app tour libraries. It allow
 
   use_frameworks!
 
-  pod 'MaterialShowcase'
+  pod 'MaterialShowcase', :git => 'https://github.com/aromajoin/material-showcase-ios', :tag => '0.7.1'
 ```
 
 - **Android**
