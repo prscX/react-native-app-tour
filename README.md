@@ -45,7 +45,29 @@ This library is a React Native bridge around native app tour libraries. It allow
   use_frameworks!
 
   pod 'MaterialShowcase', :git => 'https://github.com/aromajoin/material-showcase-ios', :tag => '0.7.1'
+
+  # Follow [Flipper iOS Setup Guidelines](https://fbflipper.com/docs/getting-started/ios-native)
+  # This is required because iOSPhotoEditor is implemented using Swift and we have to use use_frameworks! in Podfile
+  $static_framework = ['FlipperKit', 'Flipper', 'Flipper-Folly',
+    'CocoaAsyncSocket', 'ComponentKit', 'Flipper-DoubleConversion',
+    'Flipper-Glog', 'Flipper-PeerTalk', 'Flipper-RSocket', 'Yoga', 'YogaKit',
+    'CocoaLibEvent', 'OpenSSL-Universal', 'boost-for-react-native']
+  
+  pre_install do |installer|
+    Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+    installer.pod_targets.each do |pod|
+        if $static_framework.include?(pod.name)
+          def pod.build_type;
+            Pod::BuildType.static_library
+          end
+        end
+      end
+  end
+
 ```
+
+- Please make sure [**Flipper iOS Setup Guidelines**](https://fbflipper.com/docs/getting-started/ios-native/) steps are added to Podfile, since MaterialShowcase is implemented using Swift and we have to use use_frameworks! in Podfile
+
 
 - **Android**
 
