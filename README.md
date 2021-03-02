@@ -201,6 +201,7 @@ AppTour.ShowSequence(appTourSequence)
 | `aniGoOutDuration`           | `number`            | 1.5          | Specify animation Go Out Duration                          |
 | `aniRippleColor`             | `string: HEX-COLOR` | #FFFFFF      | Specify ripple color                                       |
 | `aniRippleAlpha`             | `number`            | 0.2          | Specify ripple alpha                                       |
+| `textCenterOffset`           | `number`            | 44 + 20      | Specify the offset of the text                             |        
 
 ## 🔧 Breaking Changes
 

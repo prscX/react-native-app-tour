@@ -167,6 +167,13 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         }
     }
 
+    if ([props objectForKey:@"textCenterOffset"] != nil) {
+        float textCenterOffsetValue = [[props objectForKey:@"textCenterOffset"] floatValue];
+        if (textCenterOffsetValue >= 0) {
+            [materialShowcase setTextCenterOffset: textCenterOffsetValue];
+        }
+    }
+
     if ([props objectForKey:@"cancelable"] != nil) {
         BOOL *cancelable = [[props objectForKey:@"cancelable"] boolValue];
         [materialShowcase setIsTapRecognizerForTargetView: !cancelable];
