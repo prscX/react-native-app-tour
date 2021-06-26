@@ -110,7 +110,7 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         return;
     }
     
-    [materialShowcase showWithAnimated:true completion:^() {
+    [materialShowcase showWithAnimated:true hasShadow:true hasSkipButton:false completion:^() {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onStartShowStepEvent body:@{@"start_step": @YES}];
     }];
 }

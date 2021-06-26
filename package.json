@@ -1,6 +1,6 @@
 {
   "name": "react-native-app-tour",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React Native: Native App Tour Library",
   "homepage": "https://github.com/prscX/react-native-app-tour.git",
   "repository": {
@@ -18,6 +18,6 @@
   "license": "Apache License",
   "dependencies": {},
   "devDependencies": {
-    "prettier-pack": "0.0.8"
+    "prettier-pack": "0.0.11"
   }
 }
