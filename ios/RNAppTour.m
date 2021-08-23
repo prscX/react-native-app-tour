@@ -237,6 +237,11 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         }
     }
 
+    float backgroundRadius = [[props objectForKey:@"backgroundRadius"] floatValue];
+    if (backgroundRadius > 0) {
+        [materialShowcase setBackgroundRadius:backgroundRadius];
+    }
+
     float aniRippleScaleValue = [[props objectForKey:@"aniRippleScale"] floatValue];
     if (aniRippleScaleValue > 0) {
         [materialShowcase setAniRippleScale:aniRippleScaleValue];
