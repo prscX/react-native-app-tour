@@ -1,0 +1,20 @@
+{
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.editor.enablePreview": false,
+  "javascript.validate.enable": false,
+  "vsicons.projectDetection.autoReload": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [100],
+  "editor.cursorBlinking": "solid",
+  "editor.fontLigatures": true,
+  "local-history.daysLimit": 5,
+  "local-history.maxDisplay": 20,
+  "local-history.exclude": ["{.history,.vscode,**/node_modules,typings,out}"],
+  "local-history.enabled": 1,
+  "editor.formatOnSave": true,
+  "vscode-open-project.projects": {
+    "Modules": "/Modules"
+  }
+}

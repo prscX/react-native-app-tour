@@ -106,8 +106,11 @@ RCT_EXPORT_METHOD(ShowSequence:(NSArray *)views props:(NSDictionary *)props)
 RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
 {
     MaterialShowcase *materialShowcase = [self generateMaterialShowcase:view props:props];
-
-    [materialShowcase showWithAnimated:true completion:^() {
+    if (materialShowcase == nil) {
+        return;
+    }
+    
+    [materialShowcase showWithAnimated:true hasShadow:true hasSkipButton:false completion:^() {
         [self.bridge.eventDispatcher sendDeviceEventWithName:onStartShowStepEvent body:@{@"start_step": @YES}];
     }];
 }
@@ -247,8 +250,12 @@ RCT_EXPORT_METHOD(ShowFor:(nonnull NSNumber *)view props:(NSDictionary *)props)
         [materialShowcase setAniRippleScale:aniRippleScaleValue];
     }
 
-    [materialShowcase setTargetViewWithView: target];
-    [materialShowcase setDelegate: (id)self];
+    if (target != nil) {        
+        [materialShowcase setTargetViewWithView: target];
+        [materialShowcase setDelegate: (id)self];
+    } else {
+        return nil;
+    }
 
     return materialShowcase;
 }

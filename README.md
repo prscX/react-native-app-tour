@@ -26,26 +26,44 @@ This library is a React Native bridge around native app tour libraries. It allow
 
 `$ npm install react-native-app-tour --save`
 
-## **RN61 >= RNAT V1 >**
-
-> RN60 above please use `react-native-app-tour` V1 and above
+> Supported react-native 61 and above
 
 - **iOS**
 
 > **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
 
-	- Add the following to your `Podfile` -> `ios/Podfile` and run pod update:
-
+    - Add the following to your `Podfile` -> `ios/Podfile` and run pod update:
 
 ```
   use_native_modules!
 
   pod 'RNAppTour', :path => '../node_modules/react-native-app-tour/ios'
 
-  use_frameworks!
+  use_frameworks! :linkage => :static
 
   pod 'MaterialShowcase'
+
+  # Follow [Flipper iOS Setup Guidelines](https://fbflipper.com/docs/getting-started/ios-native)
+  # This is required because iOSPhotoEditor is implemented using Swift and we have to use use_frameworks! in Podfile
+  $static_framework = ['FlipperKit', 'Flipper', 'Flipper-Folly',
+    'CocoaAsyncSocket', 'ComponentKit', 'Flipper-DoubleConversion',
+    'Flipper-Glog', 'Flipper-PeerTalk', 'Flipper-RSocket', 'Yoga', 'YogaKit',
+    'CocoaLibEvent', 'OpenSSL-Universal', 'boost-for-react-native']
+
+  pre_install do |installer|
+    Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+    installer.pod_targets.each do |pod|
+        if $static_framework.include?(pod.name)
+          def pod.build_type;
+            Pod::BuildType.static_library
+          end
+        end
+      end
+  end
+
 ```
+
+- Please make sure [**Flipper iOS Setup Guidelines**](https://fbflipper.com/docs/getting-started/ios-native/) steps are added to Podfile, since MaterialShowcase is implemented using Swift and we have to use use_frameworks! in Podfile
 
 - **Android**
 
@@ -59,43 +77,10 @@ allprojects {
 }
 ```
 
-## **RN61 < RNAT V1 <**
-
-> RN60 below please use `react-native-app-tour` V.0.*
-
-`$ react-native link react-native-app-tour`
-
-- **Android**
-
-  - Please add below script in your `build.gradle`
-
-```
-allprojects {
-    repositories {
-        maven { url "https://jitpack.io" }
-        ...
-    }
-}
-```
-
-> **Note**
->
-> - Android SDK 27 > is supported
-
-- **iOS**
-
-  - After `react-native link react-native-app-tour`, please verify `node_modules/react-native-app-tour/ios/` contains `Pods` folder. If does not exist please execute `pod install` command on `node_modules/react-native-app-tour/ios/`, if any error => try `pod repo update` then `pod install`
-  - After verification, open your project and create a folder 'RNAppTour' under Libraries.
-  - Drag `node_modules/react-native-app-tour/ios/pods/Pods.xcodeproject` into RNAppTour, as well as the RNAppTour.xcodeproject if it does not exist.
-  - Add the `MaterialShowcase.framework` into your project's `Embedded Binaries` and make sure the framework is also in linked libraries.
-  - Go to your project's `Build Settings -> Frameworks Search Path` and add `${BUILT_PRODUCTS_DIR}/MaterialShowcase` non-recursive.
-
-  - Now build your iOS app through Xcode
-
 ## 💬 ISSUES
 
 - If you install this package and get an error saying postinstall failed this most likely means
-  - You are trying to run install modules from outside of project root (react-native-git-upgrade) 
+  - You are trying to run install modules from outside of project root (react-native-git-upgrade)
     - FIX: remove react-native-app-tour from package.json and rerun
   - Pods version is out of date.
     - `pod repo update`
