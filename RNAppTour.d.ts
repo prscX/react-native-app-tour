@@ -1,5 +1,5 @@
 
-type AppTourViewPropType = {
+export type AppTourViewPropType = {
   /** string: HEX-COLOR 	UIColor.blue 	Specify background prompt color */
   backgroundPromptColor?: string;
   /** number: 	0.96 	Specify background prompt color alpha */
