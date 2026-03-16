@@ -34,12 +34,10 @@ export default class App extends Component<{}> {
     this.appTourTargets = [];
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.registerSequenceStepEvent();
     this.registerFinishSequenceEvent();
-  }
 
-  componentDidMount() {
     setTimeout(() => {
       let appTourSequence = new AppTourSequence();
       this.appTourTargets.forEach(appTourTarget => {
@@ -48,6 +46,15 @@ export default class App extends Component<{}> {
 
       AppTour.ShowSequence(appTourSequence);
     }, 1000);
+  }
+
+  componentWillUnmount() {
+    if (this.sequenceStepListener) {
+      this.sequenceStepListener.remove();
+    }
+    if (this.finishSequenceListener) {
+      this.finishSequenceListener.remove();
+    }
   }
 
   registerSequenceStepEvent = () => {
